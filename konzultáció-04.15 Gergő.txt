@@ -1,0 +1,27 @@
+vpn- open vpn? vagy saját (evidesk)
+
+Remotee a név
+
+
+alapfunkciók:
+Agent:
+chat ablak, fájl felöltés/másolás ezeknek a gui-ját 
+
+belső oldal:
+bejelentkezés, autentikáció felület
+utána látja az aktív gépeket-új gép felvétele, törlés 
+
+
+adatbázis a szerveren-talán msql-belső felhasználók, 
+gépek tárolása (név, vpn-ip cim, mac cim)
+
+
+
+
+
+
+
+
+
+
+

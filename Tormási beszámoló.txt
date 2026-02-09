@@ -1,0 +1,12 @@
+formális tervezés, uml diagramok
+
+implementálás
+
+egyértelműen derüljön ki, hogy én mit csináltam. Ha egy modult más csinált akkor keveset írunk róla. A saját munkát kell bemutatni.
+
+
+végleges leadás december 1-2 hete
+
+október közepe inkább. 
+
+

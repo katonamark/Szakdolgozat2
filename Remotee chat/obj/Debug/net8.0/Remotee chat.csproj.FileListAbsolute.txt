@@ -1,0 +1,36 @@
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\appsettings.Development.json
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\appsettings.json
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.staticwebassets.endpoints.json
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.exe
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.deps.json
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.runtimeconfig.json
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.dll
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Remotee chat.pdb
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\SZE\Szakdolgozat\Remotee chat\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.csproj.AssemblyReference.cache
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.GeneratedMSBuildEditorConfig.editorconfig
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.AssemblyInfoInputs.cache
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.AssemblyInfo.cs
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.csproj.CoreCompileInputs.cache
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.MvcApplicationPartsAssemblyInfo.cs
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.MvcApplicationPartsAssemblyInfo.cache
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\scopedcss\bundle\Remotee chat.styles.css
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets.build.json
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets.development.json
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets\msbuild.Remotee chat.Microsoft.AspNetCore.StaticWebAssets.props
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets\msbuild.Remotee chat.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets\msbuild.build.Remotee chat.props
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Remotee chat.props
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Remotee chat.props
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets.pack.json
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee .AB674668.Up2Date
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.dll
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\refint\Remotee chat.dll
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.pdb
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\Remotee chat.genruntimeconfig.cache
+D:\SZE\Szakdolgozat\Remotee chat\obj\Debug\net8.0\ref\Remotee chat.dll

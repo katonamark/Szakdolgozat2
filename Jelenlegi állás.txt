@@ -1,0 +1,5 @@
+Jelenlegi állás:
+távoli asztalos megosztás-hellyel közzel, akad a kép
+mozgóképnél akadozik, 10-15fps
+
+chat, egy megjelenítés(az irányítás), gui, fájlmegosztás, biztonság(??)
