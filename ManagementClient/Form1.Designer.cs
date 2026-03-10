@@ -30,41 +30,68 @@
         {
             lstAgents = new ListBox();
             btnRefresh = new Button();
+            label1 = new Label();
+            btnMessage = new Button();
             SuspendLayout();
             // 
             // lstAgents
             // 
             lstAgents.FormattingEnabled = true;
             lstAgents.ItemHeight = 15;
-            lstAgents.Location = new Point(204, 165);
+            lstAgents.Location = new Point(58, 39);
             lstAgents.Name = "lstAgents";
-            lstAgents.Size = new Size(120, 94);
+            lstAgents.Size = new Size(280, 289);
             lstAgents.TabIndex = 0;
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(570, 337);
+            btnRefresh.Location = new Point(303, 344);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(75, 23);
             btnRefresh.TabIndex = 1;
             btnRefresh.Text = "Frissítés";
             btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(16, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(136, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Aktív gépek a hálózaton:";
+            // 
+            // btnMessage
+            // 
+            btnMessage.Location = new Point(402, 39);
+            btnMessage.Name = "btnMessage";
+            btnMessage.Size = new Size(95, 23);
+            btnMessage.TabIndex = 3;
+            btnMessage.Text = "Üzenetküldés";
+            btnMessage.UseVisualStyleBackColor = true;
+            btnMessage.Click += btnMessage_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(785, 379);
+            Controls.Add(btnMessage);
+            Controls.Add(label1);
             Controls.Add(btnRefresh);
             Controls.Add(lstAgents);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Remotee";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ListBox lstAgents;
         private Button btnRefresh;
+        private Label label1;
+        private Button btnMessage;
     }
 }

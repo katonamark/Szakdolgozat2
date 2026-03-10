@@ -27,4 +27,12 @@ public class AgentHub : Hub
 
         await base.OnDisconnectedAsync(exception);
     }
+
+    public async Task SendMessageToAgent(string machineName, string message)
+    {
+        if (ConnectedAgents.TryGetValue(machineName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+        }
+    }
 }

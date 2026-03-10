@@ -5,6 +5,11 @@ var connection = new HubConnectionBuilder()
     .WithAutomaticReconnect()
     .Build();
 
+connection.On<string>("ReceiveMessage", (message) =>
+{
+    Console.WriteLine($"Üzenet a szervertől: {message}");
+});
+
 try
 {
     await connection.StartAsync();
@@ -19,3 +24,4 @@ catch (Exception ex)
 {
     Console.WriteLine("Hiba: " + ex.Message);
 }
+

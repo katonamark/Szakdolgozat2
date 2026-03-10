@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "ContainingType": "AgentsController",
+    "Method": "GetAgents",
+    "RelativePath": "api/Agents",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
