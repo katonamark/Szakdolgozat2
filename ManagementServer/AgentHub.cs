@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.SignalR;
 using System.Collections.Concurrent;
+using ManagementServer;
 
 public class AgentHub : Hub
 {
@@ -32,7 +33,28 @@ public class AgentHub : Hub
     {
         if (ConnectedAgents.TryGetValue(machineName, out var connectionId))
         {
+            ChatStorage.AddMessage(new ChatRecord
+            {
+                Sender = "Management",
+                TargetAgent = machineName,
+                Message = message,
+                Timestamp = DateTime.Now
+            });
+
             await Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
         }
+    }
+
+    public async Task SendMessageToManagement(string machineName, string message)
+    {
+        ChatStorage.AddMessage(new ChatRecord
+        {
+            Sender = machineName,
+            TargetAgent = machineName,
+            Message = message,
+            Timestamp = DateTime.Now
+        });
+
+        await Clients.All.SendAsync("ReceiveMessageFromAgent", machineName, message);
     }
 }
