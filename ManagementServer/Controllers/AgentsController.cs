@@ -9,4 +9,15 @@ public class AgentsController : ControllerBase
     {
         return Ok(AgentHub.ConnectedAgents.Keys);
     }
+
+    [HttpGet("{agentName}")]
+    public IActionResult GetAgentInfo(string agentName)
+    {
+        if (AgentHub.AgentInfos.TryGetValue(agentName, out var info))
+        {
+            return Ok(info);
+        }
+
+        return NotFound();
+    }
 }

@@ -42,7 +42,7 @@ namespace ManagementClient
                     foreach (var msg in messages)
                     {
                         rtbChatHistory.AppendText(
-                            $"[[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}{Environment.NewLine}");
+                            $"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}{Environment.NewLine}");
                     }
                 }
             }
@@ -66,7 +66,7 @@ namespace ManagementClient
                     Invoke(new Action(() =>
                     {
                         rtbChatHistory.AppendText(
-                            $"[[{msg.Timestamp:yyyy.MM.dd HH:mm}] {machineName}: {message}{Environment.NewLine}");
+                            $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {message}{Environment.NewLine}");
                     }));
                 }
             });
@@ -102,7 +102,7 @@ namespace ManagementClient
                 await connection.InvokeAsync("SendMessageToAgent", targetAgent, messageToSend);
 
                 rtbChatHistory.AppendText(
-                    $"[{msg.Timestamp:yyyy.MM.dd HH:mm}] Management: {messageToSend}{Environment.NewLine}");
+                    $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {messageToSend}{Environment.NewLine}");
 
                 txtNewMessage.Clear();
             }
