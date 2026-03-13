@@ -1,6 +1,6 @@
 ﻿namespace AgentUI
 {
-    partial class Form1
+    partial class ClientUI
     {
         /// <summary>
         ///  Required designer variable.
@@ -55,10 +55,12 @@
             // 
             // txtNewMessage
             // 
-            txtNewMessage.Location = new Point(43, 350);
+            txtNewMessage.AcceptsReturn = true;
+            txtNewMessage.Location = new Point(43, 336);
             txtNewMessage.Multiline = true;
             txtNewMessage.Name = "txtNewMessage";
-            txtNewMessage.Size = new Size(325, 23);
+            txtNewMessage.ScrollBars = ScrollBars.Both;
+            txtNewMessage.Size = new Size(325, 48);
             txtNewMessage.TabIndex = 2;
             // 
             // btnSend
@@ -80,7 +82,7 @@
             label1.TabIndex = 4;
             label1.Text = "Írd ide az üzenetet:";
             // 
-            // Form1
+            // ClientUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -90,7 +92,7 @@
             Controls.Add(txtNewMessage);
             Controls.Add(rtbChatHistory);
             Controls.Add(lblStatus);
-            Name = "Form1";
+            Name = "ClientUI";
             Text = "Üzenetek";
             ResumeLayout(false);
             PerformLayout();

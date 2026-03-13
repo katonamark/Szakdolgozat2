@@ -7,11 +7,11 @@
         "Action": "Start"
       },
       {
-        "Path": "..\\ManagementClient\\ManagementClient.csproj",
+        "Path": "..\\AgentUI\\AgentUI.csproj",
         "Action": "Start"
       },
       {
-        "Path": "..\\AgentUI\\AgentUI.csproj",
+        "Path": "..\\ManagementClient\\ManagementClient.csproj",
         "Action": "Start"
       }
     ]

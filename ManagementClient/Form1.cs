@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Reflection;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace ManagementClient
@@ -13,6 +14,13 @@ namespace ManagementClient
         {
             InitializeComponent();
             StartSignalR();
+        }
+        public class AgentInfo
+        {
+            public string MachineName { get; set; } = "";
+            public string OsVersion { get; set; } = "";
+            public string UserName { get; set; } = "";
+            public string Status { get; set; } = "";
         }
 
         private async void StartSignalR()
@@ -67,5 +75,46 @@ namespace ManagementClient
             MessageForm form = new MessageForm(agentName);
             form.Show();
         }
+
+        private void btnFile_Click(object sender, EventArgs e)
+        {
+            if (lstAgents.SelectedItem == null)
+            {
+                MessageBox.Show("Válassz agentet.");
+                return;
+            }
+
+            string agent = lstAgents.SelectedItem.ToString();
+
+            FileSendForm form = new FileSendForm(agent, connection);
+            form.Show();
+        }
+
+        private async void lstAgents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAgents.SelectedItem == null)
+                return;
+
+            string selectedAgent = lstAgents.SelectedItem.ToString() ?? "";
+
+            try
+            {
+                var info = await client.GetFromJsonAsync<AgentInfo>(
+                    $"https://localhost:7294/api/agents/{selectedAgent}");
+
+                if (info != null)
+                {
+                    lblMachineName.Text = $"Gépnév: {info.MachineName}";
+                    lblOsVersion.Text = $"OS: {info.OsVersion}";
+                    lblUserName.Text = $"Felhasználó: {info.UserName}";
+                    lblStatus.Text = $"Állapot: {info.Status}";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba az agent adatok betöltésekor: " + ex.Message);
+            }
+        }
     }
+
 }

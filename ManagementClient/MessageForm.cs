@@ -22,6 +22,7 @@ namespace ManagementClient
         public MessageForm(string agentName)
         {
             InitializeComponent();
+            txtNewMessage.KeyDown += txtNewMessage_KeyDown;
             targetAgent = agentName;
             lblTargetAgent.Text = $"Beszélgetés: {agentName}";
             LoadConversation();
@@ -114,6 +115,19 @@ namespace ManagementClient
 
         private void MessageForm_Load(object sender, EventArgs e)
         {
+        }
+        private void txtNewMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && e.Control)
+            {
+                return;
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnSend.PerformClick();
+            }
         }
     }
 

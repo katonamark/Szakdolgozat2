@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ManagementServer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementServer.Controllers
@@ -11,6 +12,12 @@ namespace ManagementServer.Controllers
     {
         [HttpGet("{agentName}")]
         public IActionResult GetConversation(string agentName)
+        {
+            var messages = ChatStorage.GetConversation(agentName);
+            return Ok(messages);
+        }
+        [HttpGet("agent/{agentName}")]
+        public IActionResult GetConversationForAgent(string agentName)
         {
             var messages = ChatStorage.GetConversation(agentName);
             return Ok(messages);

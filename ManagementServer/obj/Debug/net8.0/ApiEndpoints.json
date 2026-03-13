@@ -10,9 +10,41 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AgentsController",
+    "Method": "GetAgentInfo",
+    "RelativePath": "api/Agents/{agentName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ManagementServer.Controllers.ChatController",
     "Method": "GetConversation",
     "RelativePath": "api/Chat/{agentName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementServer.Controllers.ChatController",
+    "Method": "GetConversationForAgent",
+    "RelativePath": "api/Chat/agent/{agentName}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

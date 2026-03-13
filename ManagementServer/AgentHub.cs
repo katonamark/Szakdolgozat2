@@ -7,26 +7,21 @@ using ManagementServer;
 public class AgentHub : Hub
 {
     public static ConcurrentDictionary<string, string> ConnectedAgents = new();
+    public static ConcurrentDictionary<string, AgentInfo> AgentInfos = new();
 
-    public async Task RegisterAgent(string machineName)
+    public async Task RegisterAgent(string machineName, string osVersion, string userName)
     {
         ConnectedAgents[machineName] = Context.ConnectionId;
-        Console.WriteLine($"Agent csatlakozott: {machineName}");
-        await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
-    }
 
-    public override async Task OnDisconnectedAsync(Exception? exception)
-    {
-        var agent = ConnectedAgents.FirstOrDefault(x => x.Value == Context.ConnectionId);
-
-        if (!string.IsNullOrEmpty(agent.Key))
+        AgentInfos[machineName] = new AgentInfo
         {
-            ConnectedAgents.TryRemove(agent.Key, out _);
-            Console.WriteLine($"Agent lecsatlakozott: {agent.Key}");
-            await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
-        }
+            MachineName = machineName,
+            OsVersion = osVersion,
+            UserName = userName,
+            Status = "Online"
+        };
 
-        await base.OnDisconnectedAsync(exception);
+        await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
     }
 
     public async Task SendMessageToAgent(string machineName, string message)
@@ -56,5 +51,33 @@ public class AgentHub : Hub
         });
 
         await Clients.All.SendAsync("ReceiveMessageFromAgent", machineName, message);
+    }
+
+    public override async Task OnDisconnectedAsync(Exception? exception)
+    {
+        var agent = ConnectedAgents.FirstOrDefault(x => x.Value == Context.ConnectionId);
+
+        if (!string.IsNullOrEmpty(agent.Key))
+        {
+            ConnectedAgents.TryRemove(agent.Key, out _);
+
+            if (AgentInfos.TryGetValue(agent.Key, out var info))
+            {
+                info.Status = "Offline";
+            }
+
+            await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
+        }
+
+        await base.OnDisconnectedAsync(exception);
+    }
+
+    public async Task SendFileToAgent(string agentName, string fileName, byte[] fileData)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId)
+                .SendAsync("ReceiveFile", fileName, fileData);
+        }
     }
 }

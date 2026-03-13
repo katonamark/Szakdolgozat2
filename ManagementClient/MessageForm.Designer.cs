@@ -66,10 +66,11 @@
             // txtNewMessage
             // 
             txtNewMessage.AcceptsReturn = true;
-            txtNewMessage.Location = new Point(43, 350);
+            txtNewMessage.Location = new Point(43, 336);
             txtNewMessage.Multiline = true;
             txtNewMessage.Name = "txtNewMessage";
-            txtNewMessage.Size = new Size(325, 23);
+            txtNewMessage.ScrollBars = ScrollBars.Both;
+            txtNewMessage.Size = new Size(325, 48);
             txtNewMessage.TabIndex = 5;
             // 
             // label1
