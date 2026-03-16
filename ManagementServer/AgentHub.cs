@@ -72,12 +72,25 @@ public class AgentHub : Hub
         await base.OnDisconnectedAsync(exception);
     }
 
-    public async Task SendFileToAgent(string agentName, string fileName, byte[] fileData)
+    public async Task SendFileToAgent(string agentName, string fileName, byte[] fileData, string targetPath)
     {
         if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
         {
             await Clients.Client(connectionId)
-                .SendAsync("ReceiveFile", fileName, fileData);
+                .SendAsync("ReceiveFile", fileName, fileData, targetPath);
         }
+    }
+
+    public async Task SendCommandToAgent(string agentName, string command)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("ReceiveCommand", command);
+        }
+    }
+
+    public async Task SendCommandResultToManagement(string machineName, string result)
+    {
+        await Clients.All.SendAsync("ReceiveCommandResult", machineName, result);
     }
 }

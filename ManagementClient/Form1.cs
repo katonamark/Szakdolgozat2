@@ -90,6 +90,19 @@ namespace ManagementClient
             form.Show();
         }
 
+        private void btnCommand_Click(object sender, EventArgs e)
+        {
+            if (lstAgents.SelectedItem == null)
+            {
+                MessageBox.Show("Válassz agentet.");
+                return;
+            }
+
+            string agentName = lstAgents.SelectedItem.ToString() ?? "";
+            CommandForm form = new CommandForm(agentName, connection!);
+            form.Show();
+        }
+
         private async void lstAgents_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstAgents.SelectedItem == null)

@@ -38,6 +38,7 @@
             lblStatus = new Label();
             label2 = new Label();
             btnFile = new Button();
+            btnCommand = new Button();
             SuspendLayout();
             // 
             // lstAgents
@@ -126,7 +127,7 @@
             // 
             // btnFile
             // 
-            btnFile.Location = new Point(548, 39);
+            btnFile.Location = new Point(503, 39);
             btnFile.Name = "btnFile";
             btnFile.Size = new Size(75, 23);
             btnFile.TabIndex = 9;
@@ -134,12 +135,23 @@
             btnFile.UseVisualStyleBackColor = true;
             btnFile.Click += btnFile_Click;
             // 
+            // btnCommand
+            // 
+            btnCommand.Location = new Point(584, 39);
+            btnCommand.Name = "btnCommand";
+            btnCommand.Size = new Size(117, 23);
+            btnCommand.TabIndex = 10;
+            btnCommand.Text = "Parancs futtatás";
+            btnCommand.UseVisualStyleBackColor = true;
+            btnCommand.Click += btnCommand_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(785, 379);
+            Controls.Add(btnCommand);
             Controls.Add(btnFile);
             Controls.Add(label2);
             Controls.Add(lblStatus);
@@ -168,5 +180,6 @@
         private Label lblStatus;
         private Label label2;
         private Button btnFile;
+        private Button btnCommand;
     }
 }

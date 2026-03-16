@@ -33,6 +33,7 @@
             lblTargetAgent = new Label();
             txtNewMessage = new TextBox();
             label1 = new Label();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // btnSend
@@ -82,11 +83,22 @@
             label1.TabIndex = 6;
             label1.Text = "Írd ide az üzenetet:";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 415);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Vissza";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // MessageForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(424, 450);
+            Controls.Add(btnBack);
             Controls.Add(label1);
             Controls.Add(txtNewMessage);
             Controls.Add(lblTargetAgent);
@@ -106,5 +118,6 @@
         private RichTextBox rtbChatHistory;
         private TextBox txtNewMessage;
         private Label label1;
+        private Button btnBack;
     }
 }

@@ -33,6 +33,7 @@
             txtNewMessage = new TextBox();
             btnSend = new Button();
             label1 = new Label();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // lblStatus
@@ -82,11 +83,22 @@
             label1.TabIndex = 4;
             label1.Text = "Írd ide az üzenetet:";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 415);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 8;
+            btnBack.Text = "Vissza";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // ClientUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(424, 450);
+            Controls.Add(btnBack);
             Controls.Add(label1);
             Controls.Add(btnSend);
             Controls.Add(txtNewMessage);
@@ -105,5 +117,6 @@
         private TextBox txtNewMessage;
         private Button btnSend;
         private Label label1;
+        private Button btnBack;
     }
 }

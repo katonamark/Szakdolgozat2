@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Net.Http.Json;
+using System.Diagnostics;
 
 namespace AgentUI
 {
@@ -40,18 +41,61 @@ namespace AgentUI
                 }));
             });
 
-            connection.On<string, byte[]>("ReceiveFile", (fileName, fileData) =>
+            connection.On<string, byte[], string>("ReceiveFile", (fileName, fileData, targetPath) =>
             {
-                string path = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    fileName);
-
-                File.WriteAllBytes(path, fileData);
-
-                Invoke(new Action(() =>
+                try
                 {
-                    MessageBox.Show($"Fájl érkezett: {fileName}");
-                }));
+                    Directory.CreateDirectory(targetPath);
+
+                    string fullPath = Path.Combine(targetPath, fileName);
+                    File.WriteAllBytes(fullPath, fileData);
+
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show($"Fájl érkezett ide: {fullPath}");
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("Hiba fájl mentésekor: " + ex.Message);
+                    }));
+                }
+            });
+            connection.On<string>("ReceiveCommand", async (command) =>
+            {
+                string result;
+
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = $"/c {command}",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    using Process process = new Process();
+                    process.StartInfo = psi;
+                    process.Start();
+
+                    string output = await process.StandardOutput.ReadToEndAsync();
+                    string error = await process.StandardError.ReadToEndAsync();
+
+                    process.WaitForExit();
+
+                    result = string.IsNullOrWhiteSpace(error) ? output : error;
+                }
+                catch (Exception ex)
+                {
+                    result = "Hiba: " + ex.Message;
+                }
+
+                await connection.InvokeAsync("SendCommandResultToManagement", machineName, result);
             });
 
             try
@@ -139,6 +183,11 @@ namespace AgentUI
                 e.SuppressKeyPress = true;
                 btnSend.PerformClick();
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

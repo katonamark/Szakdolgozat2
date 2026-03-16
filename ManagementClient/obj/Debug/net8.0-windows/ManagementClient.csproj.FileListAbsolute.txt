@@ -42,3 +42,4 @@ D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\System.Threading.C
 D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\Manageme.123DBB64.Up2Date
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.FileSendForm.resources
+D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.CommandForm.resources

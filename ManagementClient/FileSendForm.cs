@@ -39,21 +39,33 @@ namespace ManagementClient
         {
             if (string.IsNullOrWhiteSpace(txtFilePath.Text))
             {
-                MessageBox.Show("Válassz fájlt.");
+                MessageBox.Show("Válaszd ki az elküldendő fájlt.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTargetPath.Text))
+            {
+                MessageBox.Show("Add meg a célmappát az agent gépen.");
                 return;
             }
 
             byte[] fileBytes = File.ReadAllBytes(txtFilePath.Text);
             string fileName = Path.GetFileName(txtFilePath.Text);
+            string targetPath = txtTargetPath.Text;
 
             await connection.InvokeAsync(
                 "SendFileToAgent",
                 targetAgent,
                 fileName,
-                fileBytes
+                fileBytes,
+                targetPath
             );
 
             MessageBox.Show("Fájl elküldve.");
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
