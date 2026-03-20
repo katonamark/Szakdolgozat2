@@ -36,6 +36,10 @@
             label1 = new Label();
             btnBack = new Button();
             notifyIcon1 = new NotifyIcon(components);
+            lblMachineName = new Label();
+            lblUserName = new Label();
+            lblOsVersion = new Label();
+            rtbLog = new RichTextBox();
             SuspendLayout();
             // 
             // lblStatus
@@ -49,7 +53,7 @@
             // 
             // rtbChatHistory
             // 
-            rtbChatHistory.Location = new Point(43, 38);
+            rtbChatHistory.Location = new Point(605, 29);
             rtbChatHistory.Name = "rtbChatHistory";
             rtbChatHistory.ReadOnly = true;
             rtbChatHistory.Size = new Size(325, 248);
@@ -59,7 +63,7 @@
             // txtNewMessage
             // 
             txtNewMessage.AcceptsReturn = true;
-            txtNewMessage.Location = new Point(43, 336);
+            txtNewMessage.Location = new Point(605, 326);
             txtNewMessage.Multiline = true;
             txtNewMessage.Name = "txtNewMessage";
             txtNewMessage.ScrollBars = ScrollBars.Both;
@@ -68,7 +72,7 @@
             // 
             // btnSend
             // 
-            btnSend.Location = new Point(293, 390);
+            btnSend.Location = new Point(855, 396);
             btnSend.Name = "btnSend";
             btnSend.Size = new Size(75, 23);
             btnSend.TabIndex = 3;
@@ -79,7 +83,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(43, 318);
+            label1.Location = new Point(605, 297);
             label1.Name = "label1";
             label1.Size = new Size(105, 15);
             label1.TabIndex = 4;
@@ -101,11 +105,51 @@
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
             // 
+            // lblMachineName
+            // 
+            lblMachineName.AutoSize = true;
+            lblMachineName.Location = new Point(12, 32);
+            lblMachineName.Name = "lblMachineName";
+            lblMachineName.Size = new Size(38, 15);
+            lblMachineName.TabIndex = 9;
+            lblMachineName.Text = "label2";
+            // 
+            // lblUserName
+            // 
+            lblUserName.AutoSize = true;
+            lblUserName.Location = new Point(12, 56);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(38, 15);
+            lblUserName.TabIndex = 10;
+            lblUserName.Text = "label3";
+            // 
+            // lblOsVersion
+            // 
+            lblOsVersion.AutoSize = true;
+            lblOsVersion.Location = new Point(12, 80);
+            lblOsVersion.Name = "lblOsVersion";
+            lblOsVersion.Size = new Size(38, 15);
+            lblOsVersion.TabIndex = 11;
+            lblOsVersion.Text = "label4";
+            // 
+            // rtbLog
+            // 
+            rtbLog.Location = new Point(12, 128);
+            rtbLog.Name = "rtbLog";
+            rtbLog.ReadOnly = true;
+            rtbLog.Size = new Size(482, 246);
+            rtbLog.TabIndex = 12;
+            rtbLog.Text = "";
+            // 
             // ClientUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(424, 450);
+            ClientSize = new Size(942, 450);
+            Controls.Add(rtbLog);
+            Controls.Add(lblOsVersion);
+            Controls.Add(lblUserName);
+            Controls.Add(lblMachineName);
             Controls.Add(btnBack);
             Controls.Add(label1);
             Controls.Add(btnSend);
@@ -127,5 +171,9 @@
         private Label label1;
         private Button btnBack;
         private NotifyIcon notifyIcon1;
+        private Label lblMachineName;
+        private Label lblUserName;
+        private Label lblOsVersion;
+        private RichTextBox rtbLog;
     }
 }

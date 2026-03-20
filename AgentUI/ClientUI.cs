@@ -14,6 +14,9 @@ namespace AgentUI
         public ClientUI()
         {
             InitializeComponent();
+            lblMachineName.Text = $"Gépnév: {Environment.MachineName}";
+            lblUserName.Text = $"Felhasználó: {Environment.UserName}";
+            lblOsVersion.Text = $"OS: {Environment.OSVersion}";
             txtNewMessage.KeyDown += txtNewMessage_KeyDown;
             ConnectToServer();
         }
@@ -38,6 +41,7 @@ namespace AgentUI
                 {
                     rtbChatHistory.AppendText(
                         $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}{Environment.NewLine}");
+                    AddLog("Új üzenet érkezett a szervertõl.");
                 }));
             });
 
@@ -89,8 +93,7 @@ namespace AgentUI
 
                     Invoke(new Action(() =>
                     {
-                        rtbChatHistory.AppendText(
-                            $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Fájl érkezett: {fullPath}{Environment.NewLine}");
+                        AddLog($"Fájl érkezett: {fullPath}"); ;
                     }));
                 }
                 catch (Exception ex)
@@ -146,6 +149,7 @@ namespace AgentUI
                 Environment.OSVersion.ToString(),
                 Environment.UserName);
                 lblStatus.Text = $"Kapcsolódva: {machineName}";
+                AddLog("Kapcsolódás a szerverhez sikeres.");
                 LoadConversation();
             }
 
@@ -153,6 +157,7 @@ namespace AgentUI
             catch (Exception ex)
             {
                 lblStatus.Text = "Kapcsolati hiba";
+                AddLog("Kapcsolódás a szerverhez sikeres.");
                 MessageBox.Show("Hiba: " + ex.Message);
             }
         }
@@ -181,6 +186,7 @@ namespace AgentUI
                     $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {messageToSend}{Environment.NewLine}");
 
                 txtNewMessage.Clear();
+                AddLog("Üzenet elküldve a szervernek.");
             }
             catch (Exception ex)
             {
@@ -209,6 +215,10 @@ namespace AgentUI
             {
                 MessageBox.Show("Hiba az elõzmények betöltésekor: " + ex.Message);
             }
+        }
+        private void AddLog(string message)
+        {
+            rtbLog.AppendText($"[{DateTime.Now:yyyy.MM.dd HH:mm}] {message}{Environment.NewLine}");
         }
         private void txtNewMessage_KeyDown(object sender, KeyEventArgs e)
         {

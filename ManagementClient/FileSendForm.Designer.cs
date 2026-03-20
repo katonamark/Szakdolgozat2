@@ -57,7 +57,7 @@
             // 
             // btnBrowse
             // 
-            btnBrowse.Location = new Point(140, 168);
+            btnBrowse.Location = new Point(228, 144);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(75, 23);
             btnBrowse.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // btnSend
             // 
-            btnSend.Location = new Point(228, 168);
+            btnSend.Location = new Point(266, 415);
             btnSend.Name = "btnSend";
             btnSend.Size = new Size(75, 23);
             btnSend.TabIndex = 3;
@@ -96,15 +96,15 @@
             // 
             // txtTargetPath
             // 
-            txtTargetPath.Location = new Point(171, 236);
+            txtTargetPath.Location = new Point(171, 280);
             txtTargetPath.Name = "txtTargetPath";
-            txtTargetPath.Size = new Size(100, 23);
+            txtTargetPath.Size = new Size(149, 23);
             txtTargetPath.TabIndex = 6;
             // 
             // cmbTargetPath
             // 
             cmbTargetPath.FormattingEnabled = true;
-            cmbTargetPath.Location = new Point(171, 285);
+            cmbTargetPath.Location = new Point(171, 236);
             cmbTargetPath.Name = "cmbTargetPath";
             cmbTargetPath.Size = new Size(121, 23);
             cmbTargetPath.TabIndex = 7;
@@ -112,7 +112,7 @@
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(39, 351);
+            lblStatus.Location = new Point(7, 362);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(38, 15);
             lblStatus.TabIndex = 8;

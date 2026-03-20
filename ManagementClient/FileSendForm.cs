@@ -28,7 +28,7 @@ namespace ManagementClient
             cmbTargetPath.Items.Add("Temp");
             cmbTargetPath.Items.Add("Custom");
             cmbTargetPath.SelectedIndex = 0;
-            lblStatus.Text = "Állapot: kész";
+            lblStatus.Text = "Állapot: az Agent kész a fogadásra";
             cmbTargetPath.SelectedIndexChanged += cmbTargetPath_SelectedIndexChanged;
             txtTargetPath.Enabled = false;
         }
