@@ -41,18 +41,56 @@ namespace AgentUI
                 }));
             });
 
-            connection.On<string, byte[], string>("ReceiveFile", (fileName, fileData, targetPath) =>
+            connection.On<string, byte[], string>("ReceiveFile", async (fileName, fileData, targetPath) =>
             {
                 try
                 {
-                    Directory.CreateDirectory(targetPath);
+                    string finalFolder;
 
-                    string fullPath = Path.Combine(targetPath, fileName);
+                    switch (targetPath)
+                    {
+                        case "Desktop":
+                            finalFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                            break;
+                        case "Documents":
+                            finalFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                            break;
+                        case "Temp":
+                            finalFolder = Path.GetTempPath();
+                            break;
+                        default:
+                            finalFolder = targetPath;
+                            break;
+                    }
+
+                    Directory.CreateDirectory(finalFolder);
+
+                    string fullPath = Path.Combine(finalFolder, fileName);
+                    await connection.InvokeAsync(
+                        "SendFileResultToManagement",
+                        machineName,
+                        $"Fájl mentve ide: {fullPath}"
+                    );
+                    notifyIcon1.BalloonTipTitle = "Fájl érkezett";
+                    notifyIcon1.BalloonTipText = fullPath;
+                    notifyIcon1.ShowBalloonTip(3000);
+
+                    if (File.Exists(fullPath))
+                    {
+                        string newFileName =
+                            Path.GetFileNameWithoutExtension(fileName) +
+                            "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") +
+                            Path.GetExtension(fileName);
+
+                        fullPath = Path.Combine(finalFolder, newFileName);
+                    }
+
                     File.WriteAllBytes(fullPath, fileData);
 
                     Invoke(new Action(() =>
                     {
-                        MessageBox.Show($"Fájl érkezett ide: {fullPath}");
+                        rtbChatHistory.AppendText(
+                            $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Fájl érkezett: {fullPath}{Environment.NewLine}");
                     }));
                 }
                 catch (Exception ex)
@@ -62,6 +100,7 @@ namespace AgentUI
                         MessageBox.Show("Hiba fájl mentésekor: " + ex.Message);
                     }));
                 }
+
             });
             connection.On<string>("ReceiveCommand", async (command) =>
             {

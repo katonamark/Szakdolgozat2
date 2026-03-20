@@ -93,4 +93,9 @@ public class AgentHub : Hub
     {
         await Clients.All.SendAsync("ReceiveCommandResult", machineName, result);
     }
+
+    public async Task SendFileResultToManagement(string machineName, string result)
+    {
+        await Clients.All.SendAsync("ReceiveFileResult", machineName, result);
+    }
 }

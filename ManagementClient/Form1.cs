@@ -29,6 +29,13 @@ namespace ManagementClient
                 .WithUrl("https://localhost:7294/agenthub")
                 .WithAutomaticReconnect()
                 .Build();
+            connection.On<string, string>("ReceiveFileResult", (machineName, result) =>
+            {
+                Invoke(new Action(() =>
+                {
+                    MessageBox.Show($"{machineName}: {result}");
+                }));
+            });
 
             try
             {

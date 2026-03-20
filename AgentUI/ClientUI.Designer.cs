@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblStatus = new Label();
             rtbChatHistory = new RichTextBox();
             txtNewMessage = new TextBox();
             btnSend = new Button();
             label1 = new Label();
             btnBack = new Button();
+            notifyIcon1 = new NotifyIcon(components);
             SuspendLayout();
             // 
             // lblStatus
@@ -93,6 +95,12 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Visible = true;
+            // 
             // ClientUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -118,5 +126,6 @@
         private Button btnSend;
         private Label label1;
         private Button btnBack;
+        private NotifyIcon notifyIcon1;
     }
 }

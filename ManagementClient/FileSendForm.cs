@@ -23,6 +23,14 @@ namespace ManagementClient
             targetAgent = agentName;
             connection = hub;
             lblTargetAgent.Text = $"Fájl küldése: {agentName}";
+            cmbTargetPath.Items.Add("Desktop");
+            cmbTargetPath.Items.Add("Documents");
+            cmbTargetPath.Items.Add("Temp");
+            cmbTargetPath.Items.Add("Custom");
+            cmbTargetPath.SelectedIndex = 0;
+            lblStatus.Text = "Állapot: kész";
+            cmbTargetPath.SelectedIndexChanged += cmbTargetPath_SelectedIndexChanged;
+            txtTargetPath.Enabled = false;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -39,33 +47,78 @@ namespace ManagementClient
         {
             if (string.IsNullOrWhiteSpace(txtFilePath.Text))
             {
-                MessageBox.Show("Válaszd ki az elküldendő fájlt.");
+                MessageBox.Show("Válassz fájlt.");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtTargetPath.Text))
+            string targetPath = GetTargetPath();
+
+            if (string.IsNullOrWhiteSpace(targetPath))
             {
-                MessageBox.Show("Add meg a célmappát az agent gépen.");
+                MessageBox.Show("Add meg a célmappát.");
                 return;
             }
 
-            byte[] fileBytes = File.ReadAllBytes(txtFilePath.Text);
-            string fileName = Path.GetFileName(txtFilePath.Text);
-            string targetPath = txtTargetPath.Text;
+            try
+            {
+                lblStatus.Text = "Állapot: fájl beolvasása...";
 
-            await connection.InvokeAsync(
-                "SendFileToAgent",
-                targetAgent,
-                fileName,
-                fileBytes,
-                targetPath
-            );
+                byte[] fileBytes = File.ReadAllBytes(txtFilePath.Text);
+                string fileName = Path.GetFileName(txtFilePath.Text);
 
-            MessageBox.Show("Fájl elküldve.");
+                lblStatus.Text = "Állapot: fájl küldése...";
+
+                await connection.InvokeAsync(
+                    "SendFileToAgent",
+                    targetAgent,
+                    fileName,
+                    fileBytes,
+                    targetPath
+                );
+
+                lblStatus.Text = "Állapot: fájl elküldve";
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = "Állapot: hiba";
+                MessageBox.Show("Hiba fájlküldéskor: " + ex.Message);
+            }
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void cmbTargetPath_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTargetPath.SelectedItem?.ToString() == "Custom")
+            {
+                txtTargetPath.Enabled = true;
+            }
+            else
+            {
+                txtTargetPath.Enabled = false;
+            }
+        }
+
+
+        private string GetTargetPath()
+        {
+            switch (cmbTargetPath.SelectedItem?.ToString())
+            {
+                case "Desktop":
+                    return "Desktop";
+                case "Documents":
+                    return "Documents";
+                case "Temp":
+                    return "Temp";
+                case "Custom":
+                    return txtTargetPath.Text;
+                default:
+                    return "Desktop";
+            }
+        }
+
+
     }
 }

@@ -35,6 +35,8 @@
             btnBack = new Button();
             lblTargetPath = new Label();
             txtTargetPath = new TextBox();
+            cmbTargetPath = new ComboBox();
+            lblStatus = new Label();
             SuspendLayout();
             // 
             // lblTargetAgent
@@ -99,11 +101,30 @@
             txtTargetPath.Size = new Size(100, 23);
             txtTargetPath.TabIndex = 6;
             // 
+            // cmbTargetPath
+            // 
+            cmbTargetPath.FormattingEnabled = true;
+            cmbTargetPath.Location = new Point(171, 285);
+            cmbTargetPath.Name = "cmbTargetPath";
+            cmbTargetPath.Size = new Size(121, 23);
+            cmbTargetPath.TabIndex = 7;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(39, 351);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(38, 15);
+            lblStatus.TabIndex = 8;
+            lblStatus.Text = "label1";
+            // 
             // FileSendForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(353, 450);
+            Controls.Add(lblStatus);
+            Controls.Add(cmbTargetPath);
             Controls.Add(txtTargetPath);
             Controls.Add(lblTargetPath);
             Controls.Add(btnBack);
@@ -126,5 +147,7 @@
         private Button btnBack;
         private Label lblTargetPath;
         private TextBox txtTargetPath;
+        private ComboBox cmbTargetPath;
+        private Label lblStatus;
     }
 }
