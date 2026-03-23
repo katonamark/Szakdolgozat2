@@ -9,6 +9,7 @@ namespace ManagementClient
         private readonly HttpClient client = new HttpClient();
         private readonly string serverUrl = "https://localhost:7294/api/agents";
         private HubConnection? connection;
+        private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
 
         public Form1()
         {
@@ -44,10 +45,24 @@ namespace ManagementClient
                 {
                     using MemoryStream ms = new MemoryStream(imageBytes);
                     Image img = Image.FromStream(ms);
+                    Image cloned = (Image)img.Clone();
 
-                    ScreenshotForm form = new ScreenshotForm((Image)img.Clone(), machineName, connection!);
-                    form.Text = $"Képernyõkép - {machineName}";
-                    form.Show();
+                    if (openScreenshotForms.ContainsKey(machineName))
+                    {
+                        openScreenshotForms[machineName].UpdateScreenshot(cloned);
+                    }
+                    else
+                    {
+                        ScreenshotForm form = new ScreenshotForm(cloned, machineName, connection!);
+                        form.Text = $"Képernyõkép - {machineName}";
+                        form.FormClosed += (s, e) =>
+                        {
+                            openScreenshotForms.Remove(machineName);
+                        };
+
+                        openScreenshotForms[machineName] = form;
+                        form.Show();
+                    }
                 }));
             });
 

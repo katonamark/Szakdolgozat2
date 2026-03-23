@@ -18,6 +18,8 @@ namespace ManagementClient
         private readonly string agentName;
         private readonly int originalImageWidth;
         private readonly int originalImageHeight;
+        private System.Windows.Forms.Timer refreshTimer;
+
 
         public ScreenshotForm(Image image, string agentName, HubConnection connection)
         {
@@ -31,6 +33,10 @@ namespace ManagementClient
             pictureBox1.Image = image;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.MouseClick += pictureBox1_MouseClick;
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 2000; // 2 másodperc
+            refreshTimer.Tick += refreshTimer_Tick;
+            refreshTimer.Start();
         }
 
         private async void pictureBox1_MouseClick(object? sender, MouseEventArgs e)
@@ -81,6 +87,25 @@ namespace ManagementClient
             {
                 MessageBox.Show("Hiba kattintás küldésekor: " + ex.Message);
             }
+        }
+        private async void refreshTimer_Tick(object? sender, EventArgs e)
+        {
+            try
+            {
+                await connection.InvokeAsync("RequestLiveScreenshot", agentName);
+            }
+            catch
+            {
+            }
+        }
+        public void UpdateScreenshot(Image newImage)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
+
+            pictureBox1.Image = newImage;
         }
     }
 }

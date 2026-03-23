@@ -119,4 +119,11 @@ public class AgentHub : Hub
             await Clients.Client(connectionId).SendAsync("ReceiveMouseClick", x, y);
         }
     }
+    public async Task RequestLiveScreenshot(string agentName)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("TakeScreenshot");
+        }
+    }
 }
