@@ -29,11 +29,25 @@ namespace ManagementClient
                 .WithUrl("https://localhost:7294/agenthub")
                 .WithAutomaticReconnect()
                 .Build();
+
             connection.On<string, string>("ReceiveFileResult", (machineName, result) =>
             {
                 Invoke(new Action(() =>
                 {
                     MessageBox.Show($"{machineName}: {result}");
+                }));
+            });
+
+            connection.On<string, byte[]>("ReceiveScreenshot", (machineName, imageBytes) =>
+            {
+                Invoke(new Action(() =>
+                {
+                    using MemoryStream ms = new MemoryStream(imageBytes);
+                    Image img = Image.FromStream(ms);
+
+                    ScreenshotForm form = new ScreenshotForm((Image)img.Clone(), machineName, connection!);
+                    form.Text = $"Képernyõkép - {machineName}";
+                    form.Show();
                 }));
             });
 
@@ -45,6 +59,7 @@ namespace ManagementClient
             {
                 MessageBox.Show("SignalR hiba: " + ex.Message);
             }
+
         }
 
         private async void btnRefresh_Click(object sender, EventArgs e)
@@ -91,7 +106,7 @@ namespace ManagementClient
                 return;
             }
 
-            string agent = lstAgents.SelectedItem.ToString();
+            string agent = lstAgents.SelectedItem?.ToString() ?? "";
 
             FileSendForm form = new FileSendForm(agent, connection);
             form.Show();
@@ -133,6 +148,26 @@ namespace ManagementClient
             catch (Exception ex)
             {
                 MessageBox.Show("Hiba az agent adatok betöltésekor: " + ex.Message);
+            }
+        }
+        private async void btnScreenshot_Click(object sender, EventArgs e)
+        {
+            if (lstAgents.SelectedItem == null)
+            {
+                MessageBox.Show("Válassz agentet.");
+                return;
+            }
+
+            string selectedText = lstAgents.SelectedItem.ToString() ?? "";
+            string agentName = selectedText.Split(" - ")[0];
+
+            try
+            {
+                await connection!.InvokeAsync("RequestScreenshot", agentName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba képernyõkép kéréskor: " + ex.Message);
             }
         }
     }

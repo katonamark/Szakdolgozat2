@@ -98,4 +98,25 @@ public class AgentHub : Hub
     {
         await Clients.All.SendAsync("ReceiveFileResult", machineName, result);
     }
+
+    public async Task RequestScreenshot(string agentName)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("TakeScreenshot");
+        }
+    }
+
+    public async Task SendScreenshotToManagement(string machineName, byte[] imageBytes)
+    {
+        await Clients.All.SendAsync("ReceiveScreenshot", machineName, imageBytes);
+    }
+
+    public async Task SendMouseClickToAgent(string agentName, int x, int y)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("ReceiveMouseClick", x, y);
+        }
+    }
 }

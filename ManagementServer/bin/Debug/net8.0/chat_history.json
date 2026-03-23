@@ -64,5 +64,29 @@
     "TargetAgent": "ASUS-MARK",
     "Message": "Miiiiii\r\nNe m\u00E1\u00E1\u00E1rrr",
     "Timestamp": "2026-03-16T17:38:25.7417635+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-03-20T15:26:20.0886022+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-03-23T13:32:30.8818247+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "hello",
+    "Timestamp": "2026-03-23T16:32:42.4477765+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "log pr\u00F3ba",
+    "Timestamp": "2026-03-23T16:42:55.3626358+01:00"
   }
 ]

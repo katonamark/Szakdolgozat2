@@ -1,0 +1,18 @@
+﻿[2026.03.23 16:42:38] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 16:42:55] Új üzenet érkezett a szervertől.
+[2026.03.23 16:43:21] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 16:53:48] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:12:08] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:12:52] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:13:05] Hiba képernyőkép készítésekor: The server closed the connection with the following error: Connection closed with an error.
+[2026.03.23 17:21:24] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:21:31] Hiba képernyőkép készítésekor: The server closed the connection with the following error: Connection closed with an error.
+[2026.03.23 17:38:08] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:38:13] Képernyőkép elküldve a szervernek.
+[2026.03.23 17:39:09] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:39:17] Képernyőkép elküldve a szervernek.
+[2026.03.23 17:52:18] Kapcsolódás a szerverhez sikeres.
+[2026.03.23 17:52:26] Képernyőkép elküldve a szervernek.
+[2026.03.23 17:52:28] Távoli kattintás végrehajtva: X=674, Y=496
+[2026.03.23 17:52:28] Távoli kattintás végrehajtva: X=1036, Y=554
+[2026.03.23 17:52:28] Távoli kattintás végrehajtva: X=1905, Y=693

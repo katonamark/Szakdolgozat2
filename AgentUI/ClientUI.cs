@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Net.Http.Json;
 using System.Diagnostics;
+using System.Text;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace AgentUI
 {
@@ -9,6 +14,13 @@ namespace AgentUI
         private HubConnection? connection;
         private readonly string machineName = Environment.MachineName;
         private readonly HttpClient client = new HttpClient();
+        private string logFilePath =>
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
+        [DllImport("user32.dll")]
+        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
+
+        private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
+        private const uint MOUSEEVENTF_LEFTUP = 0x0004;
 
 
         public ClientUI()
@@ -18,7 +30,9 @@ namespace AgentUI
             lblUserName.Text = $"Felhasználó: {Environment.UserName}";
             lblOsVersion.Text = $"OS: {Environment.OSVersion}";
             txtNewMessage.KeyDown += txtNewMessage_KeyDown;
+            LoadLogHistory();
             ConnectToServer();
+
         }
         public class ChatRecord
         {
@@ -44,6 +58,7 @@ namespace AgentUI
                     AddLog("Új üzenet érkezett a szervertõl.");
                 }));
             });
+
 
             connection.On<string, byte[], string>("ReceiveFile", async (fileName, fileData, targetPath) =>
             {
@@ -139,6 +154,67 @@ namespace AgentUI
 
                 await connection.InvokeAsync("SendCommandResultToManagement", machineName, result);
             });
+            connection.On("TakeScreenshot", async () =>
+            {
+                try
+                {
+                    Rectangle bounds = Screen.PrimaryScreen.Bounds;
+
+                    using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+                    using Graphics g = Graphics.FromImage(bitmap);
+                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+
+                    using MemoryStream ms = new MemoryStream();
+                    bitmap.Save(ms, ImageFormat.Jpeg);
+
+                    byte[] imageBytes = ms.ToArray();
+
+                    await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+
+                    Invoke(new Action(() =>
+                    {
+                        AddLog("Képernyõkép elküldve a szervernek.");
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        AddLog("Hiba képernyõkép készítésekor: " + ex.Message);
+                    }));
+                }
+            });
+
+            connection.On<int, int>("ReceiveMouseClick", async (x, y) =>
+            {
+                try
+                {
+                    Cursor.Position = new Point(x, y);
+
+                    mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                    mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
+
+                    AddLog($"Távoli kattintás végrehajtva: X={x}, Y={y}");
+
+                    // kattintás után új screenshot küldése
+                    Rectangle bounds = Screen.PrimaryScreen.Bounds;
+
+                    using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+                    using Graphics g = Graphics.FromImage(bitmap);
+                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+
+                    using MemoryStream ms = new MemoryStream();
+                    bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                    byte[] imageBytes = ms.ToArray();
+
+                    await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+                }
+                catch (Exception ex)
+                {
+                    AddLog("Hiba távoli kattintáskor: " + ex.Message);
+                }
+            });
 
             try
             {
@@ -159,6 +235,21 @@ namespace AgentUI
                 lblStatus.Text = "Kapcsolati hiba";
                 AddLog("Kapcsolódás a szerverhez sikeres.");
                 MessageBox.Show("Hiba: " + ex.Message);
+            }
+        }
+
+        private void LoadLogHistory()
+        {
+            try
+            {
+                if (File.Exists(logFilePath))
+                {
+                    rtbLog.Text = File.ReadAllText(logFilePath, Encoding.UTF8);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a log betöltésekor: " + ex.Message);
             }
         }
 
@@ -218,9 +309,27 @@ namespace AgentUI
         }
         private void AddLog(string message)
         {
-            rtbLog.AppendText($"[{DateTime.Now:yyyy.MM.dd HH:mm}] {message}{Environment.NewLine}");
+            string logEntry = $"[{DateTime.Now:yyyy.MM.dd HH:mm:ss}] {message}";
+
+            rtbLog.AppendText(logEntry + Environment.NewLine);
+
+            try
+            {
+                string? folder = Path.GetDirectoryName(logFilePath);
+                if (!string.IsNullOrEmpty(folder))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(logFilePath)!);
+                }
+
+                File.AppendAllText(logFilePath, logEntry + Environment.NewLine, Encoding.UTF8);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba a log mentésekor: " + ex.Message);
+            }
         }
-        private void txtNewMessage_KeyDown(object sender, KeyEventArgs e)
+
+        private void txtNewMessage_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && e.Control)
             {

@@ -17,7 +17,7 @@ namespace ManagementClient
         private readonly string targetAgent;
         private HubConnection connection;
 
-        public FileSendForm(string agentName, HubConnection hub)
+        public FileSendForm(string agentName, HubConnection? hub)
         {
             InitializeComponent();
             targetAgent = agentName;

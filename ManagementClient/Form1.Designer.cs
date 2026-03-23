@@ -39,6 +39,7 @@
             label2 = new Label();
             btnFile = new Button();
             btnCommand = new Button();
+            btnScreenshot = new Button();
             SuspendLayout();
             // 
             // lstAgents
@@ -72,7 +73,7 @@
             // 
             // btnMessage
             // 
-            btnMessage.Location = new Point(402, 39);
+            btnMessage.Location = new Point(368, 12);
             btnMessage.Name = "btnMessage";
             btnMessage.Size = new Size(95, 23);
             btnMessage.TabIndex = 3;
@@ -127,7 +128,7 @@
             // 
             // btnFile
             // 
-            btnFile.Location = new Point(503, 39);
+            btnFile.Location = new Point(491, 12);
             btnFile.Name = "btnFile";
             btnFile.Size = new Size(75, 23);
             btnFile.TabIndex = 9;
@@ -137,7 +138,7 @@
             // 
             // btnCommand
             // 
-            btnCommand.Location = new Point(584, 39);
+            btnCommand.Location = new Point(595, 12);
             btnCommand.Name = "btnCommand";
             btnCommand.Size = new Size(117, 23);
             btnCommand.TabIndex = 10;
@@ -145,12 +146,23 @@
             btnCommand.UseVisualStyleBackColor = true;
             btnCommand.Click += btnCommand_Click;
             // 
+            // btnScreenshot
+            // 
+            btnScreenshot.Location = new Point(369, 52);
+            btnScreenshot.Name = "btnScreenshot";
+            btnScreenshot.Size = new Size(94, 23);
+            btnScreenshot.TabIndex = 11;
+            btnScreenshot.Text = "Képernyőkép";
+            btnScreenshot.UseVisualStyleBackColor = true;
+            btnScreenshot.Click += btnScreenshot_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(785, 379);
+            Controls.Add(btnScreenshot);
             Controls.Add(btnCommand);
             Controls.Add(btnFile);
             Controls.Add(label2);
@@ -181,5 +193,6 @@
         private Label label2;
         private Button btnFile;
         private Button btnCommand;
+        private Button btnScreenshot;
     }
 }
