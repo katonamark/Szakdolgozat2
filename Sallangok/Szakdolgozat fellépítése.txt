@@ -1,0 +1,17 @@
+tartalom
+
+bevezetés-motiváció (volt-e előző verzió, probléma definiálása)
+SWOT analizís
+rendszer funkcionális nem funkcionális követelményei
+logikai terv-use case dagramok
+milyen technológiákat használtam, indoklás hogy mit miért (kórházi kérések)
+Megvalósítás az elejétől a végéig (20-30 oldal)
+Nehézségek 
+Továbbfejlesztési lehetőségek
+Összegzés
+
+értesítések,
+háttérben futó alkalmazás
+
+
+

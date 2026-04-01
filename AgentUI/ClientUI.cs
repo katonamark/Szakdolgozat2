@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace AgentUI
 {
@@ -16,12 +17,23 @@ namespace AgentUI
         private readonly HttpClient client = new HttpClient();
         private string logFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
+
+        [DllImport("user32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
+
         [DllImport("user32.dll")]
         private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
 
+        [DllImport("user32.dll")]
+        private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+
         private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
         private const uint MOUSEEVENTF_LEFTUP = 0x0004;
+        private const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
+        private const uint MOUSEEVENTF_RIGHTUP = 0x0010;
+        private const uint MOUSEEVENTF_WHEEL = 0x0800;
 
+        private const uint KEYEVENTF_KEYUP = 0x0002;
 
         public ClientUI()
         {
@@ -154,6 +166,7 @@ namespace AgentUI
 
                 await connection.InvokeAsync("SendCommandResultToManagement", machineName, result);
             });
+
             connection.On("TakeScreenshot", async () =>
             {
                 try
@@ -185,7 +198,7 @@ namespace AgentUI
                 }
             });
 
-            connection.On<int, int>("ReceiveMouseClick", async (x, y) =>
+            /*connection.On<int, int>("ReceiveMouseClick", async (x, y) =>
             {
                 try
                 {
@@ -214,6 +227,90 @@ namespace AgentUI
                 {
                     AddLog("Hiba távoli kattintáskor: " + ex.Message);
                 }
+            });*/
+
+            connection.On<string, int, int, int>("ReceiveMouseAction", async (action, x, y, delta) =>
+            {
+                try
+                {
+                    SetCursorPos(x, y);
+
+                    switch (action)
+                    {
+                        case "move":
+                            break;
+
+                        case "leftclick":
+                            mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                            mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                            break;
+
+                        case "doubleclick":
+                            for (int i = 0; i < 2; i++)
+                            {
+                                mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                                mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                            }
+                            break;
+
+                        case "rightclick":
+                            mouse_event(MOUSEEVENTF_RIGHTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                            mouse_event(MOUSEEVENTF_RIGHTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
+                            break;
+
+                        case "wheel":
+                            mouse_event(MOUSEEVENTF_WHEEL, (uint)x, (uint)y, (uint)delta, UIntPtr.Zero);
+                            break;
+                    }
+
+                    AddLog($"Távoli egér mûvelet: {action} ({x},{y})");
+                }
+                catch (Exception ex)
+                {
+                    AddLog("Hiba egérmûveletkor: " + ex.Message);
+                }
+
+                await SendUpdatedScreenshot();
+            });
+
+            /*connection.On<string>("ReceiveKeyPress", (key) =>
+            {
+                try
+                {
+                    SendKeys.SendWait(key);
+                    AddLog($"Távoli billentyûleütés: {key}");
+                }
+                catch (Exception ex)
+                {
+                    AddLog("Hiba billentyûleütéskor: " + ex.Message);
+                }
+            });*/
+
+            connection.On<int, bool, bool, bool, bool>("ReceiveKeyEvent", async (keyCode, keyDown, ctrl, alt, shift) =>
+            {
+                try
+                {
+                    if (ctrl) keybd_event((byte)Keys.ControlKey, 0, 0, UIntPtr.Zero);
+                    if (alt) keybd_event((byte)Keys.Menu, 0, 0, UIntPtr.Zero);
+                    if (shift) keybd_event((byte)Keys.ShiftKey, 0, 0, UIntPtr.Zero);
+
+                    if (keyDown)
+                        keybd_event((byte)keyCode, 0, 0, UIntPtr.Zero);
+                    else
+                        keybd_event((byte)keyCode, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+
+                    if (shift) keybd_event((byte)Keys.ShiftKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+                    if (alt) keybd_event((byte)Keys.Menu, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+                    if (ctrl) keybd_event((byte)Keys.ControlKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+
+                    AddLog($"Távoli billentyû esemény: {((Keys)keyCode)} {(keyDown ? "down" : "up")}");
+                }
+                catch (Exception ex)
+                {
+                    AddLog("Hiba billentyû eseménynél: " + ex.Message);
+                }
+
+                await SendUpdatedScreenshot();
             });
 
             try
@@ -340,6 +437,28 @@ namespace AgentUI
             {
                 e.SuppressKeyPress = true;
                 btnSend.PerformClick();
+            }
+        }
+        private async Task SendUpdatedScreenshot()
+        {
+            try
+            {
+                Rectangle bounds = Screen.PrimaryScreen.Bounds;
+
+                using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+                using Graphics g = Graphics.FromImage(bitmap);
+                g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+
+                using MemoryStream ms = new MemoryStream();
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                byte[] imageBytes = ms.ToArray();
+
+                await connection!.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+            }
+            catch (Exception ex)
+            {
+                AddLog("Hiba screenshot frissítéskor: " + ex.Message);
             }
         }
 

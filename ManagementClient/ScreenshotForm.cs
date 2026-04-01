@@ -20,6 +20,12 @@ namespace ManagementClient
         private readonly int originalImageHeight;
         private System.Windows.Forms.Timer refreshTimer;
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            refreshTimer?.Stop();
+            refreshTimer?.Dispose();
+            base.OnFormClosing(e);
+        }
 
         public ScreenshotForm(Image image, string agentName, HubConnection connection)
         {
@@ -29,20 +35,146 @@ namespace ManagementClient
             this.agentName = agentName;
             this.originalImageWidth = image.Width;
             this.originalImageHeight = image.Height;
+            this.KeyPreview = true;
+            this.KeyDown += ScreenshotForm_KeyDown;
+            this.KeyUp += ScreenshotForm_KeyUp;
 
             pictureBox1.Image = image;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.MouseClick += pictureBox1_MouseClick;
+
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 2000; // 2 másodperc
             refreshTimer.Tick += refreshTimer_Tick;
             refreshTimer.Start();
+
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseDoubleClick += pictureBox1_MouseDoubleClick;
+            pictureBox1.MouseWheel += pictureBox1_MouseWheel;
+            pictureBox1.MouseMove += pictureBox1_MouseMove;
+            pictureBox1.Focus();
         }
 
-        private async void pictureBox1_MouseClick(object? sender, MouseEventArgs e)
+        private async void refreshTimer_Tick(object? sender, EventArgs e)
         {
-            if (pictureBox1.Image == null)
+            try
+            {
+                await connection.InvokeAsync("RequestLiveScreenshot", agentName);
+            }
+            catch
+            {
+            }
+        }
+
+        public void UpdateScreenshot(Image newImage)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
+
+            pictureBox1.Image = newImage;
+        }
+
+        private async void pictureBox1_MouseDown(object? sender, MouseEventArgs e)
+        {
+            if (!TryMapToRemoteCoordinates(e.X, e.Y, out int realX, out int realY))
                 return;
+
+            string action = e.Button switch
+            {
+                MouseButtons.Left => "leftclick",
+                MouseButtons.Right => "rightclick",
+                _ => "move"
+            };
+
+            try
+            {
+                await connection.InvokeAsync("SendMouseActionToAgent", agentName, action, realX, realY, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba egérművelet küldésekor: " + ex.Message);
+            }
+        }
+
+        private async void pictureBox1_MouseDoubleClick(object? sender, MouseEventArgs e)
+        {
+            if (!TryMapToRemoteCoordinates(e.X, e.Y, out int realX, out int realY))
+                return;
+
+            try
+            {
+                await connection.InvokeAsync("SendMouseActionToAgent", agentName, "doubleclick", realX, realY, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba dupla kattintás küldésekor: " + ex.Message);
+            }
+        }
+
+        private async void pictureBox1_MouseWheel(object? sender, MouseEventArgs e)
+        {
+            if (!TryMapToRemoteCoordinates(e.X, e.Y, out int realX, out int realY))
+                return;
+
+            try
+            {
+                await connection.InvokeAsync("SendMouseActionToAgent", agentName, "wheel", realX, realY, e.Delta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba görgetés küldésekor: " + ex.Message);
+            }
+        }
+
+        private async void ScreenshotForm_KeyDown(object? sender, KeyEventArgs e)
+        {
+            try
+            {
+                await connection.InvokeAsync(
+                    "SendKeyEventToAgent",
+                    agentName,
+                    (int)e.KeyCode,
+                    true,
+                    e.Control,
+                    e.Alt,
+                    e.Shift
+                );
+
+                e.SuppressKeyPress = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba KeyDown küldésekor: " + ex.Message);
+            }
+        }
+
+        private async void ScreenshotForm_KeyUp(object? sender, KeyEventArgs e)
+        {
+            try
+            {
+                await connection.InvokeAsync(
+                    "SendKeyEventToAgent",
+                    agentName,
+                    (int)e.KeyCode,
+                    false,
+                    e.Control,
+                    e.Alt,
+                    e.Shift
+                );
+
+                e.SuppressKeyPress = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba KeyUp küldésekor: " + ex.Message);
+            }
+        }
+
+        private bool TryMapToRemoteCoordinates(int mouseX, int mouseY, out int realX, out int realY)
+        {
+            realX = 0;
+            realY = 0;
 
             int pbWidth = pictureBox1.ClientSize.Width;
             int pbHeight = pictureBox1.ClientSize.Height;
@@ -67,45 +199,23 @@ namespace ManagementClient
                 offsetX = (pbWidth - drawWidth) / 2;
             }
 
-            if (e.X < offsetX || e.X > offsetX + drawWidth ||
-                e.Y < offsetY || e.Y > offsetY + drawHeight)
+            if (mouseX < offsetX || mouseX > offsetX + drawWidth ||
+                mouseY < offsetY || mouseY > offsetY + drawHeight)
             {
-                return;
+                return false;
             }
 
-            float relativeX = (float)(e.X - offsetX) / drawWidth;
-            float relativeY = (float)(e.Y - offsetY) / drawHeight;
+            float relativeX = (float)(mouseX - offsetX) / drawWidth;
+            float relativeY = (float)(mouseY - offsetY) / drawHeight;
 
-            int realX = (int)(relativeX * originalImageWidth);
-            int realY = (int)(relativeY * originalImageHeight);
+            realX = (int)(relativeX * originalImageWidth);
+            realY = (int)(relativeY * originalImageHeight);
 
-            try
-            {
-                await connection.InvokeAsync("SendMouseClickToAgent", agentName, realX, realY);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hiba kattintás küldésekor: " + ex.Message);
-            }
+            return true;
         }
-        private async void refreshTimer_Tick(object? sender, EventArgs e)
-        {
-            try
-            {
-                await connection.InvokeAsync("RequestLiveScreenshot", agentName);
-            }
-            catch
-            {
-            }
-        }
-        public void UpdateScreenshot(Image newImage)
-        {
-            if (pictureBox1.Image != null)
-            {
-                pictureBox1.Image.Dispose();
-            }
 
-            pictureBox1.Image = newImage;
+        private void pictureBox1_MouseMove(object? sender, MouseEventArgs e)
+        {
         }
     }
 }

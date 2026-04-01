@@ -1,0 +1,200 @@
+﻿[2026.03.31 20:56:01] Kapcsolódás a szerverhez sikeres.
+[2026.03.31 20:56:16] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:18] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:20] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:22] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:24] Távoli kattintás végrehajtva: X=1663, Y=158
+[2026.03.31 20:56:24] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:26] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:28] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:30] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:32] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:34] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:36] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:38] Távoli kattintás végrehajtva: X=559, Y=1056
+[2026.03.31 20:56:38] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:40] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:42] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:44] Távoli kattintás végrehajtva: X=158, Y=14
+[2026.03.31 20:56:44] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:46] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:48] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:50] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:52] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:53] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:56] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:57] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:57] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:58] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:59] Képernyőkép elküldve a szervernek.
+[2026.03.31 20:56:59] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:22] Kapcsolódás a szerverhez sikeres.
+[2026.03.31 21:03:32] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:32] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:34] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:36] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:38] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:39] Távoli kattintás végrehajtva: X=415, Y=28
+[2026.03.31 21:03:41] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:43] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:45] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:47] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:54] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:54] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:56] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:03:58] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:00] Távoli kattintás végrehajtva: X=1852, Y=844
+[2026.03.31 21:04:01] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:03] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:04] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:05] Távoli kattintás végrehajtva: X=1848, Y=0
+[2026.03.31 21:04:07] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:08] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:04:11] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:30] Kapcsolódás a szerverhez sikeres.
+[2026.03.31 21:18:38] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:38] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:41] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:43] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:44] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:47] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:48] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:51] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:53] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:56] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:18:59] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:00] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:03] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:05] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:07] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:09] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:11] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:13] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:15] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:17] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:19] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:21] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:19:44] Kapcsolódás a szerverhez sikeres.
+[2026.03.31 21:20:12] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:12] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:14] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:16] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:18] Távoli kattintás végrehajtva: X=1680, Y=182
+[2026.03.31 21:20:18] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:20] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:22] Távoli kattintás végrehajtva: X=1310, Y=302
+[2026.03.31 21:20:22] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:24] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:26] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:27] Távoli kattintás végrehajtva: X=1310, Y=367
+[2026.03.31 21:20:28] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:30] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:32] Távoli kattintás végrehajtva: X=1483, Y=84
+[2026.03.31 21:20:32] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:34] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:36] Távoli kattintás végrehajtva: X=1526, Y=74
+[2026.03.31 21:20:36] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:37] Távoli kattintás végrehajtva: X=1531, Y=355
+[2026.03.31 21:20:38] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:40] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:42] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:44] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:45] Távoli kattintás végrehajtva: X=1219, Y=566
+[2026.03.31 21:20:46] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:48] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:50] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:52] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:53] Távoli kattintás végrehajtva: X=1564, Y=463
+[2026.03.31 21:20:54] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:56] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:20:58] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:00] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:02] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:04] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:06] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:08] Képernyőkép elküldve a szervernek.
+[2026.03.31 21:21:10] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:09] Kapcsolódás a szerverhez sikeres.
+[2026.03.31 22:09:15] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:15] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:17] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:19] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:20] Távoli egér művelet: leftclick (768,16)
+[2026.03.31 22:09:21] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:23] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:25] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:27] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:29] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:31] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:33] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:35] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:37] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:39] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:40] Távoli egér művelet: rightclick (688,840)
+[2026.03.31 22:09:41] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:43] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:44] Távoli egér művelet: leftclick (525,888)
+[2026.03.31 22:09:45] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:47] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:49] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:49] Távoli egér művelet: leftclick (948,86)
+[2026.03.31 22:09:51] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:53] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:53] Távoli egér művelet: leftclick (964,91)
+[2026.03.31 22:09:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:57] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:09:57] Távoli egér művelet: leftclick (1000,14)
+[2026.03.31 22:09:59] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:00] Távoli egér művelet: leftclick (1255,811)
+[2026.03.31 22:10:01] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:01] Távoli egér művelet: leftclick (972,943)
+[2026.03.31 22:10:03] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:03] Távoli egér művelet: leftclick (420,756)
+[2026.03.31 22:10:05] Távoli egér művelet: leftclick (465,871)
+[2026.03.31 22:10:05] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:06] Távoli egér művelet: rightclick (499,895)
+[2026.03.31 22:10:07] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:09] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:11] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:13] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:15] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:17] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:19] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:21] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:23] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:25] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:27] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:29] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:31] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:33] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:35] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:37] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:39] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:40] Távoli egér művelet: leftclick (883,12)
+[2026.03.31 22:10:41] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:43] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:45] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:47] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:49] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:51] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:53] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:55] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:57] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:10:59] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:00] Távoli egér művelet: leftclick (950,103)
+[2026.03.31 22:11:01] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:03] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:05] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:07] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:09] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:11] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:12] Távoli egér művelet: leftclick (967,16)
+[2026.03.31 22:11:13] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:14] Távoli egér művelet: leftclick (967,19)
+[2026.03.31 22:11:15] Képernyőkép elküldve a szervernek.
+[2026.03.31 22:11:16] Távoli egér művelet: leftclick (969,14)
+[2026.03.31 22:11:17] Képernyőkép elküldve a szervernek.

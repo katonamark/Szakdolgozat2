@@ -10,6 +10,7 @@ namespace ManagementClient
         private readonly string serverUrl = "https://localhost:7294/api/agents";
         private HubConnection? connection;
         private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
+        private readonly HashSet<string> activeScreenshotRequests = new();
 
         public Form1()
         {
@@ -43,6 +44,9 @@ namespace ManagementClient
             {
                 Invoke(new Action(() =>
                 {
+                    if (!activeScreenshotRequests.Contains(machineName))
+                        return;
+
                     using MemoryStream ms = new MemoryStream(imageBytes);
                     Image img = Image.FromStream(ms);
                     Image cloned = (Image)img.Clone();
@@ -58,6 +62,7 @@ namespace ManagementClient
                         form.FormClosed += (s, e) =>
                         {
                             openScreenshotForms.Remove(machineName);
+                            activeScreenshotRequests.Remove(machineName);
                         };
 
                         openScreenshotForms[machineName] = form;
@@ -176,6 +181,9 @@ namespace ManagementClient
             string selectedText = lstAgents.SelectedItem.ToString() ?? "";
             string agentName = selectedText.Split(" - ")[0];
 
+            activeScreenshotRequests.Add(agentName);
+            await connection!.InvokeAsync("RequestLiveScreenshot", agentName);
+
             try
             {
                 await connection!.InvokeAsync("RequestScreenshot", agentName);
@@ -184,6 +192,7 @@ namespace ManagementClient
             {
                 MessageBox.Show("Hiba képernyõkép kéréskor: " + ex.Message);
             }
+
         }
     }
 

@@ -112,18 +112,48 @@ public class AgentHub : Hub
         await Clients.All.SendAsync("ReceiveScreenshot", machineName, imageBytes);
     }
 
-    public async Task SendMouseClickToAgent(string agentName, int x, int y)
+    /*public async Task SendMouseClickToAgent(string agentName, int x, int y)
     {
         if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
         {
             await Clients.Client(connectionId).SendAsync("ReceiveMouseClick", x, y);
         }
     }
+    public async Task SendKeyToAgent(string agentName, string key)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("ReceiveKeyPress", key);
+        }
+    }*/
     public async Task RequestLiveScreenshot(string agentName)
     {
         if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
         {
             await Clients.Client(connectionId).SendAsync("TakeScreenshot");
+        }
+    }
+
+    public async Task SendMouseActionToAgent(string agentName, string action, int x, int y, int delta = 0)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("ReceiveMouseAction", action, x, y, delta);
+        }
+    }
+
+    public async Task SendKeyEventToAgent(string agentName, int keyCode, bool keyDown, bool ctrl, bool alt, bool shift)
+    {
+        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync(
+                "ReceiveKeyEvent",
+                keyCode,
+                keyDown,
+                ctrl,
+                alt,
+                shift
+            );
         }
     }
 }
