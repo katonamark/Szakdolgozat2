@@ -1,17 +1,27 @@
 [
   {
-    "ContainingType": "AgentsController",
+    "ContainingType": "ManagementServer.Controllers.AgentsController",
     "Method": "GetAgents",
     "RelativePath": "api/Agents",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "AgentsController",
-    "Method": "GetAgentInfo",
+    "ContainingType": "ManagementServer.Controllers.AgentsController",
+    "Method": "GetAgent",
     "RelativePath": "api/Agents/{agentName}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -23,7 +33,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "ManagementServer.AgentInfo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "ManagementServer.Controllers.ChatController",

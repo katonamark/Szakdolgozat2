@@ -5,7 +5,7 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementServer", "ManagementServer.csproj", "{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgentClient", "..\AgentClient\AgentClient.csproj", "{7E4C111F-56AE-4FEE-BCA4-AAF645185CD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TÖRÖLHETŐ-AgentClient", "..\AgentClient\TÖRÖLHETŐ-AgentClient.csproj", "{7E4C111F-56AE-4FEE-BCA4-AAF645185CD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementClient", "..\ManagementClient\ManagementClient.csproj", "{FE758B39-E631-44C2-99DF-78D98CDAB206}"
 EndProject

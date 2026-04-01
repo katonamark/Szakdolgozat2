@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N+QKKRsjXNg=",
+  "dgSpecHash": "WKij83ueBBQ=",
   "success": true,
-  "projectFilePath": "D:\\SZE\\Szakdolgozat\\AgentClient\\AgentClient.csproj",
+  "projectFilePath": "D:\\SZE\\Szakdolgozat\\AgentClient\\TÖRÖLHETŐ-AgentClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kmano\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\10.0.3\\microsoft.aspnetcore.connections.abstractions.10.0.3.nupkg.sha512",
     "C:\\Users\\kmano\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\10.0.3\\microsoft.aspnetcore.http.connections.client.10.0.3.nupkg.sha512",

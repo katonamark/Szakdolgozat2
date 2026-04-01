@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Reflection;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace ManagementClient
@@ -9,6 +8,9 @@ namespace ManagementClient
         private readonly HttpClient client = new HttpClient();
         private readonly string serverUrl = "https://localhost:7294/api/agents";
         private HubConnection? connection;
+
+        private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
+
         private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
         private readonly HashSet<string> activeScreenshotRequests = new();
 
@@ -17,6 +19,7 @@ namespace ManagementClient
             InitializeComponent();
             StartSignalR();
         }
+
         public class AgentInfo
         {
             public string MachineName { get; set; } = "";
@@ -32,41 +35,128 @@ namespace ManagementClient
                 .WithAutomaticReconnect()
                 .Build();
 
+            connection.Reconnecting += error =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblStatus.Text = "Kapcsolat megszakadt, újrakapcsolódás...";
+                }));
+
+                return Task.CompletedTask;
+            };
+
+            connection.Reconnected += async connectionId =>
+            {
+                try
+                {
+                    if (connection != null)
+                    {
+                        await connection.InvokeAsync("RegisterManagementClient", SharedSecret);
+
+                        BeginInvoke(new Action(() =>
+                        {
+                            lblStatus.Text = "Újrakapcsolódva a szerverhez";
+                        }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        lblStatus.Text = "Újrakapcsolódási hiba";
+                        MessageBox.Show("Hiba újrakapcsolódáskor: " + ex.Message);
+                    }));
+                }
+            };
+
+            connection.Closed += error =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblStatus.Text = "Kapcsolat lezárva";
+                }));
+
+                return Task.CompletedTask;
+            };
+
+            connection.On<IEnumerable<string>>("AgentListUpdated", agentNames =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lstAgents.Items.Clear();
+
+                    foreach (var name in agentNames.OrderBy(x => x))
+                    {
+                        lstAgents.Items.Add(name);
+                    }
+                }));
+            });
+
             connection.On<string, string>("ReceiveFileResult", (machineName, result) =>
             {
-                Invoke(new Action(() =>
+                BeginInvoke(new Action(() =>
                 {
                     MessageBox.Show($"{machineName}: {result}");
                 }));
             });
 
+            connection.On<string, string>("ReceiveCommandResult", (machineName, result) =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"{machineName} parancs eredménye:\n\n{result}");
+                }));
+            });
+
+            connection.On<string, string>("ReceiveMessageFromAgent", (machineName, message) =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    MessageBox.Show($"{machineName} üzenete:\n\n{message}");
+                }));
+            });
+
             connection.On<string, byte[]>("ReceiveScreenshot", (machineName, imageBytes) =>
             {
-                Invoke(new Action(() =>
+                BeginInvoke(new Action(() =>
                 {
                     if (!activeScreenshotRequests.Contains(machineName))
                         return;
 
-                    using MemoryStream ms = new MemoryStream(imageBytes);
-                    Image img = Image.FromStream(ms);
-                    Image cloned = (Image)img.Clone();
+                    try
+                    {
+                        using MemoryStream ms = new MemoryStream(imageBytes);
+                        using Image img = Image.FromStream(ms);
+                        Image cloned = (Image)img.Clone();
 
-                    if (openScreenshotForms.ContainsKey(machineName))
-                    {
-                        openScreenshotForms[machineName].UpdateScreenshot(cloned);
-                    }
-                    else
-                    {
-                        ScreenshotForm form = new ScreenshotForm(cloned, machineName, connection!);
-                        form.Text = $"Képernyõkép - {machineName}";
-                        form.FormClosed += (s, e) =>
+                        if (openScreenshotForms.ContainsKey(machineName))
                         {
-                            openScreenshotForms.Remove(machineName);
-                            activeScreenshotRequests.Remove(machineName);
-                        };
+                            openScreenshotForms[machineName].UpdateScreenshot(cloned);
+                        }
+                        else
+                        {
+                            if (connection == null)
+                            {
+                                cloned.Dispose();
+                                return;
+                            }
 
-                        openScreenshotForms[machineName] = form;
-                        form.Show();
+                            ScreenshotForm form = new ScreenshotForm(cloned, machineName, connection);
+                            form.Text = $"Képernyõkép - {machineName}";
+
+                            form.FormClosed += (s, e) =>
+                            {
+                                openScreenshotForms.Remove(machineName);
+                                activeScreenshotRequests.Remove(machineName);
+                            };
+
+                            openScreenshotForms[machineName] = form;
+                            form.Show();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hiba screenshot feldolgozásakor: " + ex.Message);
                     }
                 }));
             });
@@ -74,12 +164,14 @@ namespace ManagementClient
             try
             {
                 await connection.StartAsync();
+                await connection.InvokeAsync("RegisterManagementClient", SharedSecret);
+                lblStatus.Text = "Kapcsolódva a szerverhez";
             }
             catch (Exception ex)
             {
+                lblStatus.Text = "SignalR kapcsolati hiba";
                 MessageBox.Show("SignalR hiba: " + ex.Message);
             }
-
         }
 
         private async void btnRefresh_Click(object sender, EventArgs e)
@@ -92,7 +184,7 @@ namespace ManagementClient
 
                 if (agents != null)
                 {
-                    foreach (var agent in agents)
+                    foreach (var agent in agents.OrderBy(x => x))
                     {
                         lstAgents.Items.Add(agent);
                     }
@@ -113,7 +205,6 @@ namespace ManagementClient
             }
 
             string agentName = lstAgents.SelectedItem.ToString() ?? "";
-
             MessageForm form = new MessageForm(agentName);
             form.Show();
         }
@@ -126,8 +217,13 @@ namespace ManagementClient
                 return;
             }
 
-            string agent = lstAgents.SelectedItem?.ToString() ?? "";
+            if (connection == null)
+            {
+                MessageBox.Show("Nincs kapcsolat a szerverrel.");
+                return;
+            }
 
+            string agent = lstAgents.SelectedItem.ToString() ?? "";
             FileSendForm form = new FileSendForm(agent, connection);
             form.Show();
         }
@@ -140,8 +236,14 @@ namespace ManagementClient
                 return;
             }
 
+            if (connection == null)
+            {
+                MessageBox.Show("Nincs kapcsolat a szerverrel.");
+                return;
+            }
+
             string agentName = lstAgents.SelectedItem.ToString() ?? "";
-            CommandForm form = new CommandForm(agentName, connection!);
+            CommandForm form = new CommandForm(agentName, connection);
             form.Show();
         }
 
@@ -170,6 +272,7 @@ namespace ManagementClient
                 MessageBox.Show("Hiba az agent adatok betöltésekor: " + ex.Message);
             }
         }
+
         private async void btnScreenshot_Click(object sender, EventArgs e)
         {
             if (lstAgents.SelectedItem == null)
@@ -178,22 +281,24 @@ namespace ManagementClient
                 return;
             }
 
-            string selectedText = lstAgents.SelectedItem.ToString() ?? "";
-            string agentName = selectedText.Split(" - ")[0];
+            if (connection == null || connection.State != HubConnectionState.Connected)
+            {
+                MessageBox.Show("Nincs aktív kapcsolat a szerverrel.");
+                return;
+            }
+
+            string agentName = lstAgents.SelectedItem.ToString() ?? "";
 
             activeScreenshotRequests.Add(agentName);
-            await connection!.InvokeAsync("RequestLiveScreenshot", agentName);
 
             try
             {
-                await connection!.InvokeAsync("RequestScreenshot", agentName);
+                await connection.InvokeAsync("RequestScreenshot", agentName);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hiba képernyõkép kéréskor: " + ex.Message);
             }
-
         }
     }
-
 }

@@ -88,5 +88,17 @@
     "TargetAgent": "ASUS-MARK",
     "Message": "log pr\u00F3ba",
     "Timestamp": "2026-03-23T16:42:55.3626358+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szofi\r\n",
+    "Timestamp": "2026-04-01T15:11:06.2393293+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "De j\u00F3 hogy itt vagy",
+    "Timestamp": "2026-04-01T15:11:19.5391931+02:00"
   }
 ]

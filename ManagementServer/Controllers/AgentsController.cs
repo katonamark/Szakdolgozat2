@@ -1,23 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+namespace ManagementServer.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class AgentsController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetAgents()
+    private readonly AgentRegistry _registry;
+
+    public AgentsController(AgentRegistry registry)
     {
-        return Ok(AgentHub.ConnectedAgents.Keys);
+        _registry = registry;
+    }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<string>> GetAgents()
+    {
+        return Ok(_registry.AgentNames.OrderBy(x => x));
     }
 
     [HttpGet("{agentName}")]
-    public IActionResult GetAgentInfo(string agentName)
+    public ActionResult<AgentInfo> GetAgent(string agentName)
     {
-        if (AgentHub.AgentInfos.TryGetValue(agentName, out var info))
+        var agent = _registry.AgentInfos
+            .FirstOrDefault(x => x.MachineName.Equals(agentName, StringComparison.OrdinalIgnoreCase));
+
+        if (agent == null)
         {
-            return Ok(info);
+            return NotFound();
         }
 
-        return NotFound();
+        return Ok(agent);
     }
 }

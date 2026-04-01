@@ -1,32 +1,56 @@
 ﻿using System;
-
 using Microsoft.AspNetCore.SignalR;
-using System.Collections.Concurrent;
 using ManagementServer;
 
+namespace ManagementServer;
 public class AgentHub : Hub
 {
-    public static ConcurrentDictionary<string, string> ConnectedAgents = new();
-    public static ConcurrentDictionary<string, AgentInfo> AgentInfos = new();
+    private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
+    private const string ManagementGroup = "management";
 
-    public async Task RegisterAgent(string machineName, string osVersion, string userName)
+    private readonly AgentRegistry _registry;
+    private readonly ILogger<AgentHub> _logger;
+
+    public AgentHub(AgentRegistry registry, ILogger<AgentHub> logger)
     {
-        ConnectedAgents[machineName] = Context.ConnectionId;
+        _registry = registry;
+        _logger = logger;
+    }
 
-        AgentInfos[machineName] = new AgentInfo
+    public async Task RegisterManagementClient(string sharedSecret)
+    {
+        if (sharedSecret != SharedSecret)
         {
-            MachineName = machineName,
-            OsVersion = osVersion,
-            UserName = userName,
-            Status = "Online"
-        };
+            throw new HubException("Érvénytelen management hitelesítő kulcs.");
+        }
 
-        await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
+        _registry.AddManagement(Context.ConnectionId);
+        await Groups.AddToGroupAsync(Context.ConnectionId, ManagementGroup);
+
+        await Clients.Caller.SendAsync("RegistrationSucceeded", "management");
+        await Clients.Group(ManagementGroup).SendAsync("AgentListUpdated", _registry.AgentNames);
+        await Clients.Group(ManagementGroup).SendAsync("AgentInfosUpdated", _registry.AgentInfos);
+    }
+
+    public async Task RegisterAgent(string machineName, string osVersion, string userName, string sharedSecret)
+    {
+        if (sharedSecret != SharedSecret)
+        {
+            throw new HubException("Érvénytelen agent hitelesítő kulcs.");
+        }
+
+        _registry.AddOrUpdateAgent(machineName, Context.ConnectionId, osVersion, userName);
+
+        _logger.LogInformation("Agent connected: {MachineName} ({UserName}, {OsVersion})", machineName, userName, osVersion);
+
+        await Clients.Caller.SendAsync("RegistrationSucceeded", "agent");
+        await Clients.Group(ManagementGroup).SendAsync("AgentListUpdated", _registry.AgentNames);
+        await Clients.Group(ManagementGroup).SendAsync("AgentInfosUpdated", _registry.AgentInfos);
     }
 
     public async Task SendMessageToAgent(string machineName, string message)
     {
-        if (ConnectedAgents.TryGetValue(machineName, out var connectionId))
+        if (_registry.TryGetAgentConnection(machineName, out var connectionId))
         {
             ChatStorage.AddMessage(new ChatRecord
             {
@@ -50,40 +74,20 @@ public class AgentHub : Hub
             Timestamp = DateTime.Now
         });
 
-        await Clients.All.SendAsync("ReceiveMessageFromAgent", machineName, message);
-    }
-
-    public override async Task OnDisconnectedAsync(Exception? exception)
-    {
-        var agent = ConnectedAgents.FirstOrDefault(x => x.Value == Context.ConnectionId);
-
-        if (!string.IsNullOrEmpty(agent.Key))
-        {
-            ConnectedAgents.TryRemove(agent.Key, out _);
-
-            if (AgentInfos.TryGetValue(agent.Key, out var info))
-            {
-                info.Status = "Offline";
-            }
-
-            await Clients.All.SendAsync("AgentListUpdated", ConnectedAgents.Keys);
-        }
-
-        await base.OnDisconnectedAsync(exception);
+        await Clients.Group(ManagementGroup).SendAsync("ReceiveMessageFromAgent", machineName, message);
     }
 
     public async Task SendFileToAgent(string agentName, string fileName, byte[] fileData, string targetPath)
     {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
         {
-            await Clients.Client(connectionId)
-                .SendAsync("ReceiveFile", fileName, fileData, targetPath);
+            await Clients.Client(connectionId).SendAsync("ReceiveFile", fileName, fileData, targetPath);
         }
     }
 
     public async Task SendCommandToAgent(string agentName, string command)
     {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
         {
             await Clients.Client(connectionId).SendAsync("ReceiveCommand", command);
         }
@@ -91,17 +95,25 @@ public class AgentHub : Hub
 
     public async Task SendCommandResultToManagement(string machineName, string result)
     {
-        await Clients.All.SendAsync("ReceiveCommandResult", machineName, result);
+        await Clients.Group(ManagementGroup).SendAsync("ReceiveCommandResult", machineName, result);
     }
 
     public async Task SendFileResultToManagement(string machineName, string result)
     {
-        await Clients.All.SendAsync("ReceiveFileResult", machineName, result);
+        await Clients.Group(ManagementGroup).SendAsync("ReceiveFileResult", machineName, result);
     }
 
     public async Task RequestScreenshot(string agentName)
     {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("TakeScreenshot");
+        }
+    }
+
+    public async Task RequestLiveScreenshot(string agentName)
+    {
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
         {
             await Clients.Client(connectionId).SendAsync("TakeScreenshot");
         }
@@ -109,34 +121,12 @@ public class AgentHub : Hub
 
     public async Task SendScreenshotToManagement(string machineName, byte[] imageBytes)
     {
-        await Clients.All.SendAsync("ReceiveScreenshot", machineName, imageBytes);
-    }
-
-    /*public async Task SendMouseClickToAgent(string agentName, int x, int y)
-    {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
-        {
-            await Clients.Client(connectionId).SendAsync("ReceiveMouseClick", x, y);
-        }
-    }
-    public async Task SendKeyToAgent(string agentName, string key)
-    {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
-        {
-            await Clients.Client(connectionId).SendAsync("ReceiveKeyPress", key);
-        }
-    }*/
-    public async Task RequestLiveScreenshot(string agentName)
-    {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
-        {
-            await Clients.Client(connectionId).SendAsync("TakeScreenshot");
-        }
+        await Clients.Group(ManagementGroup).SendAsync("ReceiveScreenshot", machineName, imageBytes);
     }
 
     public async Task SendMouseActionToAgent(string agentName, string action, int x, int y, int delta = 0)
     {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
         {
             await Clients.Client(connectionId).SendAsync("ReceiveMouseAction", action, x, y, delta);
         }
@@ -144,16 +134,26 @@ public class AgentHub : Hub
 
     public async Task SendKeyEventToAgent(string agentName, int keyCode, bool keyDown, bool ctrl, bool alt, bool shift)
     {
-        if (ConnectedAgents.TryGetValue(agentName, out var connectionId))
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
         {
-            await Clients.Client(connectionId).SendAsync(
-                "ReceiveKeyEvent",
-                keyCode,
-                keyDown,
-                ctrl,
-                alt,
-                shift
-            );
+            await Clients.Client(connectionId).SendAsync("ReceiveKeyEvent", keyCode, keyDown, ctrl, alt, shift);
         }
+    }
+
+    public override async Task OnDisconnectedAsync(Exception? exception)
+    {
+        if (_registry.IsManagementConnection(Context.ConnectionId))
+        {
+            _registry.RemoveManagement(Context.ConnectionId);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, ManagementGroup);
+        }
+        else
+        {
+            _registry.MarkAgentOfflineByConnectionId(Context.ConnectionId);
+            await Clients.Group(ManagementGroup).SendAsync("AgentListUpdated", _registry.AgentNames);
+            await Clients.Group(ManagementGroup).SendAsync("AgentInfosUpdated", _registry.AgentInfos);
+        }
+
+        await base.OnDisconnectedAsync(exception);
     }
 }

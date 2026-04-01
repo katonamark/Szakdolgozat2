@@ -1,1 +1,140 @@
 ﻿[2026.04.01 09:58:56] Kapcsolódás a szerverhez sikeres.
+[2026.04.01 13:48:24] Kapcsolódási hiba: An unexpected error occurred invoking 'RegisterAgent' on the server. HubException: Érvénytelen agent hitelesítő kulcs.
+[2026.04.01 13:53:22] Kapcsolódás a szerverhez sikeres.
+[2026.04.01 13:53:36] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:37] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:38] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:39] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:40] Távoli egérművelet végrehajtva: action=leftclick, x=847, y=168, delta=0
+[2026.04.01 13:53:40] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:41] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:42] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:43] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:44] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:45] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:46] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:47] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:48] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:49] Távoli egérművelet végrehajtva: action=leftclick, x=552, y=932, delta=0
+[2026.04.01 13:53:49] Távoli egérművelet végrehajtva: action=leftclick, x=523, y=972, delta=0
+[2026.04.01 13:53:49] Távoli egérművelet végrehajtva: action=leftclick, x=492, y=1015, delta=0
+[2026.04.01 13:53:49] Távoli egérművelet végrehajtva: action=leftclick, x=459, y=1061, delta=0
+[2026.04.01 13:53:49] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:50] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:51] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:52] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:53] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:54] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=633, y=703, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=610, y=727, delta=0
+[2026.04.01 13:53:55] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=585, y=753, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=558, y=781, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=530, y=811, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=500, y=843, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=467, y=877, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=432, y=914, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=395, y=953, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=355, y=995, delta=0
+[2026.04.01 13:53:55] Távoli egérművelet végrehajtva: action=leftclick, x=312, y=1040, delta=0
+[2026.04.01 13:53:56] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:57] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:58] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:53:59] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:54:58] Kapcsolódás a szerverhez sikeres.
+[2026.04.01 13:55:06] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:07] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:08] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:08] Távoli egérművelet végrehajtva: action=rightclick, x=1188, y=612, delta=0
+[2026.04.01 13:55:09] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:10] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:11] Távoli egérművelet végrehajtva: action=rightclick, x=996, y=945, delta=0
+[2026.04.01 13:55:11] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:12] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:13] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:14] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:15] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:16] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:17] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:18] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:19] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:20] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:21] Távoli egérművelet végrehajtva: action=leftclick, x=537, y=127, delta=0
+[2026.04.01 13:55:21] Távoli egérművelet végrehajtva: action=leftclick, x=1144, y=105, delta=0
+[2026.04.01 13:55:21] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:22] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:23] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:24] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:25] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:26] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:27] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:28] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:29] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:30] Távoli egérművelet végrehajtva: action=leftclick, x=1716, y=24, delta=0
+[2026.04.01 13:55:30] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:31] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:32] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:33] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:33] Távoli egérművelet végrehajtva: action=leftclick, x=859, y=741, delta=0
+[2026.04.01 13:55:34] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:35] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:36] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:37] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:38] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:38] Távoli egérművelet végrehajtva: action=leftclick, x=849, y=62, delta=0
+[2026.04.01 13:55:39] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:40] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:41] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:42] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:43] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:44] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:45] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:46] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:47] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:48] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:49] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:50] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:51] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:52] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:53] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:54] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:55] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:56] Távoli egérművelet végrehajtva: action=leftclick, x=458, y=62, delta=0
+[2026.04.01 13:55:56] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:57] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:59] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:55:59] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:00] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:01] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:03] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:03] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:05] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:05] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:07] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:07] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:09] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:09] Képernyőkép elküldve a szervernek.
+[2026.04.01 13:56:11] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:10:40] Kapcsolódás a szerverhez sikeres.
+[2026.04.01 15:11:06] Új üzenet érkezett a szervertől.
+[2026.04.01 15:11:19] Üzenet elküldve a szervernek.
+[2026.04.01 15:12:11] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:12] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:13] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:14] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:15] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:16] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:17] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:18] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:19] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:20] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:20] Távoli egérművelet végrehajtva: action=leftclick, x=1728, y=175, delta=0
+[2026.04.01 15:12:21] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:22] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:23] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:24] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:25] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:26] Távoli egérművelet végrehajtva: action=leftclick, x=650, y=1056, delta=0
+[2026.04.01 15:12:26] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:27] Képernyőkép elküldve a szervernek.
+[2026.04.01 15:12:28] Képernyőkép elküldve a szervernek.

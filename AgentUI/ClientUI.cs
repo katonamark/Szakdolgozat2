@@ -3,10 +3,10 @@ using System.Net.Http.Json;
 using System.Diagnostics;
 using System.Text;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Net.Sockets;
 
 namespace AgentUI
 {
@@ -15,37 +15,27 @@ namespace AgentUI
         private HubConnection? connection;
         private readonly string machineName = Environment.MachineName;
         private readonly HttpClient client = new HttpClient();
+        private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
+
+        private static readonly object LogLock = new object();
+
         private string logFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
-
-        [DllImport("user32.dll")]
-        private static extern bool SetCursorPos(int X, int Y);
-
-        [DllImport("user32.dll")]
-        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
-
-        [DllImport("user32.dll")]
-        private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
-
-        private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
-        private const uint MOUSEEVENTF_LEFTUP = 0x0004;
-        private const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
-        private const uint MOUSEEVENTF_RIGHTUP = 0x0010;
-        private const uint MOUSEEVENTF_WHEEL = 0x0800;
-
-        private const uint KEYEVENTF_KEYUP = 0x0002;
 
         public ClientUI()
         {
             InitializeComponent();
+
             lblMachineName.Text = $"Gépnév: {Environment.MachineName}";
             lblUserName.Text = $"Felhasználó: {Environment.UserName}";
-            lblOsVersion.Text = $"OS: {Environment.OSVersion}";
+            lblOsVersion.Text = $"OS: {RuntimeInformation.OSDescription}";
+
             txtNewMessage.KeyDown += txtNewMessage_KeyDown;
+
             LoadLogHistory();
             ConnectToServer();
-
         }
+
         public class ChatRecord
         {
             public string Sender { get; set; } = "";
@@ -61,50 +51,83 @@ namespace AgentUI
                 .WithAutomaticReconnect()
                 .Build();
 
-            connection.On<string>("ReceiveMessage", (message) =>
+            connection.Reconnecting += error =>
             {
-                Invoke(new Action(() =>
+                BeginInvoke(new Action(() =>
+                {
+                    lblStatus.Text = "Újrakapcsolódás...";
+                    AddLog("Kapcsolat megszakadt, újrakapcsolódás folyamatban.");
+                }));
+
+                return Task.CompletedTask;
+            };
+
+            connection.Reconnected += connectionId =>
+            {
+                BeginInvoke(new Action(async () =>
+                {
+                    try
+                    {
+                        if (connection != null)
+                        {
+                            await connection.InvokeAsync(
+                                "RegisterAgent",
+                                machineName,
+                                RuntimeInformation.OSDescription,
+                                Environment.UserName,
+                                SharedSecret);
+
+                            lblStatus.Text = $"Kapcsolódva: {machineName}";
+                            AddLog("Újrakapcsolódás sikeres, agent újraregisztrálva.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblStatus.Text = "Újrakapcsolódási hiba";
+                        AddLog("Hiba újracsatlakozás után: " + ex.Message);
+                    }
+                }));
+
+                return Task.CompletedTask;
+            };
+
+            connection.Closed += error =>
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    lblStatus.Text = "Kapcsolat lezárva";
+                    AddLog("A kapcsolat lezárult.");
+                }));
+
+                return Task.CompletedTask;
+            };
+
+            connection.On<string>("ReceiveMessage", message =>
+            {
+                BeginInvoke(new Action(() =>
                 {
                     rtbChatHistory.AppendText(
                         $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}{Environment.NewLine}");
+
                     AddLog("Új üzenet érkezett a szervertõl.");
                 }));
             });
-
 
             connection.On<string, byte[], string>("ReceiveFile", async (fileName, fileData, targetPath) =>
             {
                 try
                 {
-                    string finalFolder;
-
-                    switch (targetPath)
+                    string finalFolder = targetPath switch
                     {
-                        case "Desktop":
-                            finalFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                            break;
-                        case "Documents":
-                            finalFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                            break;
-                        case "Temp":
-                            finalFolder = Path.GetTempPath();
-                            break;
-                        default:
-                            finalFolder = targetPath;
-                            break;
-                    }
+                        "Desktop" => Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                        "Documents" => Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                        "Temp" => Path.GetTempPath(),
+                        _ => targetPath
+                    };
 
                     Directory.CreateDirectory(finalFolder);
 
                     string fullPath = Path.Combine(finalFolder, fileName);
-                    await connection.InvokeAsync(
-                        "SendFileResultToManagement",
-                        machineName,
-                        $"Fájl mentve ide: {fullPath}"
-                    );
-                    notifyIcon1.BalloonTipTitle = "Fájl érkezett";
-                    notifyIcon1.BalloonTipText = fullPath;
-                    notifyIcon1.ShowBalloonTip(3000);
 
                     if (File.Exists(fullPath))
                     {
@@ -116,23 +139,36 @@ namespace AgentUI
                         fullPath = Path.Combine(finalFolder, newFileName);
                     }
 
-                    File.WriteAllBytes(fullPath, fileData);
+                    await File.WriteAllBytesAsync(fullPath, fileData);
 
-                    Invoke(new Action(() =>
+                    if (connection != null)
                     {
-                        AddLog($"Fájl érkezett: {fullPath}"); ;
+                        await connection.InvokeAsync(
+                            "SendFileResultToManagement",
+                            machineName,
+                            $"Fájl mentve ide: {fullPath}");
+                    }
+
+                    BeginInvoke(new Action(() =>
+                    {
+                        notifyIcon1.BalloonTipTitle = "Fájl érkezett";
+                        notifyIcon1.BalloonTipText = fullPath;
+                        notifyIcon1.ShowBalloonTip(3000);
+
+                        AddLog($"Fájl érkezett és elmentve: {fullPath}");
                     }));
                 }
                 catch (Exception ex)
                 {
-                    Invoke(new Action(() =>
+                    BeginInvoke(new Action(() =>
                     {
+                        AddLog("Hiba fájl mentésekor: " + ex.Message);
                         MessageBox.Show("Hiba fájl mentésekor: " + ex.Message);
                     }));
                 }
-
             });
-            connection.On<string>("ReceiveCommand", async (command) =>
+
+            connection.On<string>("ReceiveCommand", async command =>
             {
                 string result;
 
@@ -158,179 +194,108 @@ namespace AgentUI
                     process.WaitForExit();
 
                     result = string.IsNullOrWhiteSpace(error) ? output : error;
+
+                    AddLog($"Parancs lefuttatva: {command}");
                 }
                 catch (Exception ex)
                 {
                     result = "Hiba: " + ex.Message;
+                    AddLog($"Hiba parancsvégrehajtáskor: {ex.Message}");
                 }
 
-                await connection.InvokeAsync("SendCommandResultToManagement", machineName, result);
+                if (connection != null)
+                {
+                    await connection.InvokeAsync("SendCommandResultToManagement", machineName, result);
+                }
             });
 
             connection.On("TakeScreenshot", async () =>
             {
                 try
                 {
-                    Rectangle bounds = Screen.PrimaryScreen.Bounds;
+                    byte[] imageBytes = ScreenCaptureService.CapturePrimaryScreenJpeg(60L);
 
-                    using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
-                    using Graphics g = Graphics.FromImage(bitmap);
-                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
+                    if (connection != null)
+                    {
+                        await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+                    }
 
-                    using MemoryStream ms = new MemoryStream();
-                    bitmap.Save(ms, ImageFormat.Jpeg);
-
-                    byte[] imageBytes = ms.ToArray();
-
-                    await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
-
-                    Invoke(new Action(() =>
+                    BeginInvoke(new Action(() =>
                     {
                         AddLog("Képernyõkép elküldve a szervernek.");
                     }));
                 }
                 catch (Exception ex)
                 {
-                    Invoke(new Action(() =>
+                    BeginInvoke(new Action(() =>
                     {
                         AddLog("Hiba képernyõkép készítésekor: " + ex.Message);
                     }));
                 }
             });
 
-            /*connection.On<int, int>("ReceiveMouseClick", async (x, y) =>
+            connection.On<string, int, int, int>("ReceiveMouseAction", (action, x, y, delta) =>
             {
                 try
                 {
-                    Cursor.Position = new Point(x, y);
+                    RemoteInputService.ExecuteMouseAction(action, x, y, delta);
 
-                    mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                    mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
-
-                    AddLog($"Távoli kattintás végrehajtva: X={x}, Y={y}");
-
-                    // kattintás után új screenshot küldése
-                    Rectangle bounds = Screen.PrimaryScreen.Bounds;
-
-                    using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
-                    using Graphics g = Graphics.FromImage(bitmap);
-                    g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
-
-                    using MemoryStream ms = new MemoryStream();
-                    bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-
-                    byte[] imageBytes = ms.ToArray();
-
-                    await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
-                }
-                catch (Exception ex)
-                {
-                    AddLog("Hiba távoli kattintáskor: " + ex.Message);
-                }
-            });*/
-
-            connection.On<string, int, int, int>("ReceiveMouseAction", async (action, x, y, delta) =>
-            {
-                try
-                {
-                    SetCursorPos(x, y);
-
-                    switch (action)
+                    BeginInvoke(new Action(() =>
                     {
-                        case "move":
-                            break;
-
-                        case "leftclick":
-                            mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                            mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                            break;
-
-                        case "doubleclick":
-                            for (int i = 0; i < 2; i++)
-                            {
-                                mouse_event(MOUSEEVENTF_LEFTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                                mouse_event(MOUSEEVENTF_LEFTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                            }
-                            break;
-
-                        case "rightclick":
-                            mouse_event(MOUSEEVENTF_RIGHTDOWN, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                            mouse_event(MOUSEEVENTF_RIGHTUP, (uint)x, (uint)y, 0, UIntPtr.Zero);
-                            break;
-
-                        case "wheel":
-                            mouse_event(MOUSEEVENTF_WHEEL, (uint)x, (uint)y, (uint)delta, UIntPtr.Zero);
-                            break;
-                    }
-
-                    AddLog($"Távoli egér mûvelet: {action} ({x},{y})");
+                        AddLog($"Távoli egérmûvelet végrehajtva: action={action}, x={x}, y={y}, delta={delta}");
+                    }));
                 }
                 catch (Exception ex)
                 {
-                    AddLog("Hiba egérmûveletkor: " + ex.Message);
+                    BeginInvoke(new Action(() =>
+                    {
+                        AddLog("Hiba a távoli egérmûvelet közben: " + ex.Message);
+                        MessageBox.Show("Hiba a távoli egérmûvelet közben: " + ex.Message);
+                    }));
                 }
-
-                await SendUpdatedScreenshot();
             });
 
-            /*connection.On<string>("ReceiveKeyPress", (key) =>
+            connection.On<int, bool, bool, bool, bool>("ReceiveKeyEvent", (keyCode, keyDown, ctrl, alt, shift) =>
             {
                 try
                 {
-                    SendKeys.SendWait(key);
-                    AddLog($"Távoli billentyûleütés: {key}");
+                    RemoteInputService.ExecuteKeyEvent(keyCode, keyDown, ctrl, alt, shift);
+
+                    BeginInvoke(new Action(() =>
+                    {
+                        AddLog($"Távoli billentyûmûvelet végrehajtva: keyCode={keyCode}, keyDown={keyDown}, ctrl={ctrl}, alt={alt}, shift={shift}");
+                    }));
                 }
                 catch (Exception ex)
                 {
-                    AddLog("Hiba billentyûleütéskor: " + ex.Message);
+                    BeginInvoke(new Action(() =>
+                    {
+                        AddLog("Hiba a távoli billentyûmûvelet közben: " + ex.Message);
+                        MessageBox.Show("Hiba a távoli billentyûmûvelet közben: " + ex.Message);
+                    }));
                 }
-            });*/
-
-            connection.On<int, bool, bool, bool, bool>("ReceiveKeyEvent", async (keyCode, keyDown, ctrl, alt, shift) =>
-            {
-                try
-                {
-                    if (ctrl) keybd_event((byte)Keys.ControlKey, 0, 0, UIntPtr.Zero);
-                    if (alt) keybd_event((byte)Keys.Menu, 0, 0, UIntPtr.Zero);
-                    if (shift) keybd_event((byte)Keys.ShiftKey, 0, 0, UIntPtr.Zero);
-
-                    if (keyDown)
-                        keybd_event((byte)keyCode, 0, 0, UIntPtr.Zero);
-                    else
-                        keybd_event((byte)keyCode, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
-
-                    if (shift) keybd_event((byte)Keys.ShiftKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
-                    if (alt) keybd_event((byte)Keys.Menu, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
-                    if (ctrl) keybd_event((byte)Keys.ControlKey, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
-
-                    AddLog($"Távoli billentyû esemény: {((Keys)keyCode)} {(keyDown ? "down" : "up")}");
-                }
-                catch (Exception ex)
-                {
-                    AddLog("Hiba billentyû eseménynél: " + ex.Message);
-                }
-
-                await SendUpdatedScreenshot();
             });
 
             try
             {
                 await connection.StartAsync();
+
                 await connection.InvokeAsync(
-                "RegisterAgent",
-                machineName,
-                Environment.OSVersion.ToString(),
-                Environment.UserName);
+                    "RegisterAgent",
+                    machineName,
+                    RuntimeInformation.OSDescription,
+                    Environment.UserName,
+                    SharedSecret);
+
                 lblStatus.Text = $"Kapcsolódva: {machineName}";
                 AddLog("Kapcsolódás a szerverhez sikeres.");
+
                 LoadConversation();
             }
-
-
             catch (Exception ex)
             {
                 lblStatus.Text = "Kapcsolati hiba";
-                AddLog("Kapcsolódás a szerverhez sikeres.");
+                AddLog("Kapcsolódási hiba: " + ex.Message);
                 MessageBox.Show("Hiba: " + ex.Message);
             }
         }
@@ -358,13 +323,13 @@ namespace AgentUI
                 return;
             }
 
-            if (connection == null)
+            if (connection == null || connection.State != HubConnectionState.Connected)
             {
                 MessageBox.Show("Nincs kapcsolat a szerverrel.");
                 return;
             }
 
-            string messageToSend = txtNewMessage.Text;
+            string messageToSend = txtNewMessage.Text.Trim();
 
             try
             {
@@ -378,9 +343,11 @@ namespace AgentUI
             }
             catch (Exception ex)
             {
+                AddLog("Hiba üzenetküldéskor: " + ex.Message);
                 MessageBox.Show("Hiba üzenetküldéskor: " + ex.Message);
             }
         }
+
         private async void LoadConversation()
         {
             try
@@ -392,7 +359,7 @@ namespace AgentUI
 
                 if (messages != null)
                 {
-                    foreach (var msg in messages)
+                    foreach (var msg in messages.OrderBy(m => m.Timestamp))
                     {
                         rtbChatHistory.AppendText(
                             $"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}{Environment.NewLine}");
@@ -401,28 +368,53 @@ namespace AgentUI
             }
             catch (Exception ex)
             {
+                AddLog("Hiba az elõzmények betöltésekor: " + ex.Message);
                 MessageBox.Show("Hiba az elõzmények betöltésekor: " + ex.Message);
             }
         }
+
         private void AddLog(string message)
         {
             string logEntry = $"[{DateTime.Now:yyyy.MM.dd HH:mm:ss}] {message}";
 
-            rtbLog.AppendText(logEntry + Environment.NewLine);
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    rtbLog.AppendText(logEntry + Environment.NewLine);
+                }));
+            }
+            else
+            {
+                rtbLog.AppendText(logEntry + Environment.NewLine);
+            }
 
             try
             {
                 string? folder = Path.GetDirectoryName(logFilePath);
-                if (!string.IsNullOrEmpty(folder))
+                if (!string.IsNullOrWhiteSpace(folder))
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(logFilePath)!);
+                    Directory.CreateDirectory(folder);
                 }
 
-                File.AppendAllText(logFilePath, logEntry + Environment.NewLine, Encoding.UTF8);
+                lock (LogLock)
+                {
+                    File.AppendAllText(logFilePath, logEntry + Environment.NewLine, Encoding.UTF8);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hiba a log mentésekor: " + ex.Message);
+                if (InvokeRequired)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        MessageBox.Show("Hiba a log mentésekor: " + ex.Message);
+                    }));
+                }
+                else
+                {
+                    MessageBox.Show("Hiba a log mentésekor: " + ex.Message);
+                }
             }
         }
 
@@ -439,22 +431,17 @@ namespace AgentUI
                 btnSend.PerformClick();
             }
         }
+
         private async Task SendUpdatedScreenshot()
         {
             try
             {
-                Rectangle bounds = Screen.PrimaryScreen.Bounds;
+                byte[] imageBytes = ScreenCaptureService.CapturePrimaryScreenJpeg(60L);
 
-                using Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
-                using Graphics g = Graphics.FromImage(bitmap);
-                g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
-
-                using MemoryStream ms = new MemoryStream();
-                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-
-                byte[] imageBytes = ms.ToArray();
-
-                await connection!.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+                if (connection != null && connection.State == HubConnectionState.Connected)
+                {
+                    await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
+                }
             }
             catch (Exception ex)
             {
@@ -464,7 +451,7 @@ namespace AgentUI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

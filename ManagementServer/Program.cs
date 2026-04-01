@@ -1,25 +1,46 @@
+using ManagementServer;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<AgentRegistry>();
 
 builder.Services.AddSignalR(options =>
 {
-    options.MaximumReceiveMessageSize = 50 * 1024 * 1024; // 50 MB
+    options.MaximumReceiveMessageSize = 50 * 1024 * 1024; //50MB
+    options.EnableDetailedErrors = true;
 });
+
 builder.Services.AddControllers();
+
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("LocalDevOnly", policy =>
     {
-        policy.AllowAnyHeader()
-              .AllowAnyMethod()
-              .SetIsOriginAllowed(_ => true)
-              .AllowCredentials();
+        policy
+            .SetIsOriginAllowed(origin =>
+            {
+                if (string.IsNullOrWhiteSpace(origin))
+                {
+                    return false;
+                }
+
+                return origin.StartsWith("https://localhost", StringComparison.OrdinalIgnoreCase)
+                    || origin.StartsWith("http://localhost", StringComparison.OrdinalIgnoreCase)
+                    || origin.StartsWith("https://127.0.0.1", StringComparison.OrdinalIgnoreCase)
+                    || origin.StartsWith("http://127.0.0.1", StringComparison.OrdinalIgnoreCase);
+            })
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
 var app = builder.Build();
 
-app.UseCors();
+app.UseHttpsRedirection();
+app.UseCors("LocalDevOnly");
+
 app.MapControllers();
 app.MapHub<AgentHub>("/agenthub");
 
-app.Run(); ;
+app.Run();
