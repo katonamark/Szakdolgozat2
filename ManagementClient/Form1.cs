@@ -8,7 +8,6 @@ namespace ManagementClient
         private readonly HttpClient client = new HttpClient();
         private readonly string serverUrl = "https://localhost:7294/api/agents";
         private HubConnection? connection;
-        private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
         private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
         private readonly HashSet<string> activeScreenshotRequests = new();
         private HashSet<string> knownAgents = new();
@@ -18,6 +17,7 @@ namespace ManagementClient
         {
             InitializeComponent();
             StartSignalR();
+
         }
 
         public class AgentInfo
@@ -34,6 +34,7 @@ namespace ManagementClient
                 .WithUrl("https://localhost:7294/agenthub")
                 .WithAutomaticReconnect()
                 .Build();
+            lblWelcome.Text = $"Üdvözlünk a Remotee applikáció szerver felületén, {AuthSession.FullName}!";
 
             connection.Reconnecting += error =>
             {
@@ -51,7 +52,7 @@ namespace ManagementClient
                 {
                     if (connection != null)
                     {
-                        await connection.InvokeAsync("RegisterManagementClient", SharedSecret);
+                        await connection.InvokeAsync("RegisterManagementClient", AuthSession.Token);
 
                         BeginInvoke(new Action(() =>
                         {
@@ -190,7 +191,7 @@ namespace ManagementClient
             try
             {
                 await connection.StartAsync();
-                await connection.InvokeAsync("RegisterManagementClient", SharedSecret);
+                await connection.InvokeAsync("RegisterManagementClient", AuthSession.Token);
                 lblStatus.Text = "Kapcsolódva a szerverhez";
             }
             catch (Exception ex)
@@ -339,6 +340,33 @@ namespace ManagementClient
                 MessageBox.Show("Hiba képernyõkép kéréskor: " + ex.Message);
             }
         }
+        private async void btnLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Add("X-Auth-Token", AuthSession.Token);
+
+                await client.PostAsync("https://localhost:7294/api/auth/logout", null);
+            }
+            catch
+            {
+            }
+
+            AuthSession.Clear();
+
+            Hide();
+
+            using var loginForm = new LoginForm();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Show();
+                return;
+            }
+
+            Close();
+        }
+
         private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
         {
             if (InvokeRequired)

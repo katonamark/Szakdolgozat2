@@ -44,3 +44,6 @@ D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\Manageme.123DBB64.
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.FileSendForm.resources
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.CommandForm.resources
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.ScreenshotForm.resources
+D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.LoginForm.resources
+D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.RegisterCodeForm.resources
+D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.RegisterForm.resources

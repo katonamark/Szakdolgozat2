@@ -1,16 +1,17 @@
 using ManagementServer;
+using ManagementServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<AgentRegistry>();
+builder.Services.AddSingleton<AuthService>();
+builder.Services.AddControllers();
 
 builder.Services.AddSignalR(options =>
 {
     options.MaximumReceiveMessageSize = 50 * 1024 * 1024; //50MB
     options.EnableDetailedErrors = true;
 });
-
-builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {

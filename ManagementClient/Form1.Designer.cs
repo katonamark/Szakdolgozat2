@@ -43,6 +43,8 @@
             btnCommand = new Button();
             btnScreenshot = new Button();
             notifyIcon1 = new NotifyIcon(components);
+            lblWelcome = new Label();
+            btnLogout = new Button();
             SuspendLayout();
             // 
             // lstAgents
@@ -165,12 +167,33 @@
             notifyIcon1.Text = "notifyIcon1";
             notifyIcon1.Visible = true;
             // 
+            // lblWelcome
+            // 
+            lblWelcome.AutoSize = true;
+            lblWelcome.Location = new Point(398, 300);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(38, 15);
+            lblWelcome.TabIndex = 12;
+            lblWelcome.Text = "label3";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(680, 348);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(104, 23);
+            btnLogout.TabIndex = 13;
+            btnLogout.Text = "Kijelentkezés";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(785, 379);
+            Controls.Add(btnLogout);
+            Controls.Add(lblWelcome);
             Controls.Add(btnScreenshot);
             Controls.Add(btnCommand);
             Controls.Add(btnFile);
@@ -204,5 +227,7 @@
         private Button btnCommand;
         private Button btnScreenshot;
         private NotifyIcon notifyIcon1;
+        private Label lblWelcome;
+        private Button btnLogout;
     }
 }

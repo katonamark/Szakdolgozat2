@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.SignalR;
 using ManagementServer;
+using ManagementServer.Services;
 
 namespace ManagementServer;
 public class AgentHub : Hub
@@ -10,18 +11,20 @@ public class AgentHub : Hub
 
     private readonly AgentRegistry _registry;
     private readonly ILogger<AgentHub> _logger;
+    private readonly AuthService _authService;
 
-    public AgentHub(AgentRegistry registry, ILogger<AgentHub> logger)
+    public AgentHub(AgentRegistry registry, ILogger<AgentHub> logger, AuthService authService)
     {
         _registry = registry;
         _logger = logger;
+        _authService = authService;
     }
 
-    public async Task RegisterManagementClient(string sharedSecret)
+    public async Task RegisterManagementClient(string authToken)
     {
-        if (sharedSecret != SharedSecret)
+        if (!_authService.ValidateToken(authToken))
         {
-            throw new HubException("Érvénytelen management hitelesítő kulcs.");
+            throw new HubException("Érvénytelen vagy lejárt bejelentkezési token.");
         }
 
         _registry.AddManagement(Context.ConnectionId);
@@ -156,4 +159,5 @@ public class AgentHub : Hub
 
         await base.OnDisconnectedAsync(exception);
     }
+
 }
