@@ -33,6 +33,7 @@
             btnRun = new Button();
             btnBack = new Button();
             rtbCommandResult = new RichTextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lblTargetAgent
@@ -80,11 +81,21 @@
             rtbCommandResult.TabIndex = 4;
             rtbCommandResult.Text = "";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(99, 119);
+            label1.Name = "label1";
+            label1.Size = new Size(109, 15);
+            label1.TabIndex = 5;
+            label1.Text = "A futás eredménye:";
+            // 
             // CommandForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(549, 450);
+            Controls.Add(label1);
             Controls.Add(rtbCommandResult);
             Controls.Add(btnBack);
             Controls.Add(btnRun);
@@ -103,5 +114,6 @@
         private Button btnRun;
         private Button btnBack;
         private RichTextBox rtbCommandResult;
+        private Label label1;
     }
 }

@@ -22,6 +22,8 @@ namespace ManagementClient
             InitializeComponent();
             targetAgent = agentName;
             connection = hub;
+            txtCommand.AcceptsReturn = true;
+            txtCommand.KeyDown += txtCommand_KeyDown;
             lblTargetAgent.Text = $"Parancsfuttatás: {agentName}";
             StartListening();
         }
@@ -59,6 +61,14 @@ namespace ManagementClient
             catch (Exception ex)
             {
                 MessageBox.Show("Hiba parancsküldéskor: " + ex.Message);
+            }
+        }
+        private void txtCommand_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnRun.PerformClick();
             }
         }
 

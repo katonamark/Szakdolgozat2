@@ -22,7 +22,9 @@ namespace ManagementClient
         public MessageForm(string agentName)
         {
             InitializeComponent();
-            //txtNewMessage.KeyDown += txtNewMessage_KeyDown;
+            txtNewMessage.KeyDown += txtNewMessage_KeyDown;
+            txtNewMessage.Multiline = true;
+            txtNewMessage.AcceptsReturn = true;
             targetAgent = agentName;
             lblTargetAgent.Text = $"Beszélgetés: {agentName}";
             LoadConversation();
@@ -128,6 +130,17 @@ namespace ManagementClient
                 e.SuppressKeyPress = true;
                 btnSend.PerformClick();
             }
+        }
+        public void AppendIncomingMessage(string senderName, string message)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => AppendIncomingMessage(senderName, message)));
+                return;
+            }
+
+            rtbChatHistory.AppendText(
+                $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {senderName}: {message}{Environment.NewLine}");
         }
 
         private void btnBack_Click(object sender, EventArgs e)

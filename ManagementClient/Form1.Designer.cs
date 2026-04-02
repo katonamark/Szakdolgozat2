@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             lstAgents = new ListBox();
             btnRefresh = new Button();
             label1 = new Label();
@@ -40,6 +42,7 @@
             btnFile = new Button();
             btnCommand = new Button();
             btnScreenshot = new Button();
+            notifyIcon1 = new NotifyIcon(components);
             SuspendLayout();
             // 
             // lstAgents
@@ -156,6 +159,12 @@
             btnScreenshot.UseVisualStyleBackColor = true;
             btnScreenshot.Click += btnScreenshot_Click;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Visible = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -194,5 +203,6 @@
         private Button btnFile;
         private Button btnCommand;
         private Button btnScreenshot;
+        private NotifyIcon notifyIcon1;
     }
 }

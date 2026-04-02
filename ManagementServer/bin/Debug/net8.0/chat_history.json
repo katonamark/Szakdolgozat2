@@ -88,5 +88,65 @@
     "TargetAgent": "ASUS-MARK",
     "Message": "log pr\u00F3ba",
     "Timestamp": "2026-03-23T16:42:55.3626358+01:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szofi\r\n",
+    "Timestamp": "2026-04-01T15:11:06.2393293+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "De j\u00F3 hogy itt vagy",
+    "Timestamp": "2026-04-01T15:11:19.5391931+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-02T11:05:16.4093847+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-02T11:05:35.5082111+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hey\r\n",
+    "Timestamp": "2026-04-02T11:09:06.0549809+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hey",
+    "Timestamp": "2026-04-02T11:09:11.2419042+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szia",
+    "Timestamp": "2026-04-02T11:14:11.1206001+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-02T11:14:25.913786+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-02T11:28:26.3885409+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szia",
+    "Timestamp": "2026-04-02T11:28:31.4701525+02:00"
   }
 ]

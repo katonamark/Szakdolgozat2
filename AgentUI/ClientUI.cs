@@ -110,6 +110,7 @@ namespace AgentUI
                         $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}{Environment.NewLine}");
 
                     AddLog("Új üzenet érkezett a szervertõl.");
+                    ShowNotification("Új üzenet", "Új üzenet érkezett a szervertõl.");
                 }));
             });
 
@@ -151,9 +152,7 @@ namespace AgentUI
 
                     BeginInvoke(new Action(() =>
                     {
-                        notifyIcon1.BalloonTipTitle = "Fájl érkezett";
-                        notifyIcon1.BalloonTipText = fullPath;
-                        notifyIcon1.ShowBalloonTip(3000);
+                        ShowNotification("Fájl érkezett", $"Fájl mentve ide: {fullPath}");
 
                         AddLog($"Fájl érkezett és elmentve: {fullPath}");
                     }));
@@ -447,6 +446,20 @@ namespace AgentUI
             {
                 AddLog("Hiba screenshot frissítéskor: " + ex.Message);
             }
+        }
+        private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowNotification(title, message, icon)));
+                return;
+            }
+
+            notifyIcon1.BalloonTipTitle = title;
+            notifyIcon1.BalloonTipText = message;
+            notifyIcon1.BalloonTipIcon = icon;
+            notifyIcon1.Visible = true;
+            notifyIcon1.ShowBalloonTip(3000);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

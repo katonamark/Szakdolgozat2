@@ -8,11 +8,11 @@ namespace ManagementClient
         private readonly HttpClient client = new HttpClient();
         private readonly string serverUrl = "https://localhost:7294/api/agents";
         private HubConnection? connection;
-
         private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
-
         private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
         private readonly HashSet<string> activeScreenshotRequests = new();
+        private HashSet<string> knownAgents = new();
+        private readonly Dictionary<string, MessageForm> openMessageForms = new();
 
         public Form1()
         {
@@ -83,12 +83,29 @@ namespace ManagementClient
             {
                 BeginInvoke(new Action(() =>
                 {
+                    var newSet = new HashSet<string>(agentNames);
+
+                    var wentOnline = newSet.Except(knownAgents).ToList();
+                    var wentOffline = knownAgents.Except(newSet).ToList();
+
                     lstAgents.Items.Clear();
 
-                    foreach (var name in agentNames.OrderBy(x => x))
+                    foreach (var name in newSet.OrderBy(x => x))
                     {
                         lstAgents.Items.Add(name);
                     }
+
+                    foreach (var agent in wentOnline)
+                    {
+                        ShowNotification("Agent online", $"{agent} csatlakozott a szerverhez.");
+                    }
+
+                    foreach (var agent in wentOffline)
+                    {
+                        ShowNotification("Agent offline", $"{agent} lecsatlakozott a szerverrõl.", ToolTipIcon.Warning);
+                    }
+
+                    knownAgents = newSet;
                 }));
             });
 
@@ -112,7 +129,16 @@ namespace ManagementClient
             {
                 BeginInvoke(new Action(() =>
                 {
-                    MessageBox.Show($"{machineName} üzenete:\n\n{message}");
+                    ShowNotification("Új üzenet", $"{machineName} új üzenetet küldött.");
+
+                    if (openMessageForms.TryGetValue(machineName, out var form))
+                    {
+                        form.AppendIncomingMessage(machineName, message);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{machineName} üzenete:\n\n{message}");
+                    }
                 }));
             });
 
@@ -205,10 +231,23 @@ namespace ManagementClient
             }
 
             string agentName = lstAgents.SelectedItem.ToString() ?? "";
+
+            if (openMessageForms.ContainsKey(agentName))
+            {
+                openMessageForms[agentName].BringToFront();
+                openMessageForms[agentName].Activate();
+                return;
+            }
+
             MessageForm form = new MessageForm(agentName);
+            form.FormClosed += (s, args) =>
+            {
+                openMessageForms.Remove(agentName);
+            };
+
+            openMessageForms[agentName] = form;
             form.Show();
         }
-
         private void btnFile_Click(object sender, EventArgs e)
         {
             if (lstAgents.SelectedItem == null)
@@ -299,6 +338,20 @@ namespace ManagementClient
             {
                 MessageBox.Show("Hiba képernyõkép kéréskor: " + ex.Message);
             }
+        }
+        private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => ShowNotification(title, message, icon)));
+                return;
+            }
+
+            notifyIcon1.BalloonTipTitle = title;
+            notifyIcon1.BalloonTipText = message;
+            notifyIcon1.BalloonTipIcon = icon;
+            notifyIcon1.Visible = true;
+            notifyIcon1.ShowBalloonTip(3000);
         }
     }
 }
