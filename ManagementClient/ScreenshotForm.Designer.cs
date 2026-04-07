@@ -49,7 +49,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(pictureBox1);
             Name = "ScreenshotForm";
-            Text = "ScreenshotForm";
+            Text = "Távoli vezérlés";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

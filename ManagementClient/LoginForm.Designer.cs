@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             txtUsername = new TextBox();
             txtPassword = new TextBox();
             btnLogin = new Button();
@@ -36,11 +37,14 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(119, 86);
+            txtUsername.BackColor = SystemColors.ControlLight;
+            txtUsername.Location = new Point(146, 127);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(180, 23);
             txtUsername.TabIndex = 0;
@@ -48,7 +52,8 @@
             // txtPassword
             // 
             txtPassword.AcceptsReturn = true;
-            txtPassword.Location = new Point(119, 148);
+            txtPassword.BackColor = SystemColors.ControlLight;
+            txtPassword.Location = new Point(146, 198);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(180, 23);
             txtPassword.TabIndex = 1;
@@ -56,9 +61,9 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(224, 192);
+            btnLogin.Location = new Point(251, 248);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(75, 23);
+            btnLogin.Size = new Size(75, 26);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Belépés";
             btnLogin.UseVisualStyleBackColor = true;
@@ -66,9 +71,9 @@
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(224, 245);
+            btnRegister.Location = new Point(312, 321);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(88, 23);
+            btnRegister.Size = new Size(88, 26);
             btnRegister.TabIndex = 3;
             btnRegister.Text = "Regisztráció";
             btnRegister.UseVisualStyleBackColor = true;
@@ -77,44 +82,56 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 94);
+            label1.Location = new Point(37, 133);
             label1.Name = "label1";
-            label1.Size = new Size(90, 15);
+            label1.Size = new Size(98, 17);
             label1.TabIndex = 0;
             label1.Text = "Felhasználónév:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(62, 156);
+            label2.Location = new Point(89, 204);
             label2.Name = "label2";
-            label2.Size = new Size(40, 15);
+            label2.Size = new Size(46, 17);
             label2.TabIndex = 5;
             label2.Text = "Jelszó:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 249);
+            label3.Location = new Point(12, 321);
             label3.Name = "label3";
-            label3.Size = new Size(206, 15);
+            label3.Size = new Size(229, 17);
             label3.TabIndex = 6;
             label3.Text = "Ha még nem regisztráltál, kattints ide:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(119, 28);
+            label4.Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label4.Location = new Point(51, 81);
             label4.Name = "label4";
-            label4.Size = new Size(166, 15);
+            label4.Size = new Size(308, 19);
             label4.TabIndex = 7;
-            label4.Text = "Belépés a Remotee rendszerbe";
+            label4.Text = "Belépés a Remotee Management rendszerbe";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(51, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(308, 50);
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 317);
+            ClientSize = new Size(412, 359);
+            Controls.Add(pictureBox1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -123,8 +140,10 @@
             Controls.Add(btnLogin);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
+            Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Name = "LoginForm";
             Text = "Remotee-Bejelentkezés";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -139,5 +158,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private PictureBox pictureBox1;
     }
 }

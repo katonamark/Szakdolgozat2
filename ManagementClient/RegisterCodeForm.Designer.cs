@@ -38,17 +38,17 @@
             // lblInfo
             // 
             lblInfo.AutoSize = true;
-            lblInfo.Location = new Point(65, 46);
+            lblInfo.Location = new Point(65, 52);
             lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(38, 15);
+            lblInfo.Size = new Size(43, 17);
             lblInfo.TabIndex = 0;
             lblInfo.Text = "label1";
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(188, 179);
+            btnNext.Location = new Point(188, 203);
             btnNext.Name = "btnNext";
-            btnNext.Size = new Size(75, 23);
+            btnNext.Size = new Size(75, 26);
             btnNext.TabIndex = 1;
             btnNext.Text = "Tovább";
             btnNext.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(65, 179);
+            btnCancel.Location = new Point(65, 203);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(75, 26);
             btnCancel.TabIndex = 2;
             btnCancel.Text = "Mégsem";
             btnCancel.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // txtAdminCode
             // 
             txtAdminCode.AcceptsReturn = true;
-            txtAdminCode.Location = new Point(65, 110);
+            txtAdminCode.Location = new Point(65, 125);
             txtAdminCode.Name = "txtAdminCode";
             txtAdminCode.Size = new Size(198, 23);
             txtAdminCode.TabIndex = 3;
@@ -75,22 +75,23 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(65, 92);
+            label1.Location = new Point(65, 104);
             label1.Name = "label1";
-            label1.Size = new Size(86, 15);
+            label1.Size = new Size(100, 17);
             label1.TabIndex = 4;
             label1.Text = "Írd ide a kódot:";
             // 
             // RegisterCodeForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 241);
+            ClientSize = new Size(331, 273);
             Controls.Add(label1);
             Controls.Add(txtAdminCode);
             Controls.Add(btnCancel);
             Controls.Add(btnNext);
             Controls.Add(lblInfo);
+            Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Name = "RegisterCodeForm";
             Text = "Remotee-Autentikáció";
             ResumeLayout(false);

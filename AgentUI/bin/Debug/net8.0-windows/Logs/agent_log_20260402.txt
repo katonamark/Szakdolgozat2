@@ -70,3 +70,5 @@
 [2026.04.02 21:46:15] Kapcsolódás a szerverhez sikeres.
 [2026.04.02 21:46:27] Kapcsolat megszakadt, újrakapcsolódás folyamatban.
 [2026.04.02 21:49:55] Kapcsolódás a szerverhez sikeres.
+[2026.04.02 22:32:36] Kapcsolódás a szerverhez sikeres.
+[2026.04.02 22:41:06] Kapcsolódás a szerverhez sikeres.

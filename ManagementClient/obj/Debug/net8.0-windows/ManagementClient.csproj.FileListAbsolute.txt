@@ -47,3 +47,6 @@ D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.S
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.LoginForm.resources
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.RegisterCodeForm.resources
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.RegisterForm.resources
+D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.Properties.Resources.resources
+D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\Assets\ikon2.ico
+D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\Assets\logo3k.png

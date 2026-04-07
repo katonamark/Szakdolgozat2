@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
             txtFullName = new TextBox();
             txtPasswordAgain = new TextBox();
             txtPassword = new TextBox();
@@ -38,18 +39,21 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // txtFullName
             // 
-            txtFullName.Location = new Point(190, 88);
+            txtFullName.BackColor = SystemColors.ControlLight;
+            txtFullName.Location = new Point(196, 126);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(216, 23);
             txtFullName.TabIndex = 0;
             // 
             // txtPasswordAgain
             // 
-            txtPasswordAgain.Location = new Point(190, 267);
+            txtPasswordAgain.BackColor = SystemColors.ControlLight;
+            txtPasswordAgain.Location = new Point(196, 329);
             txtPasswordAgain.Name = "txtPasswordAgain";
             txtPasswordAgain.Size = new Size(216, 23);
             txtPasswordAgain.TabIndex = 1;
@@ -57,7 +61,8 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(190, 203);
+            txtPassword.BackColor = SystemColors.ControlLight;
+            txtPassword.Location = new Point(196, 256);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(216, 23);
             txtPassword.TabIndex = 2;
@@ -65,16 +70,17 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(190, 145);
+            txtUsername.BackColor = SystemColors.ControlLight;
+            txtUsername.Location = new Point(196, 190);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(216, 23);
             txtUsername.TabIndex = 3;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(360, 322);
+            btnRegister.Location = new Point(366, 391);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(95, 23);
+            btnRegister.Size = new Size(95, 26);
             btnRegister.TabIndex = 4;
             btnRegister.Text = "Regisztrálás";
             btnRegister.UseVisualStyleBackColor = true;
@@ -83,53 +89,65 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(116, 34);
+            label1.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label1.Location = new Point(68, 79);
             label1.Name = "label1";
-            label1.Size = new Size(253, 15);
+            label1.Size = new Size(383, 17);
             label1.TabIndex = 5;
-            label1.Text = "Regisztráció a Remotee rendszer használatához";
+            label1.Text = "Regisztráció a Remotee Management rendszer használatához";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(46, 96);
+            label2.Location = new Point(52, 135);
             label2.Name = "label2";
-            label2.Size = new Size(60, 15);
+            label2.Size = new Size(68, 17);
             label2.TabIndex = 6;
             label2.Text = "Teljes név:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(46, 153);
+            label3.Location = new Point(52, 199);
             label3.Name = "label3";
-            label3.Size = new Size(90, 15);
+            label3.Size = new Size(98, 17);
             label3.TabIndex = 7;
             label3.Text = "Felhasználónév:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(46, 211);
+            label4.Location = new Point(52, 265);
             label4.Name = "label4";
-            label4.Size = new Size(40, 15);
+            label4.Size = new Size(46, 17);
             label4.TabIndex = 8;
             label4.Text = "Jelszó:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(46, 275);
+            label5.Location = new Point(52, 338);
             label5.Name = "label5";
-            label5.Size = new Size(63, 15);
+            label5.Size = new Size(72, 17);
             label5.TabIndex = 9;
             label5.Text = "Jelszó újra:";
             // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Zoom;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(500, 60);
+            panel1.TabIndex = 10;
+            // 
             // RegisterForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(500, 387);
+            ClientSize = new Size(500, 439);
+            Controls.Add(panel1);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -140,6 +158,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtPasswordAgain);
             Controls.Add(txtFullName);
+            Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Name = "RegisterForm";
             Text = "Regisztráció";
             ResumeLayout(false);
@@ -158,5 +177,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private Panel panel1;
     }
 }

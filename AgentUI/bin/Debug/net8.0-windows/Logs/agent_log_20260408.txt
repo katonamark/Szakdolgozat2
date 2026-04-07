@@ -1,0 +1,5 @@
+﻿[2026.04.08 00:28:21] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 00:29:58] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 00:33:59] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 00:50:45] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 00:55:56] Kapcsolódás a szerverhez sikeres.

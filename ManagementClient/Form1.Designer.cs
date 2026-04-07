@@ -45,23 +45,32 @@
             notifyIcon1 = new NotifyIcon(components);
             lblWelcome = new Label();
             btnLogout = new Button();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            panel3 = new Panel();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // lstAgents
             // 
             lstAgents.FormattingEnabled = true;
-            lstAgents.ItemHeight = 15;
-            lstAgents.Location = new Point(58, 39);
+            lstAgents.HorizontalScrollbar = true;
+            lstAgents.ItemHeight = 19;
+            lstAgents.Location = new Point(14, 42);
+            lstAgents.Margin = new Padding(3, 4, 3, 4);
             lstAgents.Name = "lstAgents";
-            lstAgents.Size = new Size(280, 289);
+            lstAgents.Size = new Size(278, 403);
             lstAgents.TabIndex = 0;
             lstAgents.Click += lstAgents_SelectedIndexChanged;
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(303, 344);
+            btnRefresh.Location = new Point(207, 461);
+            btnRefresh.Margin = new Padding(3, 4, 3, 4);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(75, 23);
+            btnRefresh.Size = new Size(86, 29);
             btnRefresh.TabIndex = 1;
             btnRefresh.Text = "Frissítés";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -70,17 +79,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(16, 16);
+            label1.Location = new Point(3, 8);
             label1.Name = "label1";
-            label1.Size = new Size(136, 15);
+            label1.Size = new Size(159, 19);
             label1.TabIndex = 2;
             label1.Text = "Aktív gépek a hálózaton:";
             // 
             // btnMessage
             // 
-            btnMessage.Location = new Point(368, 12);
+            btnMessage.Font = new Font("Segoe UI", 9.75F);
+            btnMessage.Location = new Point(340, 148);
+            btnMessage.Margin = new Padding(3, 4, 3, 4);
             btnMessage.Name = "btnMessage";
-            btnMessage.Size = new Size(95, 23);
+            btnMessage.RightToLeft = RightToLeft.No;
+            btnMessage.Size = new Size(135, 29);
             btnMessage.TabIndex = 3;
             btnMessage.Text = "Üzenetküldés";
             btnMessage.UseVisualStyleBackColor = true;
@@ -89,53 +101,55 @@
             // lblMachineName
             // 
             lblMachineName.AutoSize = true;
-            lblMachineName.Location = new Point(438, 117);
+            lblMachineName.Location = new Point(632, 251);
             lblMachineName.Name = "lblMachineName";
-            lblMachineName.Size = new Size(50, 15);
+            lblMachineName.Size = new Size(59, 19);
             lblMachineName.TabIndex = 4;
             lblMachineName.Text = "Gépnév:";
             // 
             // lblOsVersion
             // 
             lblOsVersion.AutoSize = true;
-            lblOsVersion.Location = new Point(438, 158);
+            lblOsVersion.Location = new Point(632, 303);
             lblOsVersion.Name = "lblOsVersion";
-            lblOsVersion.Size = new Size(25, 15);
+            lblOsVersion.Size = new Size(31, 19);
             lblOsVersion.TabIndex = 5;
             lblOsVersion.Text = "OS:";
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(438, 194);
+            lblUserName.Location = new Point(632, 348);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(71, 15);
+            lblUserName.Size = new Size(82, 19);
             lblUserName.TabIndex = 6;
             lblUserName.Text = "Felhasználó:";
             // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(438, 230);
+            lblStatus.Location = new Point(632, 394);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(48, 15);
+            lblStatus.Size = new Size(55, 19);
             lblStatus.TabIndex = 7;
             lblStatus.Text = "Állapot:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(151, 348);
+            label2.Location = new Point(33, 466);
             label2.Name = "label2";
-            label2.Size = new Size(146, 15);
+            label2.Size = new Size(173, 19);
             label2.TabIndex = 8;
             label2.Text = "Kattints a frissítés gombra!";
             // 
             // btnFile
             // 
-            btnFile.Location = new Point(491, 12);
+            btnFile.Font = new Font("Segoe UI", 9.75F);
+            btnFile.Location = new Point(341, 407);
+            btnFile.Margin = new Padding(3, 4, 3, 4);
             btnFile.Name = "btnFile";
-            btnFile.Size = new Size(75, 23);
+            btnFile.Size = new Size(134, 29);
             btnFile.TabIndex = 9;
             btnFile.Text = "Fájlküldés";
             btnFile.UseVisualStyleBackColor = true;
@@ -143,9 +157,11 @@
             // 
             // btnCommand
             // 
-            btnCommand.Location = new Point(595, 12);
+            btnCommand.Font = new Font("Segoe UI", 9.75F);
+            btnCommand.Location = new Point(341, 522);
+            btnCommand.Margin = new Padding(3, 4, 3, 4);
             btnCommand.Name = "btnCommand";
-            btnCommand.Size = new Size(117, 23);
+            btnCommand.Size = new Size(134, 29);
             btnCommand.TabIndex = 10;
             btnCommand.Text = "Parancs futtatás";
             btnCommand.UseVisualStyleBackColor = true;
@@ -153,11 +169,13 @@
             // 
             // btnScreenshot
             // 
-            btnScreenshot.Location = new Point(369, 52);
+            btnScreenshot.Font = new Font("Segoe UI", 9.75F);
+            btnScreenshot.Location = new Point(340, 263);
+            btnScreenshot.Margin = new Padding(3, 4, 3, 4);
             btnScreenshot.Name = "btnScreenshot";
-            btnScreenshot.Size = new Size(94, 23);
+            btnScreenshot.Size = new Size(134, 29);
             btnScreenshot.TabIndex = 11;
-            btnScreenshot.Text = "Képernyőkép";
+            btnScreenshot.Text = "Távoli vezérlés";
             btnScreenshot.UseVisualStyleBackColor = true;
             btnScreenshot.Click += btnScreenshot_Click;
             // 
@@ -170,44 +188,87 @@
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Location = new Point(398, 300);
+            lblWelcome.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lblWelcome.Location = new Point(369, 41);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(38, 15);
+            lblWelcome.Size = new Size(45, 17);
             lblWelcome.TabIndex = 12;
             lblWelcome.Text = "label3";
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(680, 348);
+            btnLogout.Location = new Point(930, 35);
+            btnLogout.Margin = new Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(104, 23);
+            btnLogout.Size = new Size(119, 29);
             btnLogout.TabIndex = 13;
             btnLogout.Text = "Kijelentkezés";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(btnLogout);
+            panel2.Controls.Add(lblWelcome);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1063, 106);
+            panel2.TabIndex = 15;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(3, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(309, 87);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = SystemColors.GradientInactiveCaption;
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(lstAgents);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(btnRefresh);
+            panel3.Dock = DockStyle.Left;
+            panel3.Location = new Point(0, 106);
+            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(312, 511);
+            panel3.TabIndex = 16;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             BackgroundImageLayout = ImageLayout.Zoom;
-            ClientSize = new Size(785, 379);
-            Controls.Add(btnLogout);
-            Controls.Add(lblWelcome);
+            ClientSize = new Size(1063, 617);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
             Controls.Add(btnScreenshot);
             Controls.Add(btnCommand);
             Controls.Add(btnFile);
-            Controls.Add(label2);
             Controls.Add(lblStatus);
             Controls.Add(lblUserName);
             Controls.Add(lblOsVersion);
             Controls.Add(lblMachineName);
             Controls.Add(btnMessage);
-            Controls.Add(label1);
-            Controls.Add(btnRefresh);
-            Controls.Add(lstAgents);
+            Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Remotee";
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -229,5 +290,8 @@
         private NotifyIcon notifyIcon1;
         private Label lblWelcome;
         private Button btnLogout;
+        private Panel panel2;
+        private Panel panel3;
+        private PictureBox pictureBox1;
     }
 }

@@ -13,6 +13,7 @@ namespace ManagementClient
         private HashSet<string> knownAgents = new();
         private readonly Dictionary<string, MessageForm> openMessageForms = new();
 
+
         public Form1()
         {
             InitializeComponent();
@@ -381,5 +382,6 @@ namespace ManagementClient
             notifyIcon1.Visible = true;
             notifyIcon1.ShowBalloonTip(3000);
         }
+
     }
 }

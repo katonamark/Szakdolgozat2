@@ -1,0 +1,9 @@
+﻿[2026.04.07 14:20:31] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 14:33:00] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 22:30:05] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 23:14:47] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 23:14:50] Kapcsolat megszakadt, újrakapcsolódás folyamatban.
+[2026.04.07 23:15:46] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 23:15:48] Kapcsolat megszakadt, újrakapcsolódás folyamatban.
+[2026.04.07 23:23:26] Kapcsolódás a szerverhez sikeres.
+[2026.04.07 23:46:47] Kapcsolódás a szerverhez sikeres.
