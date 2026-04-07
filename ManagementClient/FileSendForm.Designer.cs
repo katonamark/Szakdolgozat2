@@ -157,6 +157,7 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            CancelButton = btnBack;
             ClientSize = new Size(403, 570);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -170,7 +171,10 @@
             Controls.Add(txtFilePath);
             Controls.Add(lblTargetAgent);
             Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FileSendForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Fájlküldés";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

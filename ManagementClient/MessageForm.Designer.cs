@@ -121,6 +121,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            CancelButton = btnBack;
             ClientSize = new Size(424, 510);
             Controls.Add(panel1);
             Controls.Add(btnBack);
@@ -130,7 +131,10 @@
             Controls.Add(rtbChatHistory);
             Controls.Add(btnSend);
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MessageForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Üzenetküldés";
             Load += MessageForm_Load;
             panel1.ResumeLayout(false);

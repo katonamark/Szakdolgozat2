@@ -78,4 +78,9 @@ public partial class RegisterForm : Form
             MessageBox.Show("Hiba regisztrációkor: " + ex.Message);
         }
     }
+
+     private void btnBack_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
 }

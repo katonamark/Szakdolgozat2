@@ -141,7 +141,10 @@
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Remotee-Bejelentkezés";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

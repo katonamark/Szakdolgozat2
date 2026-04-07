@@ -261,8 +261,11 @@
             Controls.Add(lblMachineName);
             Controls.Add(btnMessage);
             Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Remotee";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

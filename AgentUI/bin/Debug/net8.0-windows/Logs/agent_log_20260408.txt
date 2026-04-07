@@ -3,3 +3,31 @@
 [2026.04.08 00:33:59] Kapcsolódás a szerverhez sikeres.
 [2026.04.08 00:50:45] Kapcsolódás a szerverhez sikeres.
 [2026.04.08 00:55:56] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 01:16:00] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 01:16:42] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 01:19:27] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 01:32:28] Kapcsolódás a szerverhez sikeres.
+[2026.04.08 01:33:01] Új üzenet érkezett a szervertől.
+[2026.04.08 01:33:06] Üzenet elküldve a szervernek.
+[2026.04.08 01:33:19] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:20] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:21] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:22] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:23] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:23] Távoli egérművelet végrehajtva: action=leftclick, x=754, y=80, delta=0
+[2026.04.08 01:33:24] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:25] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:26] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:27] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:28] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:29] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:30] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:33] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:34] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:35] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:36] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:37] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:38] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:33:39] Képernyőkép elküldve a szervernek.
+[2026.04.08 01:34:24] Parancs lefuttatva: ipconfig
+[2026.04.08 01:34:32] Parancs lefuttatva: hostname

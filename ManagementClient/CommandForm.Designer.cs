@@ -120,6 +120,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            CancelButton = btnBack;
             ClientSize = new Size(549, 510);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -129,7 +130,10 @@
             Controls.Add(txtCommand);
             Controls.Add(lblTargetAgent);
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "CommandForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Parancs futtatás";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

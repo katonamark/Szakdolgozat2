@@ -40,12 +40,13 @@
             label4 = new Label();
             label5 = new Label();
             panel1 = new Panel();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // txtFullName
             // 
             txtFullName.BackColor = SystemColors.ControlLight;
-            txtFullName.Location = new Point(196, 126);
+            txtFullName.Location = new Point(210, 125);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(216, 23);
             txtFullName.TabIndex = 0;
@@ -53,7 +54,7 @@
             // txtPasswordAgain
             // 
             txtPasswordAgain.BackColor = SystemColors.ControlLight;
-            txtPasswordAgain.Location = new Point(196, 329);
+            txtPasswordAgain.Location = new Point(210, 328);
             txtPasswordAgain.Name = "txtPasswordAgain";
             txtPasswordAgain.Size = new Size(216, 23);
             txtPasswordAgain.TabIndex = 1;
@@ -62,7 +63,7 @@
             // txtPassword
             // 
             txtPassword.BackColor = SystemColors.ControlLight;
-            txtPassword.Location = new Point(196, 256);
+            txtPassword.Location = new Point(210, 255);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(216, 23);
             txtPassword.TabIndex = 2;
@@ -71,14 +72,14 @@
             // txtUsername
             // 
             txtUsername.BackColor = SystemColors.ControlLight;
-            txtUsername.Location = new Point(196, 190);
+            txtUsername.Location = new Point(210, 189);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(216, 23);
             txtUsername.TabIndex = 3;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(366, 391);
+            btnRegister.Location = new Point(356, 372);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(95, 26);
             btnRegister.TabIndex = 4;
@@ -90,7 +91,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.Location = new Point(68, 79);
+            label1.Location = new Point(56, 81);
             label1.Name = "label1";
             label1.Size = new Size(383, 17);
             label1.TabIndex = 5;
@@ -99,7 +100,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(52, 135);
+            label2.Location = new Point(66, 134);
             label2.Name = "label2";
             label2.Size = new Size(68, 17);
             label2.TabIndex = 6;
@@ -108,7 +109,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(52, 199);
+            label3.Location = new Point(66, 198);
             label3.Name = "label3";
             label3.Size = new Size(98, 17);
             label3.TabIndex = 7;
@@ -117,7 +118,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(52, 265);
+            label4.Location = new Point(66, 264);
             label4.Name = "label4";
             label4.Size = new Size(46, 17);
             label4.TabIndex = 8;
@@ -126,7 +127,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(52, 338);
+            label5.Location = new Point(66, 337);
             label5.Name = "label5";
             label5.Size = new Size(72, 17);
             label5.TabIndex = 9;
@@ -142,11 +143,23 @@
             panel1.Size = new Size(500, 60);
             panel1.TabIndex = 10;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 404);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(75, 23);
+            btnBack.TabIndex = 11;
+            btnBack.Text = "Vissza";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
             ClientSize = new Size(500, 439);
+            Controls.Add(btnBack);
             Controls.Add(panel1);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -159,7 +172,10 @@
             Controls.Add(txtPasswordAgain);
             Controls.Add(txtFullName);
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "RegisterForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Regisztráció";
             ResumeLayout(false);
             PerformLayout();
@@ -178,5 +194,6 @@
         private Label label4;
         private Label label5;
         private Panel panel1;
+        private Button btnBack;
     }
 }

@@ -19,7 +19,7 @@ public partial class RegisterCodeForm : Form
     {
         InitializeComponent();
         txtAdminCode.KeyDown += txtAdminCode_KeyDown;
-        lblInfo.Text = "A regisztrációhoz kérd a kódot a rendszergazdától.";
+        //lblInfo.Text = "A regisztrációhoz kérd a kódot a rendszergazdától.";
     }
 
     private async void btnNext_Click(object sender, EventArgs e)

@@ -38,11 +38,12 @@
             // lblInfo
             // 
             lblInfo.AutoSize = true;
-            lblInfo.Location = new Point(65, 52);
+            lblInfo.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lblInfo.Location = new Point(12, 50);
             lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(43, 17);
+            lblInfo.Size = new Size(320, 17);
             lblInfo.TabIndex = 0;
-            lblInfo.Text = "label1";
+            lblInfo.Text = "A regisztrációhoz kérd a kódot a rendszergazdától!";
             // 
             // btnNext
             // 
@@ -85,6 +86,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
             ClientSize = new Size(331, 273);
             Controls.Add(label1);
             Controls.Add(txtAdminCode);
@@ -92,7 +94,10 @@
             Controls.Add(btnNext);
             Controls.Add(lblInfo);
             Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "RegisterCodeForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Remotee-Autentikáció";
             ResumeLayout(false);
             PerformLayout();
