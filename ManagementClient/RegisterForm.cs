@@ -59,7 +59,7 @@ public partial class RegisterForm : Form
             };
 
             var response = await _client.PostAsJsonAsync(
-                "https://localhost:7294/api/auth/register",
+                AppConfig.AuthRegisterUrl,
                 request);
 
             var result = await response.Content.ReadFromJsonAsync<AuthResponse>();

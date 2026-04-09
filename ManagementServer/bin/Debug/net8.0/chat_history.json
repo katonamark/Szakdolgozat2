@@ -172,5 +172,17 @@
     "TargetAgent": "ASUS-MARK",
     "Message": "helloka",
     "Timestamp": "2026-04-02T21:32:46.8717421+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szia",
+    "Timestamp": "2026-04-08T01:33:01.0626649+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-08T01:33:06.641521+02:00"
   }
 ]

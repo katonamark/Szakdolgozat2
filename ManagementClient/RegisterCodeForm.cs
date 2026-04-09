@@ -19,7 +19,6 @@ public partial class RegisterCodeForm : Form
     {
         InitializeComponent();
         txtAdminCode.KeyDown += txtAdminCode_KeyDown;
-        //lblInfo.Text = "A regisztrációhoz kérd a kódot a rendszergazdától.";
     }
 
     private async void btnNext_Click(object sender, EventArgs e)
@@ -32,7 +31,7 @@ public partial class RegisterCodeForm : Form
             };
 
             var response = await _client.PostAsJsonAsync(
-                "https://localhost:7294/api/auth/validate-admin-code",
+                AppConfig.AuthValidateAdminCodeUrl,
                 request);
 
             var result = await response.Content.ReadFromJsonAsync<AuthResponse>();

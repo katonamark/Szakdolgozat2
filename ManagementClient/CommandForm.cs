@@ -71,6 +71,10 @@ namespace ManagementClient
                 btnRun.PerformClick();
             }
         }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            rtbCommandResult.Clear();
+        }
 
         private void btnBack_Click(object sender, EventArgs e)
         {

@@ -31,3 +31,4 @@
 [2026.04.08 01:33:39] Képernyőkép elküldve a szervernek.
 [2026.04.08 01:34:24] Parancs lefuttatva: ipconfig
 [2026.04.08 01:34:32] Parancs lefuttatva: hostname
+[2026.04.08 09:58:09] Kapcsolódás a szerverhez sikeres.

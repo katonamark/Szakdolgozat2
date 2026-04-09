@@ -6,7 +6,7 @@ namespace ManagementClient
     public partial class Form1 : Form
     {
         private readonly HttpClient client = new HttpClient();
-        private readonly string serverUrl = "https://localhost:7294/api/agents";
+        private readonly string serverUrl = AppConfig.AgentsApiUrl;
         private HubConnection? connection;
         private readonly Dictionary<string, ScreenshotForm> openScreenshotForms = new();
         private readonly HashSet<string> activeScreenshotRequests = new();
@@ -32,7 +32,7 @@ namespace ManagementClient
         private async void StartSignalR()
         {
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:7294/agenthub")
+                .WithUrl(AppConfig.HubUrl)
                 .WithAutomaticReconnect()
                 .Build();
             lblWelcome.Text = $"Üdvözlünk a Remotee applikáció szerver felületén, {AuthSession.FullName}!";
@@ -41,7 +41,7 @@ namespace ManagementClient
             {
                 BeginInvoke(new Action(() =>
                 {
-                    lblStatus.Text = "Kapcsolat megszakadt, újrakapcsolódás...";
+                    lblConnectionStatus.Text = "Kapcsolat megszakadt, újrakapcsolódás...";
                 }));
 
                 return Task.CompletedTask;
@@ -57,7 +57,7 @@ namespace ManagementClient
 
                         BeginInvoke(new Action(() =>
                         {
-                            lblStatus.Text = "Újrakapcsolódva a szerverhez";
+                            lblConnectionStatus.Text = "Kapcsolat megszakadt, újrakapcsolódás...";
                         }));
                     }
                 }
@@ -65,7 +65,7 @@ namespace ManagementClient
                 {
                     BeginInvoke(new Action(() =>
                     {
-                        lblStatus.Text = "Újrakapcsolódási hiba";
+                        lblConnectionStatus.Text = "Újrakapcsolódási hiba";
                         MessageBox.Show("Hiba újrakapcsolódáskor: " + ex.Message);
                     }));
                 }
@@ -75,7 +75,7 @@ namespace ManagementClient
             {
                 BeginInvoke(new Action(() =>
                 {
-                    lblStatus.Text = "Kapcsolat lezárva";
+                    lblConnectionStatus.Text = "Kapcsolat lezárva";
                 }));
 
                 return Task.CompletedTask;
@@ -193,11 +193,11 @@ namespace ManagementClient
             {
                 await connection.StartAsync();
                 await connection.InvokeAsync("RegisterManagementClient", AuthSession.Token);
-                lblStatus.Text = "Kapcsolódva a szerverhez";
+                lblConnectionStatus.Text = "Kapcsolódva a szerverhez";
             }
             catch (Exception ex)
             {
-                lblStatus.Text = "SignalR kapcsolati hiba";
+                lblConnectionStatus.Text = "SignalR kapcsolati hiba";
                 MessageBox.Show("SignalR hiba: " + ex.Message);
             }
         }
@@ -305,7 +305,7 @@ namespace ManagementClient
                     lblMachineName.Text = $"Gépnév: {info.MachineName}";
                     lblOsVersion.Text = $"OS: {info.OsVersion}";
                     lblUserName.Text = $"Felhasználó: {info.UserName}";
-                    lblStatus.Text = $"Állapot: {info.Status}";
+                    lblAgentStatus.Text = $"Állapot: {info.Status}";
                 }
             }
             catch (Exception ex)
@@ -348,7 +348,7 @@ namespace ManagementClient
                 using HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("X-Auth-Token", AuthSession.Token);
 
-                await client.PostAsync("https://localhost:7294/api/auth/logout", null);
+                await client.PostAsync(AppConfig.AuthLogoutUrl, null);
             }
             catch
             {

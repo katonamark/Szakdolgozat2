@@ -33,7 +33,7 @@ public partial class LoginForm : Form
             };
 
             var response = await _client.PostAsJsonAsync(
-                "https://localhost:7294/api/auth/login",
+                AppConfig.AuthLoginUrl,
                 request);
 
             var result = await response.Content.ReadFromJsonAsync<AuthResponse>();

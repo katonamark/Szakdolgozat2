@@ -104,8 +104,7 @@ namespace ManagementClient
             {
                 await connection.InvokeAsync("SendMessageToAgent", targetAgent, messageToSend);
 
-                rtbChatHistory.AppendText(
-                    $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {messageToSend}{Environment.NewLine}");
+                    AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {messageToSend}{Environment.NewLine}");
 
                 txtNewMessage.Clear();
             }
@@ -139,8 +138,20 @@ namespace ManagementClient
                 return;
             }
 
-            rtbChatHistory.AppendText(
-                $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {senderName}: {message}{Environment.NewLine}");
+            AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] {senderName}: {message}");
+        }
+
+        private void AppendChatLine(string text)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => AppendChatLine(text)));
+                return;
+            }
+
+            rtbChatHistory.AppendText(text + Environment.NewLine);
+            rtbChatHistory.SelectionStart = rtbChatHistory.TextLength;
+            rtbChatHistory.ScrollToCaret();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

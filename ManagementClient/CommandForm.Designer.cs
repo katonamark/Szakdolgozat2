@@ -36,6 +36,7 @@
             label1 = new Label();
             panel1 = new Panel();
             label2 = new Label();
+            btnClear = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(21, 478);
+            btnBack.Location = new Point(21, 473);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(75, 26);
             btnBack.TabIndex = 3;
@@ -115,6 +116,16 @@
             label2.TabIndex = 1;
             label2.Text = "Parancs futtatás";
             // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(353, 475);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(75, 23);
+            btnClear.TabIndex = 7;
+            btnClear.Text = "Törlés";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            // 
             // CommandForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -122,6 +133,7 @@
             BackColor = SystemColors.ControlLight;
             CancelButton = btnBack;
             ClientSize = new Size(549, 510);
+            Controls.Add(btnClear);
             Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(rtbCommandResult);
@@ -151,5 +163,6 @@
         private Label label1;
         private Panel panel1;
         private Label label2;
+        private Button btnClear;
     }
 }

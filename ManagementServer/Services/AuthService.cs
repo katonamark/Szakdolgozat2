@@ -45,7 +45,7 @@ public class AuthService
 
             var users = LoadUsers();
 
-            if (users.Any(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase)))
+            if (users.Any(u => u.Username.Equals(username, StringComparison.Ordinal)))
             {
                 return (false, "Ez a felhasználónév már foglalt.");
             }
@@ -71,7 +71,7 @@ public class AuthService
             var users = LoadUsers();
 
             var user = users.FirstOrDefault(u =>
-                u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+                u.Username.Equals(username, StringComparison.Ordinal));
 
             if (user == null)
             {

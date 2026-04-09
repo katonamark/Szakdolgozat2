@@ -37,7 +37,7 @@
             lblMachineName = new Label();
             lblOsVersion = new Label();
             lblUserName = new Label();
-            lblStatus = new Label();
+            lblAgentStatus = new Label();
             label2 = new Label();
             btnFile = new Button();
             btnCommand = new Button();
@@ -48,6 +48,7 @@
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
             panel3 = new Panel();
+            lblConnectionStatus = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -125,14 +126,14 @@
             lblUserName.TabIndex = 6;
             lblUserName.Text = "Felhasználó:";
             // 
-            // lblStatus
+            // lblAgentStatus
             // 
-            lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(632, 394);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(55, 19);
-            lblStatus.TabIndex = 7;
-            lblStatus.Text = "Állapot:";
+            lblAgentStatus.AutoSize = true;
+            lblAgentStatus.Location = new Point(632, 394);
+            lblAgentStatus.Name = "lblAgentStatus";
+            lblAgentStatus.Size = new Size(55, 19);
+            lblAgentStatus.TabIndex = 7;
+            lblAgentStatus.Text = "Állapot:";
             // 
             // label2
             // 
@@ -243,6 +244,15 @@
             panel3.Size = new Size(312, 511);
             panel3.TabIndex = 16;
             // 
+            // lblConnectionStatus
+            // 
+            lblConnectionStatus.AutoSize = true;
+            lblConnectionStatus.Location = new Point(318, 589);
+            lblConnectionStatus.Name = "lblConnectionStatus";
+            lblConnectionStatus.Size = new Size(45, 19);
+            lblConnectionStatus.TabIndex = 17;
+            lblConnectionStatus.Text = "label3";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
@@ -250,12 +260,13 @@
             BackColor = SystemColors.ControlLight;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(1063, 617);
+            Controls.Add(lblConnectionStatus);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(btnScreenshot);
             Controls.Add(btnCommand);
             Controls.Add(btnFile);
-            Controls.Add(lblStatus);
+            Controls.Add(lblAgentStatus);
             Controls.Add(lblUserName);
             Controls.Add(lblOsVersion);
             Controls.Add(lblMachineName);
@@ -285,7 +296,7 @@
         private Label lblMachineName;
         private Label lblOsVersion;
         private Label lblUserName;
-        private Label lblStatus;
+        private Label lblAgentStatus;
         private Label label2;
         private Button btnFile;
         private Button btnCommand;
@@ -296,5 +307,6 @@
         private Panel panel2;
         private Panel panel3;
         private PictureBox pictureBox1;
+        private Label lblConnectionStatus;
     }
 }

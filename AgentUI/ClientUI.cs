@@ -16,9 +16,9 @@ namespace AgentUI
         private readonly string machineName = Environment.MachineName;
         private readonly HttpClient client = new HttpClient();
         private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
-
         private static readonly object LogLock = new object();
-
+        private bool _remoteControlActive;
+        private DateTime _lastRemoteControlNotification = DateTime.MinValue;
         private string logFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
 
@@ -47,7 +47,7 @@ namespace AgentUI
         private async void ConnectToServer()
         {
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:7294/agenthub")
+                .WithUrl(AppConfig.HubUrl)
                 .WithAutomaticReconnect()
                 .Build();
 
@@ -102,12 +102,11 @@ namespace AgentUI
                 return Task.CompletedTask;
             };
 
-            connection.On<string>("ReceiveMessage", message =>
+            connection.On<string>(" Message", message =>
             {
                 BeginInvoke(new Action(() =>
                 {
-                    rtbChatHistory.AppendText(
-                        $"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}{Environment.NewLine}");
+                    AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}");
 
                     AddLog("Új üzenet érkezett a szervertõl.");
                     ShowNotification("Új üzenet", "Új üzenet érkezett a szervertõl.");
@@ -219,10 +218,10 @@ namespace AgentUI
                         await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
                     }
 
-                    BeginInvoke(new Action(() =>
+                    /*BeginInvoke(new Action(() =>
                     {
                         AddLog("Képernyõkép elküldve a szervernek.");
-                    }));
+                    }));*/
                 }
                 catch (Exception ex)
                 {
@@ -238,11 +237,12 @@ namespace AgentUI
                 try
                 {
                     RemoteInputService.ExecuteMouseAction(action, x, y, delta);
+                    MarkRemoteControlActive();
 
-                    BeginInvoke(new Action(() =>
+                    /*BeginInvoke(new Action(() =>
                     {
                         AddLog($"Távoli egérmûvelet végrehajtva: action={action}, x={x}, y={y}, delta={delta}");
-                    }));
+                    }));*/
                 }
                 catch (Exception ex)
                 {
@@ -259,11 +259,12 @@ namespace AgentUI
                 try
                 {
                     RemoteInputService.ExecuteKeyEvent(keyCode, keyDown, ctrl, alt, shift);
+                    MarkRemoteControlActive();
 
-                    BeginInvoke(new Action(() =>
+                    /*BeginInvoke(new Action(() =>
                     {
                         AddLog($"Távoli billentyûmûvelet végrehajtva: keyCode={keyCode}, keyDown={keyDown}, ctrl={ctrl}, alt={alt}, shift={shift}");
-                    }));
+                    }));*/
                 }
                 catch (Exception ex)
                 {
@@ -334,8 +335,7 @@ namespace AgentUI
             {
                 await connection.InvokeAsync("SendMessageToManagement", machineName, messageToSend);
 
-                rtbChatHistory.AppendText(
-                    $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {messageToSend}{Environment.NewLine}");
+                AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {messageToSend}");
 
                 txtNewMessage.Clear();
                 AddLog("Üzenet elküldve a szervernek.");
@@ -352,7 +352,7 @@ namespace AgentUI
             try
             {
                 var messages = await client.GetFromJsonAsync<List<ChatRecord>>(
-                    $"https://localhost:7294/api/chat/agent/{machineName}");
+                   $"{AppConfig.ChatAgentApiBaseUrl}{machineName}");
 
                 rtbChatHistory.Clear();
 
@@ -360,8 +360,7 @@ namespace AgentUI
                 {
                     foreach (var msg in messages.OrderBy(m => m.Timestamp))
                     {
-                        rtbChatHistory.AppendText(
-                            $"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}{Environment.NewLine}");
+                        AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {msg.Message}");
                     }
                 }
             }
@@ -370,6 +369,18 @@ namespace AgentUI
                 AddLog("Hiba az elõzmények betöltésekor: " + ex.Message);
                 MessageBox.Show("Hiba az elõzmények betöltésekor: " + ex.Message);
             }
+        }
+        private void AppendChatLine(string text)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => AppendChatLine(text)));
+                return;
+            }
+
+            rtbChatHistory.AppendText(text + Environment.NewLine);
+            rtbChatHistory.SelectionStart = rtbChatHistory.TextLength;
+            rtbChatHistory.ScrollToCaret();
         }
 
         private void AddLog(string message)
@@ -445,6 +456,17 @@ namespace AgentUI
             catch (Exception ex)
             {
                 AddLog("Hiba screenshot frissítéskor: " + ex.Message);
+            }
+        }
+        private void MarkRemoteControlActive()
+        {
+            if (!_remoteControlActive || DateTime.Now - _lastRemoteControlNotification > TimeSpan.FromMinutes(1))
+            {
+                _remoteControlActive = true;
+                _lastRemoteControlNotification = DateTime.Now;
+
+                AddLog("A szerver átvette a vezérlést ezen a gépen.");
+                ShowNotification("Távoli vezérlés", "A szerver átvette a vezérlést ezen a gépen.");
             }
         }
         private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
