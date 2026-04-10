@@ -47,8 +47,8 @@
             btnLogout = new Button();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
-            panel3 = new Panel();
             lblConnectionStatus = new Label();
+            panel3 = new Panel();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -230,6 +230,16 @@
             pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
             // 
+            // lblConnectionStatus
+            // 
+            lblConnectionStatus.AutoSize = true;
+            lblConnectionStatus.Font = new Font("Microsoft YaHei UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            lblConnectionStatus.Location = new Point(852, 592);
+            lblConnectionStatus.Name = "lblConnectionStatus";
+            lblConnectionStatus.Size = new Size(38, 16);
+            lblConnectionStatus.TabIndex = 17;
+            lblConnectionStatus.Text = "label3";
+            // 
             // panel3
             // 
             panel3.BackColor = SystemColors.GradientInactiveCaption;
@@ -243,15 +253,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(312, 511);
             panel3.TabIndex = 16;
-            // 
-            // lblConnectionStatus
-            // 
-            lblConnectionStatus.AutoSize = true;
-            lblConnectionStatus.Location = new Point(318, 589);
-            lblConnectionStatus.Name = "lblConnectionStatus";
-            lblConnectionStatus.Size = new Size(45, 19);
-            lblConnectionStatus.TabIndex = 17;
-            lblConnectionStatus.Text = "label3";
             // 
             // Form1
             // 

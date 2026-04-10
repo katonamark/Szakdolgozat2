@@ -184,5 +184,35 @@
     "TargetAgent": "ASUS-MARK",
     "Message": "Hello",
     "Timestamp": "2026-04-08T01:33:06.641521+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Szia",
+    "Timestamp": "2026-04-10T20:20:21.6228976+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "heyy",
+    "Timestamp": "2026-04-10T20:23:37.881598+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "hey",
+    "Timestamp": "2026-04-10T20:23:44.0834354+02:00"
+  },
+  {
+    "Sender": "ASUS-MARK",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Hello",
+    "Timestamp": "2026-04-10T20:39:07.518534+02:00"
+  },
+  {
+    "Sender": "Management",
+    "TargetAgent": "ASUS-MARK",
+    "Message": "Sziamia",
+    "Timestamp": "2026-04-10T20:39:43.4477358+02:00"
   }
 ]

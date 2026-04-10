@@ -64,7 +64,7 @@
             // 
             // rtbChatHistory
             // 
-            rtbChatHistory.Location = new Point(49, 32);
+            rtbChatHistory.Location = new Point(40, 31);
             rtbChatHistory.Name = "rtbChatHistory";
             rtbChatHistory.ReadOnly = true;
             rtbChatHistory.Size = new Size(325, 213);
@@ -74,7 +74,7 @@
             // txtNewMessage
             // 
             txtNewMessage.AcceptsReturn = true;
-            txtNewMessage.Location = new Point(49, 300);
+            txtNewMessage.Location = new Point(40, 299);
             txtNewMessage.Multiline = true;
             txtNewMessage.Name = "txtNewMessage";
             txtNewMessage.ScrollBars = ScrollBars.Both;
@@ -94,7 +94,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(49, 268);
+            label1.Location = new Point(40, 267);
             label1.Name = "label1";
             label1.Size = new Size(120, 17);
             label1.TabIndex = 4;
@@ -198,7 +198,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.Location = new Point(48, 7);
+            label4.Location = new Point(39, 6);
             label4.Name = "label4";
             label4.Size = new Size(203, 19);
             label4.TabIndex = 16;

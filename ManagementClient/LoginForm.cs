@@ -19,6 +19,7 @@ public partial class LoginForm : Form
     public LoginForm()
     {
         InitializeComponent();
+        txtUsername.KeyDown += txtUsername_KeyDown;
         txtPassword.KeyDown += txtPassword_KeyDown;
     }
 
@@ -61,6 +62,14 @@ public partial class LoginForm : Form
     {
         using var form = new RegisterCodeForm();
         form.ShowDialog();
+    }
+    private void txtUsername_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            e.SuppressKeyPress = true;
+            btnLogin.PerformClick();
+        }
     }
     private void txtPassword_KeyDown(object? sender, KeyEventArgs e)
     {

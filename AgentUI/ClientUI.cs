@@ -19,6 +19,9 @@ namespace AgentUI
         private static readonly object LogLock = new object();
         private bool _remoteControlActive;
         private DateTime _lastRemoteControlNotification = DateTime.MinValue;
+        private DateTime _lastRemoteControlActivity = DateTime.MinValue;
+        private System.Windows.Forms.Timer? _remoteControlTimer;
+        private RemoteControlOverlayForm? _remoteOverlay;
         private string logFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
 
@@ -34,6 +37,7 @@ namespace AgentUI
 
             LoadLogHistory();
             ConnectToServer();
+            InitializeRemoteControlTimer();
         }
 
         public class ChatRecord
@@ -102,7 +106,7 @@ namespace AgentUI
                 return Task.CompletedTask;
             };
 
-            connection.On<string>(" Message", message =>
+            connection.On<string>("ReceiveMessage", message =>
             {
                 BeginInvoke(new Action(() =>
                 {
@@ -236,8 +240,8 @@ namespace AgentUI
             {
                 try
                 {
-                    RemoteInputService.ExecuteMouseAction(action, x, y, delta);
                     MarkRemoteControlActive();
+                    RemoteInputService.ExecuteMouseAction(action, x, y, delta);
 
                     /*BeginInvoke(new Action(() =>
                     {
@@ -258,8 +262,8 @@ namespace AgentUI
             {
                 try
                 {
-                    RemoteInputService.ExecuteKeyEvent(keyCode, keyDown, ctrl, alt, shift);
                     MarkRemoteControlActive();
+                    RemoteInputService.ExecuteKeyEvent(keyCode, keyDown, ctrl, alt, shift);
 
                     /*BeginInvoke(new Action(() =>
                     {
@@ -360,7 +364,7 @@ namespace AgentUI
                 {
                     foreach (var msg in messages.OrderBy(m => m.Timestamp))
                     {
-                        AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {msg.Message}");
+                        AppendChatLine($"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}");
                     }
                 }
             }
@@ -460,13 +464,21 @@ namespace AgentUI
         }
         private void MarkRemoteControlActive()
         {
-            if (!_remoteControlActive || DateTime.Now - _lastRemoteControlNotification > TimeSpan.FromMinutes(1))
+            _lastRemoteControlActivity = DateTime.Now;
+
+            if (!_remoteControlActive)
             {
                 _remoteControlActive = true;
-                _lastRemoteControlNotification = DateTime.Now;
 
                 AddLog("A szerver átvette a vezérlést ezen a gépen.");
-                ShowNotification("Távoli vezérlés", "A szerver átvette a vezérlést ezen a gépen.");
+
+                if (DateTime.Now - _lastRemoteControlNotification > TimeSpan.FromMinutes(1))
+                {
+                    _lastRemoteControlNotification = DateTime.Now;
+                    ShowNotification("Távoli vezérlés", "A szerver átvette a vezérlést ezen a gépen.");
+                }
+
+                ShowRemoteOverlay();
             }
         }
         private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
@@ -482,6 +494,64 @@ namespace AgentUI
             notifyIcon1.BalloonTipIcon = icon;
             notifyIcon1.Visible = true;
             notifyIcon1.ShowBalloonTip(3000);
+        }
+
+        private void InitializeRemoteControlTimer()
+        {
+            _remoteControlTimer = new System.Windows.Forms.Timer();
+            _remoteControlTimer.Interval = 1000;
+            _remoteControlTimer.Tick += RemoteControlTimer_Tick;
+            _remoteControlTimer.Start();
+        }
+
+        private void RemoteControlTimer_Tick(object? sender, EventArgs e)
+        {
+            if (!_remoteControlActive)
+            {
+                return;
+            }
+
+            if (DateTime.Now - _lastRemoteControlActivity > TimeSpan.FromSeconds(5))
+            {
+                _remoteControlActive = false;
+                HideRemoteOverlay();
+                AddLog("A távoli vezérlés megszûnt.");
+            }
+        }
+
+        private void ShowRemoteOverlay()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(ShowRemoteOverlay));
+                return;
+            }
+
+            if (_remoteOverlay == null || _remoteOverlay.IsDisposed)
+            {
+                _remoteOverlay = new RemoteControlOverlayForm();
+                _remoteOverlay.Show();
+            }
+            else if (!_remoteOverlay.Visible)
+            {
+                _remoteOverlay.Show();
+            }
+
+            _remoteOverlay.BringToFront();
+        }
+
+        private void HideRemoteOverlay()
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(HideRemoteOverlay));
+                return;
+            }
+
+            if (_remoteOverlay != null && !_remoteOverlay.IsDisposed)
+            {
+                _remoteOverlay.Hide();
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)

@@ -11,6 +11,7 @@ public static class AppConfig
     public const string ServerBaseUrl = "https://localhost:7294";
 
     public const string HubUrl = ServerBaseUrl + "/agenthub";
+    public const string ChatApiBaseUrl = ServerBaseUrl + "/api/chat/";
     public const string AgentsApiUrl = ServerBaseUrl + "/api/agents";
     public const string AuthLoginUrl = ServerBaseUrl + "/api/auth/login";
     public const string AuthRegisterUrl = ServerBaseUrl + "/api/auth/register";

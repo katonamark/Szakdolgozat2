@@ -36,16 +36,15 @@ namespace ManagementClient
             try
             {
                 var messages = await client.GetFromJsonAsync<List<ChatRecord>>(
-                    $"https://localhost:7294/api/chat/{targetAgent}");
+                    $"{AppConfig.ChatApiBaseUrl}{targetAgent}");
 
                 rtbChatHistory.Clear();
 
                 if (messages != null)
                 {
-                    foreach (var msg in messages)
+                    foreach (var msg in messages.OrderBy(m => m.Timestamp))
                     {
-                        rtbChatHistory.AppendText(
-                            $"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}{Environment.NewLine}");
+                        AppendChatLine($"[{msg.Timestamp:yyyy.MM.dd HH:mm}] {msg.Sender}: {msg.Message}");
                     }
                 }
             }
@@ -58,7 +57,7 @@ namespace ManagementClient
         private async void StartSignalR()
         {
             connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:7294/agenthub")
+                .WithUrl(AppConfig.HubUrl)
                 .WithAutomaticReconnect()
                 .Build();
 
@@ -68,8 +67,7 @@ namespace ManagementClient
                 {
                     Invoke(new Action(() =>
                     {
-                        rtbChatHistory.AppendText(
-                            $"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {message}{Environment.NewLine}");
+                        AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] {machineName}: {message}");
                     }));
                 }
             });
@@ -104,7 +102,7 @@ namespace ManagementClient
             {
                 await connection.InvokeAsync("SendMessageToAgent", targetAgent, messageToSend);
 
-                    AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {messageToSend}{Environment.NewLine}");
+                AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {messageToSend}");
 
                 txtNewMessage.Clear();
             }

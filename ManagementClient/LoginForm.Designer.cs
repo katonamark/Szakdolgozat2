@@ -43,6 +43,7 @@
             // 
             // txtUsername
             // 
+            txtUsername.AcceptsReturn = true;
             txtUsername.BackColor = SystemColors.ControlLight;
             txtUsername.Location = new Point(146, 127);
             txtUsername.Name = "txtUsername";

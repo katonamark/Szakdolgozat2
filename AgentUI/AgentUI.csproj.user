@@ -4,5 +4,8 @@
     <Compile Update="ClientUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="RemoteControlOverlayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
