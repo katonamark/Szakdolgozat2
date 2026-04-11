@@ -36,7 +36,6 @@ D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets\msbuild.bu
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ManagementServer.props
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ManagementServer.props
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets.pack.json
-D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\Manageme.4C49EC36.Up2Date
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\ManagementServer.dll
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\refint\ManagementServer.dll

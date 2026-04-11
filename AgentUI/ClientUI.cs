@@ -5,8 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Net.Sockets;
+using Microsoft.Win32;
 
 namespace AgentUI
 {
@@ -22,6 +21,7 @@ namespace AgentUI
         private DateTime _lastRemoteControlActivity = DateTime.MinValue;
         private System.Windows.Forms.Timer? _remoteControlTimer;
         private RemoteControlOverlayForm? _remoteOverlay;
+        private bool _allowRealClose = false;
         private string logFilePath =>
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", $"agent_log_{DateTime.Now:yyyyMMdd}.txt");
 
@@ -32,12 +32,15 @@ namespace AgentUI
             lblMachineName.Text = $"Gépnév: {Environment.MachineName}";
             lblUserName.Text = $"Felhasználó: {Environment.UserName}";
             lblOsVersion.Text = $"OS: {RuntimeInformation.OSDescription}";
-
             txtNewMessage.KeyDown += txtNewMessage_KeyDown;
-
+            notifyIcon1.Visible = true;
+            notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
+            Load += ClientUI_Load;
             LoadLogHistory();
             ConnectToServer();
             InitializeRemoteControlTimer();
+            SetAutoStart();
+            InitializeTrayMenu();
         }
 
         public class ChatRecord
@@ -518,6 +521,14 @@ namespace AgentUI
                 AddLog("A távoli vezérlés megszûnt.");
             }
         }
+        private void ClientUI_Load(object? sender, EventArgs e)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                HideToTray();
+                ShowNotification("Remotee Agent", "A program a háttérben fut.");
+            }));
+        }
 
         private void ShowRemoteOverlay()
         {
@@ -553,9 +564,106 @@ namespace AgentUI
                 _remoteOverlay.Hide();
             }
         }
-
-        private void btnBack_Click(object sender, EventArgs e)
+        private void SetAutoStart()
         {
+            try
+            {
+                string appName = "RemoteeAgent";
+                string exePath = Application.ExecutablePath;
+
+                using RegistryKey? key = Registry.CurrentUser.OpenSubKey(
+                    @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+
+                key?.SetValue(appName, exePath);
+            }
+            catch (Exception ex)
+            {
+                AddLog("Autostart hiba: " + ex.Message);
+            }
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!_allowRealClose)
+            {
+                e.Cancel = true;
+                HideToTray();
+                ShowNotification("Remotee Agent", "Az alkalmazás a háttérben fut.");
+                return;
+            }
+
+            base.OnFormClosing(e);
+        }
+
+        private void notifyIcon1_DoubleClick(object? sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+
+        private void InitializeTrayMenu()
+        {
+            ContextMenuStrip menu = new ContextMenuStrip();
+
+            var openItem = new ToolStripMenuItem("Megnyitás");
+            openItem.Click += (s, e) =>
+            {
+                RestoreFromTray();
+            };
+
+            var exitItem = new ToolStripMenuItem("Kilépés");
+            exitItem.Click += (s, e) =>
+            {
+                ExitApplication();
+            };
+
+            menu.Items.Add(openItem);
+            menu.Items.Add(exitItem);
+
+            notifyIcon1.ContextMenuStrip = menu;
+        }
+        private void HideToTray()
+        {
+            Hide();
+            ShowInTaskbar = false;
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void RestoreFromTray()
+        {
+            Show();
+            ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            BringToFront();
+            Activate();
+        }
+
+        private void ExitApplication()
+        {
+            try
+            {
+                _allowRealClose = true;
+
+                if (_remoteControlTimer != null)
+                {
+                    _remoteControlTimer.Stop();
+                    _remoteControlTimer.Dispose();
+                    _remoteControlTimer = null;
+                }
+
+                if (_remoteOverlay != null && !_remoteOverlay.IsDisposed)
+                {
+                    _remoteOverlay.Close();
+                    _remoteOverlay.Dispose();
+                    _remoteOverlay = null;
+                }
+
+                notifyIcon1.Visible = false;
+
+                connection?.DisposeAsync().AsTask().Wait(1000);
+            }
+            catch
+            {
+            }
+
             Close();
         }
     }

@@ -64,7 +64,7 @@
             // 
             // rtbChatHistory
             // 
-            rtbChatHistory.Location = new Point(40, 31);
+            rtbChatHistory.Location = new Point(30, 33);
             rtbChatHistory.Name = "rtbChatHistory";
             rtbChatHistory.ReadOnly = true;
             rtbChatHistory.Size = new Size(325, 213);
@@ -74,7 +74,7 @@
             // txtNewMessage
             // 
             txtNewMessage.AcceptsReturn = true;
-            txtNewMessage.Location = new Point(40, 299);
+            txtNewMessage.Location = new Point(30, 301);
             txtNewMessage.Multiline = true;
             txtNewMessage.Name = "txtNewMessage";
             txtNewMessage.ScrollBars = ScrollBars.Both;
@@ -94,7 +94,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 267);
+            label1.Location = new Point(30, 269);
             label1.Name = "label1";
             label1.Size = new Size(120, 17);
             label1.TabIndex = 4;
@@ -104,8 +104,9 @@
             // 
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
-            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Text = "Remotee Agent";
             notifyIcon1.Visible = true;
+            notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
             // 
             // lblMachineName
             // 
@@ -198,7 +199,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft YaHei UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label4.Location = new Point(39, 6);
+            label4.Location = new Point(29, 8);
             label4.Name = "label4";
             label4.Size = new Size(203, 19);
             label4.TabIndex = 16;

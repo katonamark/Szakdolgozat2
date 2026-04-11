@@ -159,7 +159,7 @@
             // btnCommand
             // 
             btnCommand.Font = new Font("Segoe UI", 9.75F);
-            btnCommand.Location = new Point(341, 522);
+            btnCommand.Location = new Point(341, 273);
             btnCommand.Margin = new Padding(3, 4, 3, 4);
             btnCommand.Name = "btnCommand";
             btnCommand.Size = new Size(134, 29);
@@ -171,7 +171,7 @@
             // btnScreenshot
             // 
             btnScreenshot.Font = new Font("Segoe UI", 9.75F);
-            btnScreenshot.Location = new Point(340, 263);
+            btnScreenshot.Location = new Point(341, 522);
             btnScreenshot.Margin = new Padding(3, 4, 3, 4);
             btnScreenshot.Name = "btnScreenshot";
             btnScreenshot.Size = new Size(134, 29);
@@ -183,7 +183,7 @@
             // notifyIcon1
             // 
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
-            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Text = "Remotee";
             notifyIcon1.Visible = true;
             // 
             // lblWelcome

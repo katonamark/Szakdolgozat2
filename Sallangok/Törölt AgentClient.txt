@@ -1,0 +1,47 @@
+using Microsoft.AspNetCore.SignalR.Client;
+using System.Runtime.InteropServices;
+
+internal class Program
+{
+    private const string SharedSecret = "CHANGE-THIS-TO-A-LONG-RANDOM-SECRET-2026";
+
+    private static async Task Main(string[] args)
+    {
+        var connection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7294/agenthub")
+            .WithAutomaticReconnect()
+            .Build();
+
+        connection.On<string>("ReceiveMessage", async message =>
+        {
+            Console.WriteLine($"Üzenet a szervertől: {message}");
+            Console.Write("Válasz: ");
+            string? reply = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(reply))
+            {
+                await connection.InvokeAsync("SendMessageToManagement", Environment.MachineName, reply);
+            }
+        });
+
+        try
+        {
+            await connection.StartAsync();
+            Console.WriteLine("Kapcsolódva a szerverhez.");
+
+            await connection.InvokeAsync(
+                "RegisterAgent",
+                Environment.MachineName,
+                RuntimeInformation.OSDescription,
+                Environment.UserName,
+                SharedSecret);
+
+            Console.WriteLine("Agent regisztrálva.");
+            Console.ReadLine();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Hiba: " + ex.Message);
+        }
+    }
+}
