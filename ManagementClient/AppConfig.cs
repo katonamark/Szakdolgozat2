@@ -8,7 +8,7 @@ namespace ManagementClient;
 
 public static class AppConfig
 {
-    public const string ServerBaseUrl = "https://localhost:7294";
+    public const string ServerBaseUrl = "http://127.0.0.1:5000";
 
     public const string HubUrl = ServerBaseUrl + "/agenthub";
     public const string ChatApiBaseUrl = ServerBaseUrl + "/api/chat/";

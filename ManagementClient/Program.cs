@@ -7,6 +7,20 @@ internal static class Program
     {
         ApplicationConfiguration.Initialize();
 
+        try
+        {
+            ServerLauncher.StartServerIfNeeded();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                "A szerver nem indítható el:\n\n" + ex.Message,
+                "Szerverindítási hiba",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
+        }
+
         using var loginForm = new LoginForm();
         if (loginForm.ShowDialog() == DialogResult.OK)
         {

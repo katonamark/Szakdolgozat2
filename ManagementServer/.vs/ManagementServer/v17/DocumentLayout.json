@@ -6,7 +6,36 @@
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\managementclient.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20474AC9-78D2-4E68-8EC8-CAECEFAA61FD}|..\\AgentUI\\AgentUI.csproj|d:\\sze\\szakdolgozat\\agentui\\agentui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20474AC9-78D2-4E68-8EC8-CAECEFAA61FD}|..\\AgentUI\\AgentUI.csproj|d:\\sze\\szakdolgozat\\agentui\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\serverlauncher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|d:\\sze\\szakdolgozat\\managementserver\\managementserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|solutionrelative:managementserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\properties\\publishprofiles\\folderprofile.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|d:\\sze\\szakdolgozat\\managementserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{20474AC9-78D2-4E68-8EC8-CAECEFAA61FD}|..\\AgentUI\\AgentUI.csproj|d:\\sze\\szakdolgozat\\agentui\\clientui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -24,16 +53,7 @@
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\commandform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\commandform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20474AC9-78D2-4E68-8EC8-CAECEFAA61FD}|..\\AgentUI\\AgentUI.csproj|d:\\sze\\szakdolgozat\\agentui\\agentui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -55,15 +75,8 @@
       "AbsoluteMoniker": "D:0:0:{FE758B39-E631-44C2-99DF-78D98CDAB206}|..\\ManagementClient\\ManagementClient.csproj|d:\\sze\\szakdolgozat\\managementclient\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20474AC9-78D2-4E68-8EC8-CAECEFAA61FD}|..\\AgentUI\\AgentUI.csproj|d:\\sze\\szakdolgozat\\agentui\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|d:\\sze\\szakdolgozat\\managementserver\\controllers\\agentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|solutionrelative:controllers\\agentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|d:\\sze\\szakdolgozat\\managementserver\\managementserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D6E879CB-15F8-4C69-A0B0-50FE6FE4795D}|ManagementServer.csproj|solutionrelative:managementserver.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -73,95 +86,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\Program.cs",
-              "RelativeDocumentMoniker": "..\\AgentUI\\Program.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\Program.cs",
-              "RelativeToolTip": "..\\AgentUI\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T19:14:10.837Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "CommandForm.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
-              "RelativeDocumentMoniker": "..\\ManagementClient\\CommandForm.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
-              "RelativeToolTip": "..\\ManagementClient\\CommandForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ServerLauncher.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\ServerLauncher.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\ServerLauncher.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\ServerLauncher.cs",
+              "RelativeToolTip": "..\\ManagementClient\\ServerLauncher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:46:28.747Z",
+              "WhenOpened": "2026-04-11T01:10:23.87Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Services\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:19:15.587Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MessageForm.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\MessageForm.cs",
-              "RelativeDocumentMoniker": "..\\ManagementClient\\MessageForm.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\MessageForm.cs",
-              "RelativeToolTip": "..\\ManagementClient\\MessageForm.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAIwCcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:11:51.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientUI.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
-              "RelativeDocumentMoniker": "..\\AgentUI\\ClientUI.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
-              "RelativeToolTip": "..\\AgentUI\\ClientUI.cs",
-              "ViewState": "AgIAAH4CAAAAAAAAAAAtwJsCAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T17:46:20.026Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ClientUI.cs [Design]",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
-              "RelativeDocumentMoniker": "..\\AgentUI\\ClientUI.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs [Design]",
-              "RelativeToolTip": "..\\AgentUI\\ClientUI.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T22:33:05.796Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
-              "RelativeDocumentMoniker": "..\\ManagementClient\\Form1.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs [Design]",
-              "RelativeToolTip": "..\\ManagementClient\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T17:30:36.155Z",
-              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -178,32 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
-              "RelativeDocumentMoniker": "..\\ManagementClient\\Form1.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
-              "RelativeToolTip": "..\\ManagementClient\\Form1.cs",
-              "ViewState": "AgIAAGUBAAAAAAAAAAAvwCsAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:30:16.291Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CommandForm.cs [Design]",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
-              "RelativeDocumentMoniker": "..\\ManagementClient\\CommandForm.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs [Design]",
-              "RelativeToolTip": "..\\ManagementClient\\CommandForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T23:17:15.281Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "AppConfig.cs",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\AppConfig.cs",
               "RelativeDocumentMoniker": "..\\ManagementClient\\AppConfig.cs",
@@ -211,11 +124,63 @@
               "RelativeToolTip": "..\\ManagementClient\\AppConfig.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T17:44:39.433Z"
+              "WhenOpened": "2026-04-09T17:44:39.433Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
+              "Title": "AppConfig.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\AppConfig.cs",
+              "RelativeDocumentMoniker": "..\\AgentUI\\AppConfig.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\AppConfig.cs",
+              "RelativeToolTip": "..\\AgentUI\\AppConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T17:45:34.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\Form1.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs [Design]",
+              "RelativeToolTip": "..\\ManagementClient\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T17:30:36.155Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\Form1.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Form1.cs",
+              "RelativeToolTip": "..\\ManagementClient\\Form1.cs",
+              "ViewState": "AgIAABoBAAAAAAAAAAAvwC4BAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:30:16.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ManagementServer.csproj",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\ManagementServer.csproj",
+              "RelativeDocumentMoniker": "ManagementServer.csproj",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementServer\\ManagementServer.csproj",
+              "RelativeToolTip": "ManagementServer.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-07T22:33:48.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AgentUI.csproj",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\AgentUI.csproj",
               "RelativeDocumentMoniker": "..\\AgentUI\\AgentUI.csproj",
@@ -228,7 +193,132 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FolderProfile.pubxml",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Properties\\PublishProfiles\\FolderProfile.pubxml",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\Properties\\PublishProfiles\\FolderProfile.pubxml",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Properties\\PublishProfiles\\FolderProfile.pubxml",
+              "RelativeToolTip": "..\\ManagementClient\\Properties\\PublishProfiles\\FolderProfile.pubxml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-04-11T01:38:18.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-11T01:34:56.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ClientUI.cs [Design]",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
+              "RelativeDocumentMoniker": "..\\AgentUI\\ClientUI.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs [Design]",
+              "RelativeToolTip": "..\\AgentUI\\ClientUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T22:33:05.796Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClientUI.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
+              "RelativeDocumentMoniker": "..\\AgentUI\\ClientUI.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\ClientUI.cs",
+              "RelativeToolTip": "..\\AgentUI\\ClientUI.cs",
+              "ViewState": "AgIAAH4CAAAAAAAAAAAtwJsCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T17:46:20.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MessageForm.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\MessageForm.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\MessageForm.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\MessageForm.cs",
+              "RelativeToolTip": "..\\ManagementClient\\MessageForm.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAIwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:11:51.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:19:15.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CommandForm.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\CommandForm.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
+              "RelativeToolTip": "..\\ManagementClient\\CommandForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T18:46:28.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\AgentUI\\Program.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\Program.cs",
+              "RelativeToolTip": "..\\AgentUI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T19:14:10.837Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Program.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\Program.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\Program.cs",
+              "RelativeToolTip": "..\\ManagementClient\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T01:11:16.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CommandForm.cs [Design]",
+              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs",
+              "RelativeDocumentMoniker": "..\\ManagementClient\\CommandForm.cs",
+              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementClient\\CommandForm.cs [Design]",
+              "RelativeToolTip": "..\\ManagementClient\\CommandForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T23:17:15.281Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "MessageForm.cs [Design]",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\MessageForm.cs",
               "RelativeDocumentMoniker": "..\\ManagementClient\\MessageForm.cs",
@@ -240,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\LoginForm.cs",
               "RelativeDocumentMoniker": "..\\ManagementClient\\LoginForm.cs",
@@ -253,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "RemoteControlOverlayForm.cs",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\RemoteControlOverlayForm.cs",
               "RelativeDocumentMoniker": "..\\AgentUI\\RemoteControlOverlayForm.cs",
@@ -265,7 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "LoginForm.cs [Design]",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\LoginForm.cs",
               "RelativeDocumentMoniker": "..\\ManagementClient\\LoginForm.cs",
@@ -277,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "RegisterForm.cs [Design]",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementClient\\RegisterForm.cs",
               "RelativeDocumentMoniker": "..\\ManagementClient\\RegisterForm.cs",
@@ -288,19 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AppConfig.cs",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\AgentUI\\AppConfig.cs",
-              "RelativeDocumentMoniker": "..\\AgentUI\\AppConfig.cs",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\AgentUI\\AppConfig.cs",
-              "RelativeToolTip": "..\\AgentUI\\AppConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T17:45:34.285Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "AgentsController.cs",
               "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\Controllers\\AgentsController.cs",
               "RelativeDocumentMoniker": "Controllers\\AgentsController.cs",
@@ -309,19 +387,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T23:37:26.11Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ManagementServer.csproj",
-              "DocumentMoniker": "D:\\SZE\\Szakdolgozat\\ManagementServer\\ManagementServer.csproj",
-              "RelativeDocumentMoniker": "ManagementServer.csproj",
-              "ToolTip": "D:\\SZE\\Szakdolgozat\\ManagementServer\\ManagementServer.csproj",
-              "RelativeToolTip": "ManagementServer.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-07T22:33:48.73Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -2,8 +2,8 @@
 <!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Remotee\Szerver</_PublishTargetUrl>
-    <History>True|2026-04-11T00:38:37.1040695Z||;</History>
+    <_PublishTargetUrl>D:\Remotee\Management\ManagementServer</_PublishTargetUrl>
+    <History>True|2026-04-11T01:44:03.5432290Z||;True|2026-04-11T03:41:22.7821034+02:00||;True|2026-04-11T03:41:11.9014117+02:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

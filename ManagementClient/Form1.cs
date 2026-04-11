@@ -298,7 +298,7 @@ namespace ManagementClient
             try
             {
                 var info = await client.GetFromJsonAsync<AgentInfo>(
-                    $"https://localhost:7294/api/agents/{selectedAgent}");
+                    $"{AppConfig.AgentsApiUrl}/{selectedAgent}");
 
                 if (info != null)
                 {
