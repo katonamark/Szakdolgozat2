@@ -12,12 +12,15 @@ namespace ManagementClient
         private readonly HashSet<string> activeScreenshotRequests = new();
         private HashSet<string> knownAgents = new();
         private readonly Dictionary<string, MessageForm> openMessageForms = new();
+        private string? _pendingNotificationAgent;
+        private string? _pendingNotificationAction;
 
 
         public Form1()
         {
             InitializeComponent();
             StartSignalR();
+            notifyIcon1.BalloonTipClicked += notifyIcon1_BalloonTipClicked;
 
         }
 
@@ -131,15 +134,14 @@ namespace ManagementClient
             {
                 BeginInvoke(new Action(() =>
                 {
+                    _pendingNotificationAgent = machineName;
+                    _pendingNotificationAction = "message";
+
                     ShowNotification("Új üzenet", $"{machineName} új üzenetet küldött.");
 
                     if (openMessageForms.TryGetValue(machineName, out var form))
                     {
                         form.AppendIncomingMessage(machineName, message);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"{machineName} üzenete:\n\n{message}");
                     }
                 }));
             });
@@ -233,22 +235,7 @@ namespace ManagementClient
             }
 
             string agentName = lstAgents.SelectedItem.ToString() ?? "";
-
-            if (openMessageForms.ContainsKey(agentName))
-            {
-                openMessageForms[agentName].BringToFront();
-                openMessageForms[agentName].Activate();
-                return;
-            }
-
-            MessageForm form = new MessageForm(agentName);
-            form.FormClosed += (s, args) =>
-            {
-                openMessageForms.Remove(agentName);
-            };
-
-            openMessageForms[agentName] = form;
-            form.Show();
+            OpenMessageForm(agentName);
         }
         private void btnFile_Click(object sender, EventArgs e)
         {
@@ -381,6 +368,46 @@ namespace ManagementClient
             notifyIcon1.BalloonTipIcon = icon;
             notifyIcon1.Visible = true;
             notifyIcon1.ShowBalloonTip(3000);
+        }
+        private void notifyIcon1_BalloonTipClicked(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(_pendingNotificationAgent) ||
+                string.IsNullOrWhiteSpace(_pendingNotificationAction))
+            {
+                return;
+            }
+
+            string agentName = _pendingNotificationAgent;
+            string action = _pendingNotificationAction;
+
+            _pendingNotificationAgent = null;
+            _pendingNotificationAction = null;
+
+            switch (action)
+            {
+                case "message":
+                    OpenMessageForm(agentName);
+                    break;
+            }
+        }
+
+        private void OpenMessageForm(string agentName)
+        {
+            if (openMessageForms.ContainsKey(agentName))
+            {
+                openMessageForms[agentName].BringToFront();
+                openMessageForms[agentName].Activate();
+                return;
+            }
+
+            MessageForm form = new MessageForm(agentName);
+            form.FormClosed += (s, args) =>
+            {
+                openMessageForms.Remove(agentName);
+            };
+
+            openMessageForms[agentName] = form;
+            form.Show();
         }
 
     }

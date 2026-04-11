@@ -1,0 +1,2 @@
+egy gépes teszt AgentUI appconfig:
+//public const string ServerBaseUrl = "http://127.0.0.1:5000";

@@ -49,3 +49,4 @@ D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\win-x64\refint\M
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\win-x64\ManagementClient.pdb
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\win-x64\ManagementClient.genruntimeconfig.cache
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\win-x64\ref\ManagementClient.dll
+D:\SZE\Szakdolgozat\ManagementClient\bin\Release\net8.0-windows\win-x64\config.json

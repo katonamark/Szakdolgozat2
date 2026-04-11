@@ -1,6 +1,7 @@
 D:\Remotee\Management\ManagementClient.exe
 D:\Remotee\Management\Assets\ikon2.ico
 D:\Remotee\Management\Assets\logo3k.png
+D:\Remotee\Management\config.json
 D:\Remotee\Management\ManagementClient.dll
 D:\Remotee\Management\ManagementClient.deps.json
 D:\Remotee\Management\ManagementClient.runtimeconfig.json

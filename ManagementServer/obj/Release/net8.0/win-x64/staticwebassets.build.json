@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "iBRAlvjZY3hpYdR3GWk8rmfCaMWs9PIw6iW9PesqxoU=",
+  "Source": "ManagementServer",
+  "BasePath": "_content/ManagementServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

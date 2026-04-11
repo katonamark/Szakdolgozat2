@@ -12,6 +12,9 @@ namespace AgentUI
     public partial class ClientUI : Form
     {
         private HubConnection? connection;
+        private System.Windows.Forms.Timer? _serverReconnectTimer;
+        private bool _isConnecting;
+        private bool _isConnected;
         private readonly string machineName = Environment.MachineName;
         private readonly HttpClient client = new HttpClient();
         private const string SharedSecret = "my-szakdolgozat-super-secret-password-2026-mark";
@@ -35,9 +38,11 @@ namespace AgentUI
             txtNewMessage.KeyDown += txtNewMessage_KeyDown;
             notifyIcon1.Visible = true;
             notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
+            notifyIcon1.BalloonTipClicked += notifyIcon1_BalloonTipClicked;
             Load += ClientUI_Load;
             LoadLogHistory();
-            ConnectToServer();
+            InitializeServerReconnectTimer();
+            StartInitialConnectionAttempt();
             InitializeRemoteControlTimer();
             SetAutoStart();
             InitializeTrayMenu();
@@ -51,7 +56,7 @@ namespace AgentUI
             public DateTime Timestamp { get; set; }
         }
 
-        private async void ConnectToServer()
+        private void BuildConnection()
         {
             connection = new HubConnectionBuilder()
                 .WithUrl(AppConfig.HubUrl)
@@ -62,6 +67,7 @@ namespace AgentUI
             {
                 BeginInvoke(new Action(() =>
                 {
+                    _isConnected = false;
                     lblStatus.Text = "Újrakapcsolódás...";
                     AddLog("Kapcsolat megszakadt, újrakapcsolódás folyamatban.");
                 }));
@@ -84,14 +90,16 @@ namespace AgentUI
                                 Environment.UserName,
                                 SharedSecret);
 
+                            _isConnected = true;
                             lblStatus.Text = $"Kapcsolódva: {machineName}";
                             AddLog("Újrakapcsolódás sikeres, agent újraregisztrálva.");
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        lblStatus.Text = "Újrakapcsolódási hiba";
-                        AddLog("Hiba újracsatlakozás után: " + ex.Message);
+                        _isConnected = false;
+                        lblStatus.Text = "Várakozás a szerverre...";
+                        _serverReconnectTimer?.Start();
                     }
                 }));
 
@@ -102,8 +110,9 @@ namespace AgentUI
             {
                 BeginInvoke(new Action(() =>
                 {
-                    lblStatus.Text = "Kapcsolat lezárva";
-                    AddLog("A kapcsolat lezárult.");
+                    _isConnected = false;
+                    lblStatus.Text = "Várakozás a szerverre...";
+                    _serverReconnectTimer?.Start();
                 }));
 
                 return Task.CompletedTask;
@@ -224,11 +233,6 @@ namespace AgentUI
                     {
                         await connection.InvokeAsync("SendScreenshotToManagement", machineName, imageBytes);
                     }
-
-                    /*BeginInvoke(new Action(() =>
-                    {
-                        AddLog("Képernyõkép elküldve a szervernek.");
-                    }));*/
                 }
                 catch (Exception ex)
                 {
@@ -243,13 +247,8 @@ namespace AgentUI
             {
                 try
                 {
-                    MarkRemoteControlActive();
                     RemoteInputService.ExecuteMouseAction(action, x, y, delta);
-
-                    /*BeginInvoke(new Action(() =>
-                    {
-                        AddLog($"Távoli egérmûvelet végrehajtva: action={action}, x={x}, y={y}, delta={delta}");
-                    }));*/
+                    MarkRemoteControlActive();
                 }
                 catch (Exception ex)
                 {
@@ -265,13 +264,8 @@ namespace AgentUI
             {
                 try
                 {
-                    MarkRemoteControlActive();
                     RemoteInputService.ExecuteKeyEvent(keyCode, keyDown, ctrl, alt, shift);
-
-                    /*BeginInvoke(new Action(() =>
-                    {
-                        AddLog($"Távoli billentyûmûvelet végrehajtva: keyCode={keyCode}, keyDown={keyDown}, ctrl={ctrl}, alt={alt}, shift={shift}");
-                    }));*/
+                    MarkRemoteControlActive();
                 }
                 catch (Exception ex)
                 {
@@ -282,10 +276,51 @@ namespace AgentUI
                     }));
                 }
             });
+        }
+        private void InitializeServerReconnectTimer()
+        {
+            _serverReconnectTimer = new System.Windows.Forms.Timer();
+            _serverReconnectTimer.Interval = 5000; // 5 másodperc
+            _serverReconnectTimer.Tick += ServerReconnectTimer_Tick;
+        }
+        private void StartInitialConnectionAttempt()
+        {
+            lblStatus.Text = "Várakozás a szerverre...";
+            AddLog("Az agent elindult. Várakozás a szerverre...");
+
+            _serverReconnectTimer?.Start();
+            _ = EnsureConnectedAsync();
+        }
+        private async void ServerReconnectTimer_Tick(object? sender, EventArgs e)
+        {
+            await EnsureConnectedAsync();
+        }
+        private async Task EnsureConnectedAsync()
+        {
+            if (_isConnecting || _isConnected)
+            {
+                return;
+            }
+
+            _isConnecting = true;
 
             try
             {
-                await connection.StartAsync();
+                if (connection == null)
+                {
+                    BuildConnection();
+                }
+
+                if (connection == null)
+                {
+                    return;
+                }
+
+                if (connection.State == HubConnectionState.Disconnected)
+                {
+                    lblStatus.Text = "Kapcsolódás a szerverhez...";
+                    await connection.StartAsync();
+                }
 
                 await connection.InvokeAsync(
                     "RegisterAgent",
@@ -294,16 +329,23 @@ namespace AgentUI
                     Environment.UserName,
                     SharedSecret);
 
+                _isConnected = true;
                 lblStatus.Text = $"Kapcsolódva: {machineName}";
                 AddLog("Kapcsolódás a szerverhez sikeres.");
+
+                _serverReconnectTimer?.Stop();
 
                 LoadConversation();
             }
             catch (Exception ex)
             {
-                lblStatus.Text = "Kapcsolati hiba";
-                AddLog("Kapcsolódási hiba: " + ex.Message);
-                MessageBox.Show("Hiba: " + ex.Message);
+                _isConnected = false;
+                lblStatus.Text = "Várakozás a szerverre...";
+                AddLog("A szerver még nem érhetõ el: " + ex.Message);
+            }
+            finally
+            {
+                _isConnecting = false;
             }
         }
 
@@ -595,6 +637,10 @@ namespace AgentUI
         }
 
         private void notifyIcon1_DoubleClick(object? sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+        private void notifyIcon1_BalloonTipClicked(object? sender, EventArgs e)
         {
             RestoreFromTray();
         }

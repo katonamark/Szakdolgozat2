@@ -50,3 +50,4 @@ D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\refint\Managemen
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\ManagementClient.pdb
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\ManagementClient.genruntimeconfig.cache
 D:\SZE\Szakdolgozat\ManagementClient\obj\Release\net8.0-windows\ref\ManagementClient.dll
+D:\SZE\Szakdolgozat\ManagementClient\bin\Release\net8.0-windows\config.json

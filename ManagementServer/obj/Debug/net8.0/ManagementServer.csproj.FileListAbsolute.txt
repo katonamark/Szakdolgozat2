@@ -43,3 +43,4 @@ D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\ManagementServer.pdb
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\ManagementServer.genruntimeconfig.cache
 D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\ref\ManagementServer.dll
 D:\SZE\Szakdolgozat\ManagementServer\bin\Debug\net8.0\chat_history.json
+D:\SZE\Szakdolgozat\ManagementServer\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

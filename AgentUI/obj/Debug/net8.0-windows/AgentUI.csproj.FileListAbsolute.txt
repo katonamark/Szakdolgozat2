@@ -41,3 +41,4 @@ D:\SZE\Szakdolgozat\AgentUI\obj\Debug\net8.0-windows\AgentUI.genruntimeconfig.ca
 D:\SZE\Szakdolgozat\AgentUI\obj\Debug\net8.0-windows\ref\AgentUI.dll
 D:\SZE\Szakdolgozat\AgentUI\obj\Debug\net8.0-windows\AgentUI.ClientUI.resources
 D:\SZE\Szakdolgozat\AgentUI\obj\Debug\net8.0-windows\AgentUI.Properties.Resources.resources
+D:\SZE\Szakdolgozat\AgentUI\bin\Debug\net8.0-windows\config.json

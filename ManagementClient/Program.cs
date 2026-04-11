@@ -5,6 +5,7 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+        AppConfig.Load();
         ApplicationConfiguration.Initialize();
 
         try

@@ -50,3 +50,4 @@ D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.R
 D:\SZE\Szakdolgozat\ManagementClient\obj\Debug\net8.0-windows\ManagementClient.Properties.Resources.resources
 D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\Assets\ikon2.ico
 D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\Assets\logo3k.png
+D:\SZE\Szakdolgozat\ManagementClient\bin\Debug\net8.0-windows\config.json

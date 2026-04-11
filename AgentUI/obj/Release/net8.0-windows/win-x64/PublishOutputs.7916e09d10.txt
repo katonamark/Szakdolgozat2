@@ -1,4 +1,5 @@
 D:\Remotee\Agent\AgentUI.exe
+D:\Remotee\Agent\config.json
 D:\Remotee\Agent\AgentUI.dll
 D:\Remotee\Agent\AgentUI.deps.json
 D:\Remotee\Agent\AgentUI.runtimeconfig.json

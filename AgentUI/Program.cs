@@ -1,17 +1,29 @@
-namespace AgentUI
+using System.Threading;
+
+namespace AgentUI;
+
+internal static class Program
 {
-    internal static class Program
+    private static Mutex? _singleInstanceMutex;
+
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        AppConfig.Load();
+        const string mutexName = "RemoteeAgent_SingleInstance";
+
+        bool createdNew;
+        _singleInstanceMutex = new Mutex(true, mutexName, out createdNew);
+
+        if (!createdNew)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new ClientUI());
+            return;
         }
+
+        ApplicationConfiguration.Initialize();
+        Application.Run(new ClientUI());
+
+        _singleInstanceMutex.ReleaseMutex();
+        _singleInstanceMutex.Dispose();
     }
 }

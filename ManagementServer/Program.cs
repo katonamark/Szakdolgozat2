@@ -28,7 +28,9 @@ builder.Services.AddCors(options =>
                 return origin.StartsWith("https://localhost", StringComparison.OrdinalIgnoreCase)
                     || origin.StartsWith("http://localhost", StringComparison.OrdinalIgnoreCase)
                     || origin.StartsWith("https://127.0.0.1", StringComparison.OrdinalIgnoreCase)
-                    || origin.StartsWith("http://127.0.0.1", StringComparison.OrdinalIgnoreCase);
+                    || origin.StartsWith("http://127.0.0.1", StringComparison.OrdinalIgnoreCase)
+                    || origin.StartsWith("https://192.168.", StringComparison.OrdinalIgnoreCase)
+                    || origin.StartsWith("http://192.168.", StringComparison.OrdinalIgnoreCase);
             })
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -36,6 +38,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.WebHost.UseUrls("http://0.0.0.0:5000");
 var app = builder.Build();
 
 app.UseHttpsRedirection();
