@@ -164,7 +164,7 @@
             btnCommand.Name = "btnCommand";
             btnCommand.Size = new Size(134, 29);
             btnCommand.TabIndex = 10;
-            btnCommand.Text = "Parancs futtatás";
+            btnCommand.Text = "Parancsfuttatás";
             btnCommand.UseVisualStyleBackColor = true;
             btnCommand.Click += btnCommand_Click;
             // 

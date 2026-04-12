@@ -43,7 +43,7 @@
             // lblTargetAgent
             // 
             lblTargetAgent.AutoSize = true;
-            lblTargetAgent.Location = new Point(94, 64);
+            lblTargetAgent.Location = new Point(68, 67);
             lblTargetAgent.Name = "lblTargetAgent";
             lblTargetAgent.Size = new Size(43, 17);
             lblTargetAgent.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // txtCommand
             // 
-            txtCommand.Location = new Point(94, 100);
+            txtCommand.Location = new Point(68, 103);
             txtCommand.Name = "txtCommand";
             txtCommand.PlaceholderText = "Írd ide a futtatni kívánt parancsot";
             txtCommand.Size = new Size(334, 23);
@@ -60,7 +60,7 @@
             // 
             // btnRun
             // 
-            btnRun.Location = new Point(431, 144);
+            btnRun.Location = new Point(327, 151);
             btnRun.Name = "btnRun";
             btnRun.Size = new Size(75, 26);
             btnRun.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             // rtbCommandResult
             // 
-            rtbCommandResult.Location = new Point(94, 193);
+            rtbCommandResult.Location = new Point(68, 196);
             rtbCommandResult.Name = "rtbCommandResult";
             rtbCommandResult.ReadOnly = true;
             rtbCommandResult.Size = new Size(334, 262);
@@ -90,7 +90,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(94, 153);
+            label1.Location = new Point(68, 156);
             label1.Name = "label1";
             label1.Size = new Size(120, 17);
             label1.TabIndex = 5;
@@ -103,7 +103,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(549, 52);
+            panel1.Size = new Size(473, 52);
             panel1.TabIndex = 6;
             // 
             // label2
@@ -112,9 +112,9 @@
             label2.Font = new Font("Microsoft YaHei UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 238);
             label2.Location = new Point(12, 9);
             label2.Name = "label2";
-            label2.Size = new Size(211, 31);
+            label2.Size = new Size(204, 31);
             label2.TabIndex = 1;
-            label2.Text = "Parancs futtatás";
+            label2.Text = "Parancsfuttatás";
             // 
             // btnClear
             // 
@@ -132,7 +132,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             CancelButton = btnBack;
-            ClientSize = new Size(549, 510);
+            ClientSize = new Size(473, 510);
             Controls.Add(btnClear);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -146,7 +146,7 @@
             MaximizeBox = false;
             Name = "CommandForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Parancs futtatás";
+            Text = "Parancsfuttatás";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

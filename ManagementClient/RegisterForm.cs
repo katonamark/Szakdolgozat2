@@ -20,6 +20,7 @@ public partial class RegisterForm : Form
     {
         InitializeComponent();
         _adminCode = adminCode;
+        txtPasswordAgain.KeyDown += txtPasswordAgain_KeyDown;
     }
 
     private async void btnRegister_Click(object sender, EventArgs e)
@@ -78,8 +79,16 @@ public partial class RegisterForm : Form
             MessageBox.Show("Hiba regisztrációkor: " + ex.Message);
         }
     }
+    private void txtPasswordAgain_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            e.SuppressKeyPress = true;
+            btnRegister.PerformClick();
+        }
+    }
 
-     private void btnBack_Click(object sender, EventArgs e)
+    private void btnBack_Click(object sender, EventArgs e)
     {
         Close();
     }

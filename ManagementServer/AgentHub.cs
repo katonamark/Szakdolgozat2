@@ -159,5 +159,20 @@ public class AgentHub : Hub
 
         await base.OnDisconnectedAsync(exception);
     }
+    public async Task StartRemoteControl(string agentName)
+    {
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("RemoteControlStarted");
+        }
+    }
+
+    public async Task StopRemoteControl(string agentName)
+    {
+        if (_registry.TryGetAgentConnection(agentName, out var connectionId))
+        {
+            await Clients.Client(connectionId).SendAsync("RemoteControlStopped");
+        }
+    }
 
 }

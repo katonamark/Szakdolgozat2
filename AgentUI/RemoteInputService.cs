@@ -16,12 +16,9 @@ internal static class RemoteInputService
 
     [DllImport("user32.dll", SetLastError = true)]
     private static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);
-
     private const uint INPUT_MOUSE = 0;
     private const uint INPUT_KEYBOARD = 1;
-
     private const uint KEYEVENTF_KEYUP = 0x0002;
-
     private const uint MOUSEEVENTF_LEFTDOWN = 0x0002;
     private const uint MOUSEEVENTF_LEFTUP = 0x0004;
     private const uint MOUSEEVENTF_RIGHTDOWN = 0x0008;
@@ -74,9 +71,9 @@ internal static class RemoteInputService
     {
         var modifiers = new List<ushort>();
 
-        if (ctrl) modifiers.Add(0x11);   // VK_CONTROL
-        if (alt) modifiers.Add(0x12);    // VK_MENU
-        if (shift) modifiers.Add(0x10);  // VK_SHIFT
+        if (ctrl) modifiers.Add(0x11);
+        if (alt) modifiers.Add(0x12);
+        if (shift) modifiers.Add(0x10); 
 
         ushort mainKey = (ushort)keyCode;
 

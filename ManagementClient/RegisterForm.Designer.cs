@@ -53,11 +53,12 @@
             // 
             // txtPasswordAgain
             // 
+            txtPasswordAgain.AcceptsReturn = true;
             txtPasswordAgain.BackColor = SystemColors.ControlLight;
             txtPasswordAgain.Location = new Point(210, 328);
             txtPasswordAgain.Name = "txtPasswordAgain";
             txtPasswordAgain.Size = new Size(216, 23);
-            txtPasswordAgain.TabIndex = 1;
+            txtPasswordAgain.TabIndex = 3;
             txtPasswordAgain.UseSystemPasswordChar = true;
             // 
             // txtPassword
@@ -75,7 +76,7 @@
             txtUsername.Location = new Point(210, 189);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(216, 23);
-            txtUsername.TabIndex = 3;
+            txtUsername.TabIndex = 1;
             // 
             // btnRegister
             // 

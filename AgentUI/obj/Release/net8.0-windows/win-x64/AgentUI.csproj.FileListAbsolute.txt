@@ -496,3 +496,4 @@ D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.pdb
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.genruntimeconfig.cache
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\ref\AgentUI.dll
 D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\config.json
+D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.RemoteControlOverlayForm.resources

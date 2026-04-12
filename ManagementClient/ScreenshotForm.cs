@@ -19,6 +19,10 @@ namespace ManagementClient
             refreshTimer?.Stop();
             refreshTimer?.Dispose();
             base.OnFormClosing(e);
+            if (connection?.State == HubConnectionState.Connected)
+            {
+                _ = connection.InvokeAsync("StopRemoteControl", agentName);
+            }
         }
 
         public ScreenshotForm(Image image, string agentName, HubConnection connection)
@@ -33,25 +37,22 @@ namespace ManagementClient
             KeyPreview = true;
             KeyDown += ScreenshotForm_KeyDown;
             KeyUp += ScreenshotForm_KeyUp;
-
             pictureBox1.Image = image;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabStop = true;
-
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 1000;
             refreshTimer.Tick += refreshTimer_Tick;
             refreshTimer.Start();
-
             pictureBox1.MouseDown += pictureBox1_MouseDown;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseDoubleClick += pictureBox1_MouseDoubleClick;
             pictureBox1.MouseWheel += pictureBox1_MouseWheel;
-
             pictureBox1.MouseEnter += (_, _) => pictureBox1.Focus();
             pictureBox1.Click += (_, _) => pictureBox1.Focus();
             pictureBox1.Focus();
+            _ = connection.InvokeAsync("StartRemoteControl", agentName);
         }
 
         private async void refreshTimer_Tick(object? sender, EventArgs e)
@@ -87,6 +88,10 @@ namespace ManagementClient
             {
                 _leftMouseDown = true;
                 await connection.InvokeAsync("SendMouseActionToAgent", agentName, "leftdown", realX, realY, 0);
+            }
+            if (e.Button == MouseButtons.Right)
+            {
+                await connection.InvokeAsync("SendMouseActionToAgent", agentName, "rightclick", realX, realY, 0);
             }
         }
         private async void pictureBox1_MouseMove(object? sender, MouseEventArgs e)
