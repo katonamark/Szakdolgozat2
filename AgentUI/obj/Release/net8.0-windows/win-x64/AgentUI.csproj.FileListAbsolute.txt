@@ -1,3 +1,4 @@
+D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\config.json
 D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\AgentUI.exe
 D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\AgentUI.deps.json
 D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\AgentUI.runtimeconfig.json
@@ -483,6 +484,7 @@ D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\zh-Hant\WindowsFo
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.csproj.AssemblyReference.cache
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.ClientUI.resources
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.Properties.Resources.resources
+D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.RemoteControlOverlayForm.resources
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.csproj.GenerateResource.cache
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.GeneratedMSBuildEditorConfig.editorconfig
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.AssemblyInfoInputs.cache
@@ -495,5 +497,3 @@ D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\refint\AgentUI.dl
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.pdb
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.genruntimeconfig.cache
 D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\ref\AgentUI.dll
-D:\SZE\Szakdolgozat\AgentUI\bin\Release\net8.0-windows\win-x64\config.json
-D:\SZE\Szakdolgozat\AgentUI\obj\Release\net8.0-windows\win-x64\AgentUI.RemoteControlOverlayForm.resources

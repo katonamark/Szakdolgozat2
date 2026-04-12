@@ -1,5 +1,0 @@
-﻿[2026.04.11 02:26:23] Kapcsolódás a szerverhez sikeres.
-[2026.04.11 19:20:46] Kapcsolódás a szerverhez sikeres.
-[2026.04.11 19:34:29] Kapcsolódás a szerverhez sikeres.
-[2026.04.11 22:10:50] Az agent elindult. Várakozás a szerverre...
-[2026.04.11 22:10:50] Kapcsolódás a szerverhez sikeres.

@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Threading;
+using System.Media;
 
 namespace AgentUI
 {
@@ -47,7 +48,12 @@ namespace AgentUI
 
             notifyIcon1.Visible = true;
             notifyIcon1.Text = "Remotee Agent";
-            notifyIcon1.Icon = this.Icon;
+
+            if (notifyIcon1.Icon == null)
+            {
+                notifyIcon1.Icon = this.Icon;
+            }
+
             notifyIcon1.DoubleClick += notifyIcon1_DoubleClick;
             notifyIcon1.BalloonTipClicked += notifyIcon1_BalloonTipClicked;
 
@@ -94,7 +100,6 @@ namespace AgentUI
                 }
                 catch
                 {
-                    // végsõ fallback: nem dobunk tovább kivételt értesítés/log miatt
                 }
             }
         }
@@ -139,7 +144,7 @@ namespace AgentUI
                         });
                     }
                 }
-                catch (Exception)
+                catch
                 {
                     RunOnUi(() =>
                     {
@@ -167,7 +172,7 @@ namespace AgentUI
                 RunOnUi(() =>
                 {
                     AppendChatLine($"[{DateTime.Now:yyyy.MM.dd HH:mm}] Management: {message}");
-                    ShowNotification("Új üzenet", message);
+                    ShowNotification("Új üzenet", message, ToolTipIcon.Info, true);
                 });
             });
 
@@ -210,7 +215,7 @@ namespace AgentUI
                     RunOnUi(() =>
                     {
                         AddLog($"Fájl érkezett: {fileName}");
-                        ShowNotification("Fájl érkezett", fileName);
+                        ShowNotification("Fájl érkezett", fileName, ToolTipIcon.Info, true);
                     });
                 }
                 catch (Exception ex)
@@ -218,7 +223,6 @@ namespace AgentUI
                     RunOnUi(() =>
                     {
                         AddLog("Hiba fájl mentésekor: " + ex.Message);
-                        MessageBox.Show("Hiba fájl mentésekor: " + ex.Message);
                     });
                 }
             });
@@ -228,7 +232,7 @@ namespace AgentUI
                 RunOnUi(() =>
                 {
                     AddLog($"Parancs érkezett: {command}");
-                    ShowNotification("Parancsfuttatás", command);
+                    ShowNotification("Parancsfuttatás", command, ToolTipIcon.Warning, true);
                 });
 
                 string result;
@@ -300,7 +304,6 @@ namespace AgentUI
                     RunOnUi(() =>
                     {
                         AddLog("Hiba a távoli egérmûvelet közben: " + ex.Message);
-                        MessageBox.Show("Hiba a távoli egérmûvelet közben: " + ex.Message);
                     });
                 }
             });
@@ -317,9 +320,29 @@ namespace AgentUI
                     RunOnUi(() =>
                     {
                         AddLog("Hiba a távoli billentyûmûvelet közben: " + ex.Message);
-                        MessageBox.Show("Hiba a távoli billentyûmûvelet közben: " + ex.Message);
                     });
                 }
+            });
+
+            connection.On<bool>("RemoteControlSessionChanged", started =>
+            {
+                RunOnUi(() =>
+                {
+                    _remoteSessionActive = started;
+
+                    if (started)
+                    {
+                        AddLog("Távoli vezérlés elindult.");
+                        ShowNotification("Távoli vezérlés", "A távoli vezérlés megkezdõdött.", ToolTipIcon.Warning, true);
+                        ShowRemoteOverlay();
+                    }
+                    else
+                    {
+                        AddLog("Távoli vezérlés leállt.");
+                        ShowNotification("Távoli vezérlés", "A távoli vezérlés befejezõdött.", ToolTipIcon.Warning, true);
+                        HideRemoteOverlay();
+                    }
+                });
             });
         }
 
@@ -510,7 +533,6 @@ namespace AgentUI
             }
             catch
             {
-                // UI log megjelenítés hibája ne állítsa meg az alkalmazást
             }
 
             try
@@ -528,7 +550,6 @@ namespace AgentUI
             }
             catch
             {
-                // fájl log hiba ne dobjon MessageBox-ot háttérben futó appnál
             }
         }
 
@@ -547,36 +568,38 @@ namespace AgentUI
         private void MarkRemoteControlActive()
         {
             _lastRemoteControlActivity = DateTime.Now;
-
-            if (!_remoteSessionActive)
-            {
-                _remoteSessionActive = true;
-                AddLog("Távoli vezérlés elindult.");
-                ShowNotification("Távoli vezérlés", "Távoli vezérlés elindult.");
-                ShowRemoteOverlay();
-            }
-
             _remoteControlActive = true;
         }
 
-        private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
+        private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info, bool playSound = false)
         {
-            RunOnUi(() =>
+            if (InvokeRequired)
             {
-                if (notifyIcon1 == null)
-                    return;
+                BeginInvoke(new Action(() => ShowNotification(title, message, icon, playSound)));
+                return;
+            }
 
+            try
+            {
                 _notificationSequence++;
                 string finalMessage = message + new string('\u200B', (_notificationSequence % 4) + 1);
 
-                notifyIcon1.Visible = false;
                 notifyIcon1.Visible = true;
                 notifyIcon1.Text = "Remotee Agent";
                 notifyIcon1.BalloonTipTitle = title;
                 notifyIcon1.BalloonTipText = finalMessage;
                 notifyIcon1.BalloonTipIcon = icon;
                 notifyIcon1.ShowBalloonTip(5000);
-            });
+
+                if (playSound)
+                {
+                    SystemSounds.Exclamation.Play();
+                }
+            }
+            catch (Exception ex)
+            {
+                AddLog("Értesítés hiba: " + ex.Message);
+            }
         }
 
         private void InitializeRemoteControlTimer()
@@ -595,15 +618,6 @@ namespace AgentUI
             if (DateTime.Now - _lastRemoteControlActivity > TimeSpan.FromSeconds(5))
             {
                 _remoteControlActive = false;
-
-                if (_remoteSessionActive)
-                {
-                    _remoteSessionActive = false;
-                    AddLog("Távoli vezérlés leállt.");
-                    ShowNotification("Távoli vezérlés", "Távoli vezérlés leállt.");
-                }
-
-                HideRemoteOverlay();
             }
         }
 
