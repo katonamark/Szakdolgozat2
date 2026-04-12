@@ -526,6 +526,8 @@ namespace AgentUI
                 ShowRemoteOverlay();
             }
         }
+        private DateTime _lastNotificationTime = DateTime.MinValue;
+
         private void ShowNotification(string title, string message, ToolTipIcon icon = ToolTipIcon.Info)
         {
             if (InvokeRequired)
@@ -534,10 +536,12 @@ namespace AgentUI
                 return;
             }
 
-            notifyIcon1.BalloonTipTitle = title;
-            notifyIcon1.BalloonTipText = message;
-            notifyIcon1.BalloonTipIcon = icon;
+            _lastNotificationTime = DateTime.Now;
+            notifyIcon1.Visible = false;
             notifyIcon1.Visible = true;
+            notifyIcon1.BalloonTipTitle = title;
+            notifyIcon1.BalloonTipText = $"{message} ({DateTime.Now:HH:mm:ss})";
+            notifyIcon1.BalloonTipIcon = icon;
             notifyIcon1.ShowBalloonTip(3000);
         }
 

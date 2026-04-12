@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+
 
 namespace AgentUI;
 
@@ -32,6 +34,14 @@ internal static class RemoteInputService
 
         switch (action.ToLowerInvariant())
         {
+            case "leftdown":
+                SendMouse(MOUSEEVENTF_LEFTDOWN);
+                break;
+
+            case "leftup":
+                SendMouse(MOUSEEVENTF_LEFTUP);
+                break;
+
             case "leftclick":
                 SendMouse(MOUSEEVENTF_LEFTDOWN);
                 SendMouse(MOUSEEVENTF_LEFTUP);

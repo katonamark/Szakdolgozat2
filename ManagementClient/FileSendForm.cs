@@ -15,9 +15,9 @@ namespace ManagementClient
     public partial class FileSendForm : Form
     {
         private readonly string targetAgent;
-        private HubConnection connection;
+        private readonly HubConnection connection;
 
-        public FileSendForm(string agentName, HubConnection? hub)
+        public FileSendForm(string agentName, HubConnection hub)
         {
             InitializeComponent();
             targetAgent = agentName;
@@ -33,9 +33,9 @@ namespace ManagementClient
             txtTargetPath.Enabled = false;
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void btnBrowse_Click(object? sender, EventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
+            using OpenFileDialog dlg = new OpenFileDialog();
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -43,7 +43,7 @@ namespace ManagementClient
             }
         }
 
-        private async void btnSend_Click(object sender, EventArgs e)
+        private async void btnSend_Click(object? sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtFilePath.Text))
             {
@@ -84,12 +84,12 @@ namespace ManagementClient
                 MessageBox.Show("Hiba fájlküldéskor: " + ex.Message);
             }
         }
-        private void btnBack_Click(object sender, EventArgs e)
+        private void btnBack_Click(object? sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void cmbTargetPath_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbTargetPath_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (cmbTargetPath.SelectedItem?.ToString() == "Custom")
             {

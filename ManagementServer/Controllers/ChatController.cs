@@ -1,11 +1,8 @@
-﻿using ManagementServer;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementServer.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-
     [ApiController]
     [Route("api/[controller]")]
     public class ChatController : ControllerBase
@@ -16,6 +13,7 @@ namespace ManagementServer.Controllers
             var messages = ChatStorage.GetConversation(agentName);
             return Ok(messages);
         }
+
         [HttpGet("agent/{agentName}")]
         public IActionResult GetConversationForAgent(string agentName)
         {
