@@ -1,4 +1,4 @@
-﻿using System;
+/*using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -13,7 +13,17 @@ namespace ManagementClient
         private readonly int originalImageHeight;
         private System.Windows.Forms.Timer refreshTimer;
         private bool _leftMouseDown = false;
-        private bool _remoteSessionStarted = false;
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            refreshTimer?.Stop();
+            refreshTimer?.Dispose();
+            base.OnFormClosing(e);
+            if (connection?.State == HubConnectionState.Connected)
+            {
+                _ = connection.InvokeAsync("StopRemoteControl", agentName);
+            }
+        }
 
         public ScreenshotForm(Image image, string agentName, HubConnection connection)
         {
@@ -27,17 +37,13 @@ namespace ManagementClient
             KeyPreview = true;
             KeyDown += ScreenshotForm_KeyDown;
             KeyUp += ScreenshotForm_KeyUp;
-            Shown += ScreenshotForm_Shown;
-
             pictureBox1.Image = image;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabStop = true;
-
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 1000;
             refreshTimer.Tick += refreshTimer_Tick;
             refreshTimer.Start();
-
             pictureBox1.MouseDown += pictureBox1_MouseDown;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
             pictureBox1.MouseMove += pictureBox1_MouseMove;
@@ -46,48 +52,14 @@ namespace ManagementClient
             pictureBox1.MouseEnter += (_, _) => pictureBox1.Focus();
             pictureBox1.Click += (_, _) => pictureBox1.Focus();
             pictureBox1.Focus();
-        }
-
-        private async void ScreenshotForm_Shown(object? sender, EventArgs e)
-        {
-            if (_remoteSessionStarted)
-                return;
-
-            try
-            {
-                if (connection?.State == HubConnectionState.Connected)
-                {
-                    await connection.InvokeAsync("StartRemoteControl", agentName);
-                    _remoteSessionStarted = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hiba a távoli vezérlés indításakor: " + ex.Message);
-            }
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            refreshTimer?.Stop();
-            refreshTimer?.Dispose();
-
-            base.OnFormClosing(e);
-
-            if (_remoteSessionStarted && connection?.State == HubConnectionState.Connected)
-            {
-                _ = connection.InvokeAsync("StopRemoteControl", agentName);
-            }
+            _ = connection.InvokeAsync("StartRemoteControl", agentName);
         }
 
         private async void refreshTimer_Tick(object? sender, EventArgs e)
         {
             try
             {
-                if (connection?.State == HubConnectionState.Connected)
-                {
-                    await connection.InvokeAsync("RequestLiveScreenshot", agentName);
-                }
+                await connection.InvokeAsync("RequestLiveScreenshot", agentName);
             }
             catch
             {
@@ -117,13 +89,11 @@ namespace ManagementClient
                 _leftMouseDown = true;
                 await connection.InvokeAsync("SendMouseActionToAgent", agentName, "leftdown", realX, realY, 0);
             }
-
             if (e.Button == MouseButtons.Right)
             {
                 await connection.InvokeAsync("SendMouseActionToAgent", agentName, "rightclick", realX, realY, 0);
             }
         }
-
         private async void pictureBox1_MouseMove(object? sender, MouseEventArgs e)
         {
             if (!_leftMouseDown)
@@ -152,6 +122,7 @@ namespace ManagementClient
             _leftMouseDown = false;
             await connection.InvokeAsync("SendMouseActionToAgent", agentName, "leftup", realX, realY, 0);
         }
+
 
         private async void pictureBox1_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
@@ -194,7 +165,8 @@ namespace ManagementClient
                     true,
                     e.Control,
                     e.Alt,
-                    e.Shift);
+                    e.Shift
+                );
 
                 e.SuppressKeyPress = true;
             }
@@ -215,7 +187,8 @@ namespace ManagementClient
                     false,
                     e.Control,
                     e.Alt,
-                    e.Shift);
+                    e.Shift
+                );
 
                 e.SuppressKeyPress = true;
             }
@@ -265,4 +238,4 @@ namespace ManagementClient
             return true;
         }
     }
-}
+}*/

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgentUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c4cf68fc23c8c6a3dd2c14fc0eef9c8a2903a5e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+652a46c0d318707059cb95eb2675bba2ae772d8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgentUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgentUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
