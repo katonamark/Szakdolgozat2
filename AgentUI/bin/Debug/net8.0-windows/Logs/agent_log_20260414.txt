@@ -404,3 +404,7 @@
 [2026.04.14 12:59:37] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
 [2026.04.14 12:59:42] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
 [2026.04.14 12:59:47] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.14 12:59:52] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.14 12:59:57] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.14 13:00:02] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.14 13:00:07] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
