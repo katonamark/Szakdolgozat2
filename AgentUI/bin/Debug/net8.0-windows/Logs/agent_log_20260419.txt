@@ -86,3 +86,11 @@
 [2026.04.19 14:11:18] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
 [2026.04.19 14:11:23] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
 [2026.04.19 14:11:28] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.19 14:11:33] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.19 14:11:38] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.19 16:31:41] Az agent elindult. Várakozás a szerverre...
+[2026.04.19 16:31:45] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:7294)
+[2026.04.19 16:31:48] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:7294)
+[2026.04.19 16:31:53] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.19 16:31:58] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
+[2026.04.19 16:32:03] A szerver még nem érhető el: Nem hozható létre kapcsolat, mert a célszámítógép már visszautasította a kapcsolatot. (192.168.0.112:5000)
