@@ -34,8 +34,7 @@ public static class ServerLauncher
             return;
         }
 
-        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        string serverExePath = Path.Combine(baseDir, "ManagementServer", "ManagementServer.exe");
+        string serverExePath = GetServerExePath();
 
         if (!File.Exists(serverExePath))
         {
@@ -72,5 +71,15 @@ public static class ServerLauncher
         }
 
         throw new Exception("A szerver nem indult el időben.");
+    }
+    private static string GetServerExePath()
+    {
+#if DEBUG
+        return Path.GetFullPath(
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                @"..\..\..\..\ManagementServer\bin\Debug\net8.0\ManagementServer.exe"));
+#else
+    return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ManagementServer", "ManagementServer.exe");
+#endif
     }
 }
